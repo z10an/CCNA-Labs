@@ -1,0 +1,25 @@
+PC2> 172.16.0.1/16 172.16.0.10
+Bad command: "172.16.0.1/16 172.16.0.10". Use ? for help.
+
+PC2> ip 172.16.0.1/16 172.16.0.10
+Checking for duplicate address...
+PC1 : 172.16.0.1 255.255.0.0 gateway 172.16.0.10
+
+PC2> save
+Saving startup configuration to startup.vpc
+.  done
+
+PC2> ping 192.168.10.1
+84 bytes from 192.168.10.1 icmp_seq=1 ttl=62 time=62.402 ms
+84 bytes from 192.168.10.1 icmp_seq=2 ttl=62 time=62.662 ms
+84 bytes from 192.168.10.1 icmp_seq=3 ttl=62 time=62.074 ms
+84 bytes from 192.168.10.1 icmp_seq=4 ttl=62 time=60.567 ms
+84 bytes from 192.168.10.1 icmp_seq=5 ttl=62 time=60.482 ms
+
+PC2> trace 192.168.10.1
+trace to 192.168.10.1, 8 hops max, press Ctrl+C to stop
+ 1  172.16.0.10  15.670 ms  15.962 ms  15.427 ms
+ 2  10.0.0.1    45.383 ms  45.790 ms  47.104 ms
+ 3  *192.168.10.1  61.999 ms (ICMP type:3, code:3, Destination port unreachable)
+
+PC2>

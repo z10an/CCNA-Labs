@@ -1,0 +1,59 @@
+PC2> ip 172.16.0.1/24 172.16.0.10
+Checking for duplicate address...
+PC1 : 172.16.0.1 255.255.255.0 gateway 172.16.0.10
+
+PC2> ping 192.168.10.1
+84 bytes from 192.168.10.1 icmp_seq=1 ttl=61 time=77.515 ms
+84 bytes from 192.168.10.1 icmp_seq=2 ttl=61 time=76.219 ms
+84 bytes from 192.168.10.1 icmp_seq=3 ttl=61 time=77.072 ms
+84 bytes from 192.168.10.1 icmp_seq=4 ttl=61 time=78.330 ms
+84 bytes from 192.168.10.1 icmp_seq=5 ttl=61 time=78.660 ms
+
+PC2> trace 192.168.10.1
+trace to 192.168.10.1, 8 hops max, press Ctrl+C to stop
+ 1   172.16.0.10   14.631 ms  15.558 ms  15.493 ms
+ 2   20.0.0.1   46.470 ms  45.833 ms  45.127 ms
+ 3   10.0.0.1   61.518 ms  61.588 ms  61.177 ms
+ 4   *192.168.10.1   77.349 ms (ICMP type:3, code:3, Destination port unreachable)
+
+PC2> ping 192.168.10.1
+192.168.10.1 icmp_seq=1 timeout
+192.168.10.1 icmp_seq=2 timeout
+84 bytes from 192.168.10.1 icmp_seq=3 ttl=61 time=77.820 ms
+84 bytes from 192.168.10.1 icmp_seq=4 ttl=61 time=77.387 ms
+84 bytes from 192.168.10.1 icmp_seq=5 ttl=61 time=76.785 ms
+
+PC2> ping 192.168.10.1
+84 bytes from 192.168.10.1 icmp_seq=1 ttl=61 time=78.295 ms
+84 bytes from 192.168.10.1 icmp_seq=2 ttl=61 time=77.861 ms
+84 bytes from 192.168.10.1 icmp_seq=3 ttl=61 time=78.453 ms
+84 bytes from 192.168.10.1 icmp_seq=4 ttl=61 time=76.113 ms
+84 bytes from 192.168.10.1 icmp_seq=5 ttl=61 time=78.557 ms
+
+PC2> trace 192.168.10.1
+trace to 192.168.10.1, 8 hops max, press Ctrl+C to stop
+ 1   172.16.0.10   15.449 ms  15.911 ms  15.307 ms
+ 2   20.0.0.1   47.094 ms  46.872 ms  45.684 ms
+ 3   10.0.0.1   61.643 ms  45.366 ms  61.507 ms
+ 4   *192.168.10.1   77.960 ms (ICMP type:3, code:3, Destination port unreachable)
+
+PC2> save
+Saving startup configuration to startup.vpc
+.  done
+
+PC2> ping 192.168.10.1
+84 bytes from 192.168.10.1 icmp_seq=1 ttl=61 time=76.712 ms
+84 bytes from 192.168.10.1 icmp_seq=2 ttl=61 time=77.164 ms
+84 bytes from 192.168.10.1 icmp_seq=3 ttl=61 time=78.271 ms
+84 bytes from 192.168.10.1 icmp_seq=4 ttl=61 time=76.499 ms
+84 bytes from 192.168.10.1 icmp_seq=5 ttl=61 time=77.589 ms
+
+PC2>
+PC2> trace 192.168.10.1
+trace to 192.168.10.1, 8 hops max, press Ctrl+C to stop
+ 1   172.16.0.10   15.818 ms  15.783 ms  14.333 ms
+ 2   40.0.0.1   46.355 ms  45.554 ms  46.303 ms
+ 3   30.0.0.1   62.155 ms  60.623 ms  61.091 ms
+ 4   *192.168.10.1   76.999 ms (ICMP type:3, code:3, Destination port unreachable)
+
+PC2>

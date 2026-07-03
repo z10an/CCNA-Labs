@@ -1,0 +1,169 @@
+R2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R2(config)#int s1/0
+R2(config-if)#ip add 10.0.0.2 255.255.255.252
+R2(config-if)#no sh
+R2(config-if)#int s1/
+*Mar  1 00:04:06.211: %LINK-3-UPDOWN: Interface Serial1/0, changed state to up
+R2(config-if)#int s1/1
+*Mar  1 00:04:07.215: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/0, changed state to up
+R2(config-if)#int s1/1
+R2(config-if)#ip add 30.0.0.2 255.255.255.252
+R2(config-if)#no ah
+                  ^
+% Invalid input detected at '^' marker.
+
+R2(config-if)#no sh
+R2(config-if)#int s
+*Mar  1 00:04:30.651: %LINK-3-UPDOWN: Interface Serial1/1, changed state to up
+R2(config-if)#int s
+*Mar  1 00:04:31.655: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/1, changed state to up
+R2(config-if)#int s1/3
+R2(config-if)#ip add 20.0.0.1 255.255.255.252
+R2(config-if)#no sh
+R2(config-if)#int s1/
+*Mar  1 00:05:05.555: %LINK-3-UPDOWN: Interface Serial1/3, changed state to up
+R2(config-if)#int s1/2
+*Mar  1 00:05:06.559: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/3, changed state to up
+R2(config-if)#int s1/2
+R2(config-if)#ip add 40.0.0.1 255.255.255.252
+R2(config-if)#no sh
+R2(config-if)#
+*Mar  1 00:05:20.895: %LINK-3-UPDOWN: Interface Serial1/2, changed state to up
+R2(config-if)#
+*Mar  1 00:05:21.899: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/2, changed state to up
+R2(config-if)#
+*Mar  1 00:05:33.047: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/3, changed state to down
+R2(config-if)#
+*Mar  1 00:05:43.047: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/2, changed state to down
+R2(config-if)#
+*Mar  1 00:06:03.047: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/3, changed state to up
+R2(config-if)#
+*Mar  1 00:06:23.031: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/2, changed state to up
+R2(config-if)#ex
+R2(config)#ip route 192.168.10.0 255.255.255.0 10.0.0.1
+R2(config)#ip route 192.168.10.0 255.255.255.0 30.0.0.1
+R2(config)#ip route 172.16.0.0 255.255.0.0 20.0.0.2
+R2(config)#ip route 172.16.0.0 255.255.0.0 40.0.0.2
+R2(config)#do sh ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     20.0.0.0/30 is subnetted, 1 subnets
+C       20.0.0.0 is directly connected, Serial1/3
+S    192.168.10.0/24 [1/0] via 30.0.0.1
+                     [1/0] via 10.0.0.1
+S    172.16.0.0/16 [1/0] via 40.0.0.2
+                   [1/0] via 20.0.0.2
+     40.0.0.0/30 is subnetted, 1 subnets
+C       40.0.0.0 is directly connected, Serial1/2
+     10.0.0.0/30 is subnetted, 1 subnets
+C       10.0.0.0 is directly connected, Serial1/0
+     30.0.0.0/30 is subnetted, 1 subnets
+C       30.0.0.0 is directly connected, Serial1/1
+R2(config)#do wr
+Building configuration...
+[OK]
+R2(config)#
+*Mar  1 00:30:03.163: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/1, changed state to down
+R2(config)#
+*Mar  1 00:30:13.183: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/3, changed state to down
+R2(config)#int s1/3
+R2(config-if)#sh
+R2(config-if)#
+*Mar  1 00:32:22.351: %LINK-5-CHANGED: Interface Serial1/3, changed state to administratively down
+R2(config-if)#
+*Mar  1 00:32:43.163: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/0, changed state to down
+R2(config-if)#do sh ip int br
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            unassigned      YES unset  administratively down down
+FastEthernet0/1            unassigned      YES unset  administratively down down
+Serial1/0                  10.0.0.2        YES manual up                    down
+Serial1/1                  30.0.0.2        YES manual up                    down
+Serial1/2                  40.0.0.1        YES manual up                    up
+Serial1/3                  20.0.0.1        YES manual administratively down down
+R2(config-if)#do show controllers serial 1/1
+M4T: show controller:
+PAS unit 1, subunit 1, f/w version 1-45, rev ID 0x2800001, version 1
+idb = 0x64B8EFE8, ds = 0x64B900A8, ssb=0x64B90464
+Clock mux=0x0, ucmd_ctrl=0x1C, port_status=0x7B
+Serial config=0x8, line config=0x200
+maxdgram=1608, bufpool=78Kb, 120 particles
+     DCD=up  DSR=up  DTR=up  RTS=up  CTS=up
+line state: up
+cable type : V.11 (X.21) DCE cable, received clockrate 2015232
+
+base0 registers=0x3D000000, base1 registers=0x3D002000
+mxt_ds=0x652CC4D0, rx ring entries=78, tx ring entries=128
+rxring=0xBADC520, rxr shadow=0x64B96AC0, rx_head=0
+txring=0xBADC7E0, txr shadow=0x64B96E9C, tx_head=61, tx_tail=61, tx_count=0
+throttled=0, enabled=0
+halted=0, last halt reason=0
+Microcode fatal errors=0
+rx_no_eop_err=0, rx_no_stp_err=0, rx_no_eop_stp_err=0
+rx_no_buf=0, rx_soft_overrun_err=0, dump_err= 0, bogus=0, mxt_flags=0x0
+tx_underrun_err=0, tx_soft_underrun_err=0, tx_limited=1(2)
+tx_fullring=0, tx_started=242, mxt_flush_count=0
+rx_int_count=175, tx_int_count=246
+R2(config-if)#
+*Mar  1 00:43:43.163: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/1, changed state to up
+R2(config-if)# int s1/3
+R2(config-if)#no sh
+R2(config-if)#
+*Mar  1 00:45:02.771: %LINK-3-UPDOWN: Interface Serial1/3, changed state to up
+R2(config-if)#
+*Mar  1 00:45:03.339: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/0, changed state to up
+*Mar  1 00:45:03.775: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/3, changed state to up
+R2(config-if)#do sh ip route br
+Translating "br"
+
+sh ip route br
+             ^
+% Invalid input detected at '^' marker.
+
+R2(config-if)#do sh ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     20.0.0.0/30 is subnetted, 1 subnets
+C       20.0.0.0 is directly connected, Serial1/3
+S    192.168.10.0/24 [1/0] via 30.0.0.1
+                     [1/0] via 10.0.0.1
+S    172.16.0.0/16 [1/0] via 40.0.0.2
+                   [1/0] via 20.0.0.2
+     40.0.0.0/30 is subnetted, 1 subnets
+C       40.0.0.0 is directly connected, Serial1/2
+     10.0.0.0/30 is subnetted, 1 subnets
+C       10.0.0.0 is directly connected, Serial1/0
+     30.0.0.0/30 is subnetted, 1 subnets
+C       30.0.0.0 is directly connected, Serial1/1
+R2(config-if)#do sh ip int br
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            unassigned      YES unset  administratively down down
+FastEthernet0/1            unassigned      YES unset  administratively down down
+Serial1/0                  10.0.0.2        YES manual up                    up
+Serial1/1                  30.0.0.2        YES manual up                    up
+Serial1/2                  40.0.0.1        YES manual up                    up
+Serial1/3                  20.0.0.1        YES manual up                    up
+R2(config-if)# int s1/3
+R2(config-if)#sh
+R2(config-if)#
+*Mar  1 00:47:10.735: %LINK-5-CHANGED: Interface Serial1/3, changed state to administratively down
+*Mar  1 00:47:11.735: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/3, changed state to down
+R2(config-if)#
+*Mar  1 00:47:33.355: %LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/0, changed state to down
+R2(config-if)#

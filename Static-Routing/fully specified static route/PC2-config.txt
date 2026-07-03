@@ -1,0 +1,31 @@
+Welcome to Virtual PC Simulator, version 0.6.2
+Dedicated to Daling.
+Build time: Apr 10 2019 02:42:20
+Copyright (c) 2007-2014, Paul Meng (mirnshi@gmail.com)
+All rights reserved.
+
+VPCS is free software, distributed under the terms of the "BSD" licence.
+Source code and license can be found at vpcs.sf.net.
+For more information, please visit wiki.freecode.com.cn.
+
+Press '?' to get help.
+
+Executing the startup file
+
+Checking for duplicate address...
+PC1 : 172.16.0.1 255.255.255.0 gateway 172.16.0.10
+
+PC2> ping 192.168.10.1
+84 bytes from 192.168.10.1 icmp_seq=1 ttl=62 time=62.325 ms
+84 bytes from 192.168.10.1 icmp_seq=2 ttl=62 time=62.794 ms
+84 bytes from 192.168.10.1 icmp_seq=3 ttl=62 time=60.796 ms
+84 bytes from 192.168.10.1 icmp_seq=4 ttl=62 time=61.141 ms
+84 bytes from 192.168.10.1 icmp_seq=5 ttl=62 time=62.854 ms
+
+PC2> trace 192.168.10.1
+trace to 192.168.10.1, 8 hops max, press Ctrl+C to stop
+ 1  172.16.0.10  15.639 ms  16.125 ms  15.884 ms
+ 2  10.0.0.1  45.960 ms  45.561 ms  45.894 ms
+ 3  *192.168.10.1  60.895 ms (ICMP type:3, code:3, Destination port unreachable)
+
+PC2>

@@ -1,0 +1,13 @@
+R2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R2(config)#int f0/0
+R2(config-if)#ip add 172.16.0.10 255.255.0.0
+R2(config-if)#no sh
+R2(config-if)#int f0.0
+R2(config-if)#int f0/1
+R2(config-if)#ip add 10.0.0.2 255.255.255.252
+R2(config-if)#no sh
+R2(config-if)#ex
+R2(config)#ip rout
+R2(config)#ip route 192.168.10.0 255.255.255.0 10.0.0.1
+R2(config)#do sh ip route

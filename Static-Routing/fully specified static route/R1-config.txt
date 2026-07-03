@@ -1,0 +1,37 @@
+R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#do sh ip int br
+
+Interface              IP-Address      OK? Method Status                Protocol
+FastEthernet0/0        192.168.10.10   YES NVRAM  up                    up
+FastEthernet0/1        10.0.0.1        YES NVRAM  up                    up
+
+R1(config)#do sh ip route
+
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.10.0/24 is directly connected, FastEthernet0/0
+     172.16.0.0/24 is subnetted, 1 subnets
+S       172.16.0.0 [1/0] via 10.0.0.2
+     10.0.0.0/30 is subnetted, 1 subnets
+C       10.0.0.0 is directly connected, FastEthernet0/1
+
+R1(config)#do sh run | s route
+ip route 172.16.0.0 255.255.255.0 10.0.0.2
+R1(config)#no ip route 172.16.0.0 255.255.255.0 10.0.0.2
+R1(config)#ip route 172.16.0.0 255.255.255.0 f0/1 10.0.0.2
+R1(config)#do sh run | s route
+ip route 172.16.0.0 255.255.255.0 FastEthernet0/1 10.0.0.2
+R1(config)#do wr
+Building configuration...
+[OK]
+
+R1(config)#

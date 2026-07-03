@@ -1,0 +1,28 @@
+PC4> show ip
+
+NAME        : PC4[1]
+IP/MASK     : 0.0.0.0/0
+GATEWAY     : 0.0.0.0
+DNS         :
+MAC         : 00:50:79:66:68:03
+LPORT       : 10034
+RHOST:PORT  : 127.0.0.1:10035
+MTU:        : 1500
+
+PC4> dhcp
+DDORA IP 172.16.0.12/16 GW 172.16.0.10
+
+PC4> show ip
+
+NAME        : PC4[1]
+IP/MASK     : 172.16.0.12/16
+GATEWAY     : 172.16.0.10
+DNS         :
+DHCP SERVER : 20.0.0.1
+DHCP LEASE  : 86388, 86400/43200/75600
+MAC         : 00:50:79:66:68:03
+LPORT       : 10034
+RHOST:PORT  : 127.0.0.1:10035
+MTU:        : 1500
+
+PC4>

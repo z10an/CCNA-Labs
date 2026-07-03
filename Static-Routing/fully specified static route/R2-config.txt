@@ -1,0 +1,19 @@
+R2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R2(config)#do sh ip int br
+
+Interface              IP-Address      OK? Method Status                Protocol
+FastEthernet0/0        172.16.0.10     YES NVRAM  up                    up
+FastEthernet0/1        10.0.0.2        YES NVRAM  up                    up
+
+R2(config)#do sh run | s route
+ip route 192.168.10.0 255.255.255.0 10.0.0.1
+R2(config)#no ip route 192.168.10.0 255.255.255.0 10.0.0.1
+R2(config)#ip route 192.168.10.0 255.255.255.0 f0/1 10.0.0.1
+R2(config)#do sh run | s route
+ip route 192.168.10.0 255.255.255.0 FastEthernet0/1 10.0.0.1
+R2(config)#do wr
+Building configuration...
+[OK]
+
+R2(config)#

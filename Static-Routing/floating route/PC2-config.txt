@@ -1,0 +1,17 @@
+PC2> ping 192.168.10.1
+84 bytes from 192.168.10.1 icmp_seq=1 ttl=61 time=76.103 ms
+84 bytes from 192.168.10.1 icmp_seq=2 ttl=61 time=77.355 ms
+84 bytes from 192.168.10.1 icmp_seq=3 ttl=61 time=75.343 ms
+84 bytes from 192.168.10.1 icmp_seq=4 ttl=61 time=77.884 ms
+84 bytes from 192.168.10.1 icmp_seq=5 ttl=61 time=78.047 ms
+
+PC2> trace 192.168.10.1
+trace to 192.168.10.1, 8 hops max, press Ctrl+C to stop
+ 1   172.16.0.10   15.908 ms  15.725 ms  15.440 ms
+ 2   20.0.0.1   45.352 ms  44.661 ms  46.066 ms
+ 3   30.0.0.1   60.069 ms  62.654 ms  61.943 ms
+ 4   *192.168.10.1   77.096 ms (ICMP type:3, code:3, Destination port unreachable)
+
+PC2>
+
+

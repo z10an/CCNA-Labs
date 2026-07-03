@@ -1,0 +1,36 @@
+VPCS is free software, distributed under the terms of the "BSD" licence.
+Source code and license can be found at vpcs.sf.net.
+For more information, please visit wiki.freecode.com.cn.
+
+Press '?' to get help.
+
+Executing the startup file
+
+PC2> show ip
+
+NAME        : PC2[1]
+IP/MASK     : 0.0.0.0/0
+GATEWAY     : 0.0.0.0
+DNS         :
+MAC         : 00:50:79:66:68:01
+LPORT       : 10028
+RHOST:PORT  : 127.0.0.1:10029
+MTU:        : 1500
+
+PC2> dhcp
+DDORA IP 192.168.10.12/24 GW 192.168.10.10
+
+PC2> show ip
+
+NAME        : PC2[1]
+IP/MASK     : 192.168.10.12/24
+GATEWAY     : 192.168.10.10
+DNS         :
+DHCP SERVER : 10.0.0.1
+DHCP LEASE  : 86376, 86400/43200/75600
+MAC         : 00:50:79:66:68:01
+LPORT       : 10028
+RHOST:PORT  : 127.0.0.1:10029
+MTU:        : 1500
+
+PC2>

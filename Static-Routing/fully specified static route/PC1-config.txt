@@ -1,0 +1,37 @@
+Dedicated to Daling.
+Build time: Apr 10 2019 02:42:20
+Copyright (c) 2007-2014, Paul Meng (mirnshi@gmail.com)
+All rights reserved.
+
+VPCS is free software, distributed under the terms of the "BSD" licence.
+Source code and license can be found at vpcs.sf.net.
+For more information, please visit wiki.freecode.com.cn.
+
+Press '?' to get help.
+
+Executing the startup file
+
+Checking for duplicate address...
+PC1 : 192.168.10.1 255.255.255.0 gateway 192.168.10.10
+
+PC1> ping 172.16.0.1
+172.16.0.1 icmp_seq=1 timeout
+172.16.0.1 icmp_seq=2 timeout
+84 bytes from 172.16.0.1 icmp_seq=3 ttl=62 time=60.678 ms
+84 bytes from 172.16.0.1 icmp_seq=4 ttl=62 time=62.656 ms
+84 bytes from 172.16.0.1 icmp_seq=5 ttl=62 time=62.636 ms
+
+PC1> ping 172.16.0.1
+84 bytes from 172.16.0.1 icmp_seq=1 ttl=62 time=61.977 ms
+84 bytes from 172.16.0.1 icmp_seq=2 ttl=62 time=64.162 ms
+84 bytes from 172.16.0.1 icmp_seq=3 ttl=62 time=61.829 ms
+84 bytes from 172.16.0.1 icmp_seq=4 ttl=62 time=62.385 ms
+84 bytes from 172.16.0.1 icmp_seq=5 ttl=62 time=61.875 ms
+
+PC1> trace 172.16.0.1
+trace to 172.16.0.1, 8 hops max, press Ctrl+C to stop
+ 1  192.168.10.10  15.373 ms  15.730 ms  15.994 ms
+ 2  10.0.0.2  46.004 ms  44.473 ms  46.915 ms
+ 3  *172.16.0.1  60.525 ms (ICMP type:3, code:3, Destination port unreachable)
+
+PC1>

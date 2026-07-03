@@ -55,10 +55,14 @@ Verified end-to-end connectivity by successfully pinging from:
 
 ## Files Included
 
-- `Static-Routing.gns3`
+- `static routing.gns3`
 - `R1.txt`
 - `R2.txt`
-- `images/topology.png`
-- `images/show-ip-route-r1.png`
-- `images/show-ip-route-r2.png`
-- `images/ping-success.png`
+- `PC1.txt`
+- `PC2.txt`
+- `topology.png`
+- `PC1-config.png`
+- `PC2-config.png`
+- `R1-config.png`
+- `R2-config.png`
+

@@ -1,0 +1,28 @@
+PC3> show ip
+
+NAME        : PC3[1]
+IP/MASK     : 0.0.0.0/0
+GATEWAY     : 0.0.0.0
+DNS         :
+MAC         : 00:50:79:66:68:02
+LPORT       : 10032
+RHOST:PORT  : 127.0.0.1:10033
+MTU:        : 1500
+
+PC3> dhcp
+DDORA IP 172.16.0.11/16 GW 172.16.0.10
+
+PC3> show ip
+
+NAME        : PC3[1]
+IP/MASK     : 172.16.0.11/16
+GATEWAY     : 172.16.0.10
+DNS         :
+DHCP SERVER : 20.0.0.1
+DHCP LEASE  : 86381, 86400/43200/75600
+MAC         : 00:50:79:66:68:02
+LPORT       : 10032
+RHOST:PORT  : 127.0.0.1:10033
+MTU:        : 1500
+
+PC3>
