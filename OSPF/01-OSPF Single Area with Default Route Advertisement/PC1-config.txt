@@ -1,0 +1,13 @@
+PC1> ip 192.168.10.10/24 192.168.10.10
+Invalid address
+
+PC1> ip 192.168.10.1/24 192.168.10.10
+Checking for duplicate address...
+PC1 : 192.168.10.1 255.255.255.0 gateway 192.168.10.10
+
+PC1> save
+Saving startup configuration to startup.vpc
+.  done
+
+PC1>
+

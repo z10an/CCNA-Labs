@@ -1,0 +1,36 @@
+PC3> ip 10.0.3.2/30 10.0.3.1
+Checking for duplicate address...
+PC1 : 10.0.3.2 255.255.255.252 gateway 10.0.3.1
+
+PC3> ping 10.0.1.1
+host (10.0.3.1) not reachable
+
+PC3> ping 10.0.2.2
+host (10.0.3.1) not reachable
+
+PC3> ping 10.0.1.1
+10.0.1.1 icmp_seq=1 timeout
+84 bytes from 10.0.1.1 icmp_seq=2 ttl=253 time=78.088 ms
+84 bytes from 10.0.1.1 icmp_seq=3 ttl=253 time=77.779 ms
+84 bytes from 10.0.1.1 icmp_seq=4 ttl=253 time=75.888 ms
+84 bytes from 10.0.1.1 icmp_seq=5 ttl=253 time=76.307 ms
+
+PC3> ping 10.0.2.2
+10.0.2.2 icmp_seq=1 timeout
+10.0.2.2 icmp_seq=2 timeout
+84 bytes from 10.0.2.2 icmp_seq=3 ttl=62 time=77.015 ms
+84 bytes from 10.0.2.2 icmp_seq=4 ttl=62 time=61.998 ms
+84 bytes from 10.0.2.2 icmp_seq=5 ttl=62 time=77.118 ms
+
+PC3> ping 10.0.2.2
+84 bytes from 10.0.2.2 icmp_seq=1 ttl=62 time=61.700 ms
+84 bytes from 10.0.2.2 icmp_seq=2 ttl=62 time=76.275 ms
+84 bytes from 10.0.2.2 icmp_seq=3 ttl=62 time=61.055 ms
+84 bytes from 10.0.2.2 icmp_seq=4 ttl=62 time=76.052 ms
+84 bytes from 10.0.2.2 icmp_seq=5 ttl=62 time=61.463 ms
+
+PC3> save
+Saving startup configuration to startup.vpc
+.  done
+
+PC3>

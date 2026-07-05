@@ -1,0 +1,36 @@
+PC1> ip 192.168.10.1/30 192.168.10.10
+not same subnet
+
+PC1> ip 192.168.10.1/30 192.168.10.2
+Checking for duplicate address...
+PC1 : 192.168.10.1 255.255.255.252 gateway 192.168.10.2
+
+PC1> ping 192.168.20.1
+*192.168.10.2 icmp_seq=1 ttl=255 time=16.313 ms (ICMP type:3, code:1, Destination host unreachable)
+*192.168.10.2 icmp_seq=2 ttl=255 time=16.368 ms (ICMP type:3, code:1, Destination host unreachable)
+*192.168.10.2 icmp_seq=3 ttl=255 time=15.774 ms (ICMP type:3, code:1, Destination host unreachable)
+*192.168.10.2 icmp_seq=4 ttl=255 time=16.387 ms (ICMP type:3, code:1, Destination host unreachable)
+*192.168.10.2 icmp_seq=5 ttl=255 time=16.079 ms (ICMP type:3, code:1, Destination host unreachable)
+
+PC1> ping 192.168.20.1
+*192.168.10.2 icmp_seq=1 ttl=255 time=16.010 ms (ICMP type:3, code:1, Destination host unreachable)
+*192.168.10.2 icmp_seq=2 ttl=255 time=15.941 ms (ICMP type:3, code:1, Destination host unreachable)
+*192.168.10.2 icmp_seq=3 ttl=255 time=15.608 ms (ICMP type:3, code:1, Destination host unreachable)
+*192.168.10.2 icmp_seq=4 ttl=255 time=16.457 ms (ICMP type:3, code:1, Destination host unreachable)
+*192.168.10.2 icmp_seq=5 ttl=255 time=16.055 ms (ICMP type:3, code:1, Destination host unreachable)
+
+PC1> ping 192.168.20.1
+*192.168.10.2 icmp_seq=1 ttl=255 time=16.427 ms (ICMP type:3, code:1, Destination host unreachable)
+*192.168.10.2 icmp_seq=2 ttl=255 time=15.221 ms (ICMP type:3, code:1, Destination host unreachable)
+*192.168.10.2 icmp_seq=3 ttl=255 time=15.914 ms (ICMP type:3, code:1, Destination host unreachable)
+*192.168.10.2 icmp_seq=4 ttl=255 time=15.567 ms (ICMP type:3, code:1, Destination host unreachable)
+*192.168.10.2 icmp_seq=5 ttl=255 time=16.245 ms (ICMP type:3, code:1, Destination host unreachable)
+
+PC1> ping 192.168.20.1
+84 bytes from 192.168.20.1 icmp_seq=1 ttl=61 time=108.108 ms
+84 bytes from 192.168.20.1 icmp_seq=2 ttl=61 time=108.047 ms
+84 bytes from 192.168.20.1 icmp_seq=3 ttl=61 time=108.270 ms
+84 bytes from 192.168.20.1 icmp_seq=4 ttl=61 time=107.689 ms
+84 bytes from 192.168.20.1 icmp_seq=5 ttl=61 time=108.774 ms
+
+PC1>

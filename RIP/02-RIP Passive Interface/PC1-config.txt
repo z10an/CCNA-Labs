@@ -1,0 +1,10 @@
+PC1> ping 172.16.0.1
+172.16.0.1 icmp_seq=1 timeout
+84 bytes from 172.16.0.1 icmp_seq=2 ttl=61 time=92.563 ms
+84 bytes from 172.16.0.1 icmp_seq=3 ttl=61 time=93.853 ms
+84 bytes from 172.16.0.1 icmp_seq=4 ttl=61 time=92.304 ms
+84 bytes from 172.16.0.1 icmp_seq=5 ttl=61 time=91.678 ms
+
+PC1>
+PC1>
+

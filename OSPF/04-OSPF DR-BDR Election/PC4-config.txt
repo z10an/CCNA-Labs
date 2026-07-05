@@ -1,0 +1,18 @@
+PC4> ip 10.0.4.2/30 10.0.4.1
+Checking for duplicate address...
+PC1 : 10.0.4.2 255.255.255.252 gateway 10.0.4.1
+
+PC4> ping 10.0.1.1
+84 bytes from 10.0.1.1 icmp_seq=1 ttl=253 time=77.416 ms
+84 bytes from 10.0.1.1 icmp_seq=2 ttl=253 time=76.061 ms
+84 bytes from 10.0.1.1 icmp_seq=3 ttl=253 time=76.185 ms
+84 bytes from 10.0.1.1 icmp_seq=4 ttl=253 time=77.594 ms
+84 bytes from 10.0.1.1 icmp_seq=5 ttl=253 time=77.128 ms
+
+PC4> save
+Saving startup configuration to startup.vpc
+.  done
+
+PC4>
+
+

@@ -1,0 +1,23 @@
+R4#sh ip ospf neigh
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+3.3.3.3           1   FULL/BDR        00:00:32    10.0.34.1       FastEthernet1/0
+2.2.2.2           1   FULL/BDR        00:00:32    10.0.24.1       FastEthernet0/1
+R4#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R4(config)#router ospf 4
+R4(config-router)#auto
+R4(config-router)#auto-cost refe
+R4(config-router)#auto-cost reference-bandwidth 10000
+% OSPF: Reference bandwidth is changed.
+        Please ensure reference bandwidth is consistent across all routers.
+R4(config-router)#do sh ip ospf int br
+Interface    PID   Area            IP Address/Mask    Cost  State Nbrs F/C
+Fa1/0        4     0               10.0.34.2/30       100   DR    1/1
+Fa0/1        4     0               10.0.24.2/30       1000  DR    1/1
+Fa0/0        4     0               192.168.10.10/24   1000  DR    0/0
+Lo0          4     0               4.4.4.4/32         1     LOOP  0/0
+R4(config-router)#do wr
+Building configuration...
+[OK]
+R4(config-router)#

@@ -1,0 +1,30 @@
+PC1> ping 203.0.113.1
+84 bytes from 203.0.113.1 icmp_seq=1 ttl=253 time=75.819 ms
+84 bytes from 203.0.113.1 icmp_seq=2 ttl=253 time=76.143 ms
+84 bytes from 203.0.113.1 icmp_seq=3 ttl=253 time=77.185 ms
+84 bytes from 203.0.113.1 icmp_seq=4 ttl=253 time=78.729 ms
+84 bytes from 203.0.113.1 icmp_seq=5 ttl=253 time=77.383 ms
+
+PC1> trace203.0.113.1
+Bad command: "trace203.0.113.1". Use ? for help.
+
+PC1> trace 203.0.113.1
+trace to 203.0.113.1, 8 hops max, press Ctrl+C to stop
+ 1   192.168.10.10   16.544 ms  14.919 ms  15.422 ms
+ 2   10.0.34.1   46.659 ms  45.613 ms  45.888 ms
+ 3   *10.0.13.1   76.325 ms (ICMP type:3, code:3, Destination port unreachable)
+
+PC1> ping 203.0.113.1
+84 bytes from 203.0.113.1 icmp_seq=1 ttl=253 time=76.304 ms
+84 bytes from 203.0.113.1 icmp_seq=2 ttl=253 time=77.709 ms
+84 bytes from 203.0.113.1 icmp_seq=3 ttl=253 time=78.674 ms
+84 bytes from 203.0.113.1 icmp_seq=4 ttl=253 time=75.999 ms
+84 bytes from 203.0.113.1 icmp_seq=5 ttl=253 time=77.323 ms
+
+PC1> trace 203.0.113.1
+trace to 203.0.113.1, 8 hops max, press Ctrl+C to stop
+ 1   192.168.10.10   15.822 ms  15.906 ms  14.970 ms
+ 2   10.0.34.1   47.210 ms  45.735 ms  45.894 ms
+ 3   *10.0.13.1   77.904 ms (ICMP type:3, code:3, Destination port unreachable)
+
+PC1>

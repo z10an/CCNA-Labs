@@ -1,0 +1,66 @@
+R3#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R3(config)#int f0/1
+R3(config-if)#ip add 192.0.168.2 255.255.255.0
+R3(config-if)#no sh
+R3(config-if)#
+*Mar  1 00:06:36.335: %LINK-3-UPDOWN: Interface FastEthernet0/1, changed state to up
+*Mar  1 00:06:37.335: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
+R3(config-if)#int f0/0
+R3(config-if)#ip add 192.168.20.2 255.255.255.252
+R3(config-if)#no sh
+R3(config-if)#
+*Mar  1 00:07:10.403: %LINK-3-UPDOWN: Interface FastEthernet0/0, changed state to up
+*Mar  1 00:07:11.403: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+R3(config-if)#ex
+R3(config)#router ospf 3
+R3(config-router)#router
+R3(config-router)#router-id 3.3.3.3
+R3(config-router)#net 192.168.20.0 0.0.0.255 area 2
+R3(config-router)#no net 192.168.20.0 0.0.0.255 area 2
+R3(config-router)#net 192.168.20.0 0.0.0.3 area 2
+R3(config-router)#net 192.0.168.0 0.0.0.255 area 2
+R3(config-router)#
+*Mar  1 00:11:53.755: %OSPF-4-ERRRCV: Received invalid packet: mismatch area ID, from backbone area must be virtual-link but not found from 192.0.168.1, FastEthernet0/1
+R3(config-router)#
+*Mar  1 00:12:03.751: %OSPF-4-ERRRCV: Received invalid packet: mismatch area ID, from backbone area must be virtual-link but not found from 192.0.168.1, FastEthernet0/1
+R3(config-router)#
+*Mar  1 00:12:13.755: %OSPF-4-ERRRCV: Received invalid packet: mismatch area ID, from backbone area must be virtual-link but not found from 192.0.168.1, FastEthernet0/1
+R3(config-router)#
+*Mar  1 00:12:23.775: %OSPF-4-ERRRCV: Received invalid packet: mismatch area ID, from backbone area must be virtual-link but not found from 192.0.168.1, FastEthernet0/1
+R3(config-router)#
+*Mar  1 00:12:33.763: %OSPF-4-ERRRCV: Received invalid packet: mismatch area ID, from backbone area must be virtual-link but not found from 192.0.168.1, FastEthernet0/1
+R3(config-router)#
+*Mar  1 00:12:43.739: %OSPF-4-ERRRCV: Received invalid packet: mismatch area ID, from backbone area must be virtual-link but not found from 192.0.168.1, FastEthernet0/1
+R3(config-router)#
+*Mar  1 00:12:53.751: %OSPF-4-ERRRCV: Received invalid packet: mismatch area ID, from backbone area must be virtual-link but not found from 192.0.168.1, FastEthernet0/1
+R3(config-router)#
+*Mar  1 00:13:03.727: %OSPF-4-ERRRCV: Received invalid packet: mismatch area ID, from backbone area must be virtual-link but not found from 192.0.168.1, FastEthernet0/1
+R3(config-router)#nnet 192.0.168.0 0.0.0.255 area 2
+*Mar  1 00:13:13.787: %OSPF-4-ERRRCV: Received invalid packet: mismatch area ID, from backbone area must be virtual-link but not found from 192.0.168.1, FastEthernet0/1
+R3(config-router)#no net 192.0.168.0 0.0.0.255 area 2
+R3(config-router)#net 192.0.168.0 0.0.0.255 area 0
+R3(config-router)#
+*Mar  1 00:13:33.947: %OSPF-5-ADJCHG: Process 3, Nbr 2.2.2.2 on FastEthernet0/1 from LOADING to FULL, Loading Done
+R3(config-router)#do sh ip ospf neigh
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+2.2.2.2           1   FULL/DR         00:00:38    192.0.168.1     FastEthernet0/1
+R3(config-router)#do sh ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     192.168.10.0/30 is subnetted, 1 subnets
+O IA    192.168.10.0 [110/30] via 192.0.168.1, 00:03:10, FastEthernet0/1
+     192.168.20.0/30 is subnetted, 1 subnets
+C       192.168.20.0 is directly connected, FastEthernet0/0
+O    192.168.0.0/24 [110/20] via 192.0.168.1, 00:03:10, FastEthernet0/1
+C    192.0.168.0/24 is directly connected, FastEthernet0/1
+R3(config-router)#

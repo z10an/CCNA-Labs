@@ -1,0 +1,28 @@
+PC1> ip add 10.0.1.2/30 10.0.1.2
+Invalid address
+
+PC1> ip add 10.0.1.2/30 10.0.1.1
+Invalid address
+
+PC1> ip 10.0.1.2/30 10.0.1.1
+Checking for duplicate address...
+PC1 : 10.0.1.2 255.255.255.252 gateway 10.0.1.1
+
+PC1> ping 10.0.2.1
+10.0.2.1 icmp_seq=1 timeout
+84 bytes from 10.0.2.1 icmp_seq=2 ttl=253 time=77.097 ms
+84 bytes from 10.0.2.1 icmp_seq=3 ttl=253 time=76.661 ms
+84 bytes from 10.0.2.1 icmp_seq=4 ttl=253 time=76.112 ms
+84 bytes from 10.0.2.1 icmp_seq=5 ttl=253 time=77.717 ms
+
+PC1> trace 10.0.2.1
+trace to 10.0.2.1, 8 hops max, press Ctrl+C to stop
+ 1   10.0.1.1   14.530 ms  60.612 ms  29.883 ms
+ 2   192.168.1.2   61.095 ms  106.200 ms  45.331 ms
+ 3   *192.168.2.2   92.981 ms (ICMP type:3, code:3, Destination port unreachable)
+
+PC1> save
+Saving startup configuration to startup.vpc
+.  done
+
+PC1>
