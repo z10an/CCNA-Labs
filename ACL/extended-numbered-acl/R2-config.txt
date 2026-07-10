@@ -1,0 +1,30 @@
+R2#sh ip rout
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     20.0.0.0/24 is subnetted, 2 subnets
+C       20.1.0.0 is directly connected, FastEthernet0/0
+C       20.2.0.0 is directly connected, FastEthernet0/1
+     10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
+O       10.2.0.0/24 [110/74] via 10.0.0.1, 00:13:23, Serial1/0
+O       10.0.0.0/30 [110/128] via 10.0.0.1, 00:13:23, Serial1/0
+C       10.0.0.0/24 is directly connected, Serial1/0
+O       10.1.0.0/24 [110/74] via 10.0.0.1, 00:13:23, Serial1/0
+R2#sh ip int br
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            20.1.0.10       YES NVRAM  up                    up
+FastEthernet0/1            20.2.0.10       YES NVRAM  up                    up
+Serial1/0                  10.0.0.2        YES NVRAM  up                    up
+Serial1/1                  unassigned      YES NVRAM  administratively down down
+Serial1/2                  unassigned      YES NVRAM  administratively down down
+Serial1/3                  unassigned      YES NVRAM  administratively down down
+R2#sh ip access-lis
+
+R2#

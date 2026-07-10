@@ -1,0 +1,63 @@
+Cisco Packet Tracer PC Command Line 1.0
+C:\>ping 192.168.20.1
+
+Pinging 192.168.20.1 with 32 bytes of data:
+
+Reply from 192.168.20.1: bytes=32 time=7ms TTL=128
+Reply from 192.168.20.1: bytes=32 time<1ms TTL=128
+Reply from 192.168.20.1: bytes=32 time=1ms TTL=128
+Reply from 192.168.20.1: bytes=32 time<1ms TTL=128
+
+Ping statistics for 192.168.20.1:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 7ms, Average = 2ms
+
+C:\>ping 192.168.10.1
+
+Pinging 192.168.10.1 with 32 bytes of data:
+
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+
+Ping statistics for 192.168.10.1:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+
+C:\>ping 192.168.10.2
+
+Pinging 192.168.10.2 with 32 bytes of data:
+
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+
+Ping statistics for 192.168.10.2:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+
+C:\>ipconfig
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: FE80::260:47FF:FE75:8BB1
+   IPv6 Address....................: ::
+   IPv4 Address....................: 192.168.20.2
+   Subnet Mask.....................: 255.255.255.0
+   Default Gateway.................: ::
+                                     0.0.0.0
+
+Bluetooth Connection:
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: ::
+   IPv6 Address....................: ::
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: ::
+                                     0.0.0.0
+
+C:\>
+C:\>

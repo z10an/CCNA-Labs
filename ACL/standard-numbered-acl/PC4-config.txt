@@ -1,0 +1,33 @@
+PC4> show ip
+
+NAME        : PC4[1]
+IP/MASK     : 10.2.0.2/24
+GATEWAY     : 10.2.0.10
+DNS         :
+MAC         : 00:50:79:66:68:03
+LPORT       : 10040
+RHOST:PORT  : 127.0.0.1:10041
+MTU:        : 1500
+
+PC4>  ping 20.1.0.1
+*10.0.0.2 icmp_seq=1 ttl=254 time=48.412 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.0.0.2 icmp_seq=2 ttl=254 time=45.452 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.0.0.2 icmp_seq=3 ttl=254 time=46.620 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.0.0.2 icmp_seq=4 ttl=254 time=45.960 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.0.0.2 icmp_seq=5 ttl=254 time=46.306 ms (ICMP type:3, code:13, Communication administratively prohibited)
+
+PC4>  ping 20.2.0.1
+*10.0.0.2 icmp_seq=1 ttl=254 time=47.114 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.0.0.2 icmp_seq=2 ttl=254 time=46.113 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.0.0.2 icmp_seq=3 ttl=254 time=45.976 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.0.0.2 icmp_seq=4 ttl=254 time=45.256 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.0.0.2 icmp_seq=5 ttl=254 time=46.045 ms (ICMP type:3, code:13, Communication administratively prohibited)
+
+PC4>  ping 10.1.0.1
+*10.2.0.10 icmp_seq=1 ttl=255 time=18.464 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.2.0.10 icmp_seq=2 ttl=255 time=15.879 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.2.0.10 icmp_seq=3 ttl=255 time=15.983 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.2.0.10 icmp_seq=4 ttl=255 time=15.399 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.2.0.10 icmp_seq=5 ttl=255 time=15.695 ms (ICMP type:3, code:13, Communication administratively prohibited)
+
+PC4>

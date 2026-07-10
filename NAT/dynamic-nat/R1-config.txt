@@ -1,0 +1,59 @@
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#access-list 1 permit 192.168.10.0 0.0.0.255
+Router(config)#ip nat pool PUBLIC_POOL 203.0.113.10 203.0.113.20 netmask 255.255.255.0
+Router(config)#ip nat inside source list 1 pool PUBLIC_POOL
+Router(config)#do sh ip nat transl
+Pro  Inside global     Inside local       Outside local      Outside global
+icmp 203.0.113.10:1    192.168.10.10:1    198.51.100.100:1   198.51.100.100:1
+icmp 203.0.113.10:2    192.168.10.10:2    198.51.100.100:2   198.51.100.100:2
+icmp 203.0.113.10:3    192.168.10.10:3    198.51.100.100:3   198.51.100.100:3
+icmp 203.0.113.10:4    192.168.10.10:4    198.51.100.100:4   198.51.100.100:4
+icmp 203.0.113.10:5    192.168.10.10:5    198.51.100.100:5   198.51.100.100:5
+icmp 203.0.113.10:6    192.168.10.10:6    198.51.100.100:6   198.51.100.100:6
+icmp 203.0.113.10:7    192.168.10.10:7    198.51.100.100:7   198.51.100.100:7
+icmp 203.0.113.10:8    192.168.10.10:8    198.51.100.100:8   198.51.100.100:8
+
+Router(config)#do sh ip nat stat
+Total translations: 5 (0 static, 5 dynamic, 5 extended)
+Outside Interfaces: GigabitEthernet0/1
+Inside Interfaces: GigabitEthernet0/0
+Hits: 5  Misses: 8
+Expired translations: 3
+Dynamic mappings:
+-- Inside Source
+access-list 1 pool PUBLIC_POOL refCount 5
+ pool PUBLIC_POOL: netmask 255.255.255.0
+       start 203.0.113.10 end 203.0.113.20
+       type generic, total addresses 11 , allocated 0 (0%), misses 0
+Router(config)#do sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     192.168.10.1    YES manual up                    up 
+GigabitEthernet0/1     203.0.113.1     YES manual up                    up 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+Router(config)#do sh run
+Building configuration...
+
+Current configuration : 950 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+ --More-- 

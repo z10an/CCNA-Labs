@@ -1,0 +1,40 @@
+PC3> show ip
+
+NAME        : PC3[1]
+IP/MASK     : 10.2.0.1/24
+GATEWAY     : 10.2.0.10
+DNS         :
+MAC         : 00:50:79:66:68:02
+LPORT       : 10038
+RHOST:PORT  : 127.0.0.1:10039
+MTU:        : 1500
+
+PC3> ping 20.1.0.1
+84 bytes from 20.1.0.1 icmp_seq=1 ttl=62 time=123.189 ms
+84 bytes from 20.1.0.1 icmp_seq=2 ttl=62 time=75.236 ms
+84 bytes from 20.1.0.1 icmp_seq=3 ttl=62 time=76.818 ms
+84 bytes from 20.1.0.1 icmp_seq=4 ttl=62 time=76.638 ms
+84 bytes from 20.1.0.1 icmp_seq=5 ttl=62 time=76.072 ms
+
+PC3> ping 20.2.0.1
+*10.0.0.2 icmp_seq=1 ttl=254 time=92.457 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.0.0.2 icmp_seq=2 ttl=254 time=45.635 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.0.0.2 icmp_seq=3 ttl=254 time=45.941 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.0.0.2 icmp_seq=4 ttl=254 time=44.835 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.0.0.2 icmp_seq=5 ttl=254 time=46.508 ms (ICMP type:3, code:13, Communication administratively prohibited)
+
+PC3> ping 10.1.0.1
+10.1.0.1 icmp_seq=1 timeout
+10.1.0.1 icmp_seq=2 timeout
+10.1.0.1 icmp_seq=3 timeout
+10.1.0.1 icmp_seq=4 timeout
+10.1.0.1 icmp_seq=5 timeout
+
+PC3> ping 10.1.0.2
+10.1.0.2 icmp_seq=1 timeout
+10.1.0.2 icmp_seq=2 timeout
+10.1.0.2 icmp_seq=3 timeout
+10.1.0.2 icmp_seq=4 timeout
+10.1.0.2 icmp_seq=5 timeout
+
+PC3>

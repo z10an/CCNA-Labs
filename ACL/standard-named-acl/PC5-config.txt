@@ -1,0 +1,47 @@
+PC5> show ip
+
+NAME        : PC5[1]
+IP/MASK     : 20.1.0.1/24
+GATEWAY     : 20.1.0.10
+DNS         :
+MAC         : 00:50:79:66:68:04
+LPORT       : 10042
+RHOST:PORT  : 127.0.0.1:10043
+MTU:        : 1500
+
+PC5> ping 20.2.0.1
+20.2.0.1 icmp_seq=1 timeout
+20.2.0.1 icmp_seq=2 timeout
+20.2.0.1 icmp_seq=3 timeout
+20.2.0.1 icmp_seq=4 timeout
+20.2.0.1 icmp_seq=5 timeout
+
+PC5> ping 10.1.0.1
+84 bytes from 10.1.0.1 icmp_seq=1 ttl=62 time=62.011 ms
+84 bytes from 10.1.0.1 icmp_seq=2 ttl=62 time=76.165 ms
+84 bytes from 10.1.0.1 icmp_seq=3 ttl=62 time=76.703 ms
+84 bytes from 10.1.0.1 icmp_seq=4 ttl=62 time=75.907 ms
+84 bytes from 10.1.0.1 icmp_seq=5 ttl=62 time=77.744 ms
+
+PC5> ping 10.1.0.2
+10.1.0.2 icmp_seq=1 timeout
+10.1.0.2 icmp_seq=2 timeout
+10.1.0.2 icmp_seq=3 timeout
+10.1.0.2 icmp_seq=4 timeout
+10.1.0.2 icmp_seq=5 timeout
+
+PC5> ping 10.2.0.1
+84 bytes from 10.2.0.1 icmp_seq=1 ttl=62 time=61.215 ms
+84 bytes from 10.2.0.1 icmp_seq=2 ttl=62 time=76.484 ms
+84 bytes from 10.2.0.1 icmp_seq=3 ttl=62 time=76.330 ms
+84 bytes from 10.2.0.1 icmp_seq=4 ttl=62 time=75.711 ms
+84 bytes from 10.2.0.1 icmp_seq=5 ttl=62 time=78.344 ms
+
+PC5> ping 10.2.0.2
+10.2.0.2 icmp_seq=1 timeout
+10.2.0.2 icmp_seq=2 timeout
+10.2.0.2 icmp_seq=3 timeout
+10.2.0.2 icmp_seq=4 timeout
+10.2.0.2 icmp_seq=5 timeout
+
+PC5>

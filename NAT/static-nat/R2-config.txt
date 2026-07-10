@@ -1,0 +1,140 @@
+
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int g0/1
+Router(config-if)#ip add 203.0.113.2 255.255.255.252
+Router(config-if)#no sh
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+Router(config-if)#int g0/0
+Router(config-if)#ip add 198.51.100.1 255.255.255.0
+Router(config-if)#no sh
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#ex
+Router(config)#ip route 192.168.10.0 255.255.255.0 203.0.113.1
+Router(config)#
+
+
+
+
+
+
+
+
+Router con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#ip nat inside source static 192.168.10.10 203.0.113.10
+Router(config)#ex
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router#show ip nat translations
+Pro  Inside global     Inside local       Outside local      Outside global
+---  203.0.113.10      192.168.10.10      ---                ---
+
+Router#
+Router#show ip nat statistics
+Router#
+Router#show running-config
+Building configuration...
+
+Current configuration : 827 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+
+Router#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     198.51.100.1    YES manual up                    up 
+GigabitEthernet0/1     203.0.113.2     YES manual up                    up 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int g0/1
+Router(config-if)#no ip add 203.0.113.2 255.255.255.252
+Router(config-if)#ip add 203.0.113.2 255.255.255.0
+Router(config-if)#
+
+
+
+
+
+
+
+
+Router con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Router>en
+Router#wr
+Building configuration...
+[OK]
+Router#
+Router#

@@ -1,0 +1,132 @@
+R1#sh ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     20.0.0.0/24 is subnetted, 2 subnets
+O       20.1.0.0 [110/74] via 10.0.0.2, 00:13:04, Serial1/0
+O       20.2.0.0 [110/74] via 10.0.0.2, 00:13:04, Serial1/0
+     10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
+C       10.2.0.0/24 is directly connected, FastEthernet0/1
+C       10.0.0.0/30 is directly connected, Serial1/0
+O       10.0.0.0/24 [110/128] via 10.0.0.2, 00:13:04, Serial1/0
+C       10.1.0.0/24 is directly connected, FastEthernet0/0
+R1#sh ip int br
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            10.1.0.10       YES NVRAM  up                    up
+FastEthernet0/1            10.2.0.10       YES NVRAM  up                    up
+Serial1/0                  10.0.0.1        YES NVRAM  up                    up
+Serial1/1                  unassigned      YES NVRAM  administratively down down
+Serial1/2                  unassigned      YES NVRAM  administratively down down
+Serial1/3                  unassigned      YES NVRAM  administratively down down
+R1#sh ip access-lis
+
+R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#access-list 100 permit icmp 10.1.0.0 0.0.0.255 host 20.1.0.1
+R1(config)#access-list 100 deny ip 10.2.0.0 0.0.0.255 host 20.1.0.1
+R1(config)#access-list 100 permit ip any any
+R1(config)#interface s1/0
+R1(config-if)#ip access-group 100 out
+R1(config-if)#ex
+R1(config)#access-list 101 deny ip 10.1.0.0 0.0.0.255 10.2.0.0 0.0.0.255
+R1(config)#access-list 101 permit ip any any
+R1(config)#interface f0/1
+R1(config-if)#ip access-group 101 out
+R1(config-if)#end
+R1#show access-lists
+Extended IP access list 100
+    10 permit icmp 10.1.0.0 0.0.0.255 host 20.1.0.1 (10 matches)
+    20 deny ip 10.2.0.0 0.0.0.255 host 20.1.0.1 (20 matches)
+    30 permit ip any any (25 matches)
+Extended IP access list 101
+    10 deny ip 10.1.0.0 0.0.0.255 10.2.0.0 0.0.0.255 (30 matches)
+    20 permit ip any any (5 matches)
+R1#
+R1#show ip interface
+FastEthernet0/0 is up, line protocol is up
+  Internet address is 10.1.0.10/24
+  Broadcast address is 255.255.255.255
+  Address determined by non-volatile memory
+  MTU is 1500 bytes
+  Helper address is not set
+  Directed broadcast forwarding is disabled
+  Multicast reserved groups joined: 224.0.0.5 224.0.0.6
+  Outgoing access list is not set
+  Inbound  access list is not set
+  Proxy ARP is enabled
+  Local Proxy ARP is disabled
+  Security level is default
+  Split horizon is enabled
+  ICMP redirects are always sent
+  ICMP unreachables are always sent
+  ICMP mask replies are never sent
+  IP fast switchi
+*Mar  1 00:33:09.459: %SYS-5-CONFIG_I: Configured from console by consoleng is enabled
+  IP fast switching on the same interface is disabled
+  IP Flow switching is disabled
+  IP CEF switching is enabled
+  IP CEF Feature Fast switching turbo vector
+  IP multicast fast switching is enabled
+  IP multicast distributed fast switching is disabled
+
+R1#how running-config
+    ^
+% Invalid input detected at '^' marker.
+
+R1#
+R1#show ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     20.0.0.0/24 is subnetted, 2 subnets
+O       20.1.0.0 [110/74] via 10.0.0.2, 00:33:02, Serial1/0
+O       20.2.0.0 [110/74] via 10.0.0.2, 00:33:02, Serial1/0
+     10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
+C       10.2.0.0/24 is directly connected, FastEthernet0/1
+C       10.0.0.0/30 is directly connected, Serial1/0
+O       10.0.0.0/24 [110/128] via 10.0.0.2, 00:33:02, Serial1/0
+C       10.1.0.0/24 is directly connected, FastEthernet0/0
+R1#sh run
+Building configuration...
+
+Current configuration : 1636 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+ip cef
+!
+!
+!
+!
+no ip domain lookup
+
+R1#wr
+Building configuration...
+[OK]
+R1#

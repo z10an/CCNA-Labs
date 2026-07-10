@@ -1,0 +1,35 @@
+Jul 09 06:29:04.160 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Jul 09 06:29:04.162 HYPERVISOR: Started on IP = localhost, TCP port = 56705.
+Jul 09 06:29:04.335 HYPERVISOR: exec_cmd: hypervisor version 
+Jul 09 06:29:04.336 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\hi\GNS3\projects\standard acl\project-files\dynamips 
+Jul 09 06:29:04.341 GENERAL: working_dir=C:\Users\hi\GNS3\projects\standard acl\project-files\dynamips
+Jul 09 06:29:04.341 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\hi\GNS3\projects\standard acl\project-files\dynamips\4d347bdb-d149-41ad-9b11-d0c254208b99 
+Jul 09 06:29:04.342 GENERAL: working_dir=C:\Users\hi\GNS3\projects\standard acl\project-files\dynamips\4d347bdb-d149-41ad-9b11-d0c254208b99
+Jul 09 06:29:04.342 HYPERVISOR: exec_cmd: vm create R1 1 c2691 
+Jul 09 06:29:04.344 VM: VM R1 created.
+Jul 09 06:29:04.345 HYPERVISOR: exec_cmd: vm set_con_tcp_port R1 5000 
+Jul 09 06:29:04.346 HYPERVISOR: exec_cmd: c2691 get_mac_addr R1 
+Jul 09 06:29:04.346 HYPERVISOR: exec_cmd: vm set_disk0 R1 0 
+Jul 09 06:29:04.347 HYPERVISOR: exec_cmd: vm set_exec_area R1 64 
+Jul 09 06:29:04.347 HYPERVISOR: exec_cmd: vm get_status R1 
+Jul 09 06:29:04.348 HYPERVISOR: exec_cmd: vm set_idle_pc R1 0x60a2d954 
+Jul 09 06:29:04.349 HYPERVISOR: exec_cmd: vm set_ios R1 C:/Users/hi/GNS3/images/IOS/c2691-entservicesk9-mz.124-13b.image 
+Jul 09 06:29:04.349 HYPERVISOR: exec_cmd: c2691 set_mac_addr R1 c001.2fc8.0000 
+Jul 09 06:29:04.350 HYPERVISOR: exec_cmd: vm set_nvram R1 256 
+Jul 09 06:29:04.350 HYPERVISOR: exec_cmd: vm set_ram R1 192 
+Jul 09 06:29:04.351 HYPERVISOR: exec_cmd: vm get_status R1 
+Jul 09 06:29:04.351 HYPERVISOR: exec_cmd: vm slot_add_binding R1 1 0 NM-4T 
+Jul 09 06:29:07.342 HYPERVISOR: exec_cmd: nio create_udp udp-5f1b9725-f667-4368-b829-cb4757569af0 10002 127.0.0.1 10003 
+Jul 09 06:29:07.650 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R1 1 0 udp-5f1b9725-f667-4368-b829-cb4757569af0 
+Jul 09 06:29:07.650 HYPERVISOR: exec_cmd: vm get_status R1 
+Jul 09 06:29:07.978 HYPERVISOR: exec_cmd: nio create_udp udp-bfc96bf7-8ae2-4a2b-b5f9-05405586a1af 10008 127.0.0.1 10009 
+Jul 09 06:29:07.981 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R1 0 0 udp-bfc96bf7-8ae2-4a2b-b5f9-05405586a1af 
+Jul 09 06:29:07.982 HYPERVISOR: exec_cmd: vm get_status R1 
+Jul 09 06:29:08.092 HYPERVISOR: exec_cmd: nio create_udp udp-4dcda5ba-8db1-47f5-ba17-1cdbcfb1ec8b 10012 127.0.0.1 10013 
+Jul 09 06:29:08.094 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R1 0 1 udp-4dcda5ba-8db1-47f5-ba17-1cdbcfb1ec8b 
+Jul 09 06:29:08.095 HYPERVISOR: exec_cmd: vm get_status R1 
+Jul 09 06:29:45.217 HYPERVISOR: exec_cmd: vm set_ghost_status R1 2 
+Jul 09 06:29:45.233 HYPERVISOR: exec_cmd: vm set_ghost_file R1 C:\Users\hi\GNS3\projects\standard acl\project-files\dynamips\c2691-entservicesk9-mz.124-13b.image-192.ghost 
+Jul 09 06:29:45.235 HYPERVISOR: exec_cmd: vm get_status R1 
+Jul 09 06:29:45.247 HYPERVISOR: exec_cmd: vm set_config R1 configs\i1_startup-config.cfg configs\i1_private-config.cfg 
+Jul 09 06:29:45.248 HYPERVISOR: exec_cmd: vm start R1 

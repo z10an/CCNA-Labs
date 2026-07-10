@@ -1,0 +1,26 @@
+PC4> show ip
+
+NAME        : PC4[1]
+IP/MASK     : 10.2.0.2/24
+GATEWAY     : 10.2.0.10
+DNS         :
+MAC         : 00:50:79:66:68:03
+LPORT       : 10040
+RHOST:PORT  : 127.0.0.1:10041
+MTU:        : 1500
+
+PC4> ping 20.2.0.1
+84 bytes from 20.2.0.1 icmp_seq=1 ttl=62 time=122.578 ms
+84 bytes from 20.2.0.1 icmp_seq=2 ttl=62 time=76.223 ms
+84 bytes from 20.2.0.1 icmp_seq=3 ttl=62 time=77.822 ms
+84 bytes from 20.2.0.1 icmp_seq=4 ttl=62 time=61.749 ms
+84 bytes from 20.2.0.1 icmp_seq=5 ttl=62 time=64.336 ms
+
+PC4> ping 20.1.0.1
+*10.2.0.10 icmp_seq=1 ttl=255 time=16.106 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.2.0.10 icmp_seq=2 ttl=255 time=15.880 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.2.0.10 icmp_seq=3 ttl=255 time=15.278 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.2.0.10 icmp_seq=4 ttl=255 time=16.203 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.2.0.10 icmp_seq=5 ttl=255 time=16.720 ms (ICMP type:3, code:13, Communication administratively prohibited)
+
+PC4>

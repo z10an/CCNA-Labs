@@ -1,0 +1,40 @@
+PC2> show ip
+
+NAME        : PC2[1]
+IP/MASK     : 10.1.0.2/24
+GATEWAY     : 10.1.0.10
+DNS         :
+MAC         : 00:50:79:66:68:01
+LPORT       : 10036
+RHOST:PORT  : 127.0.0.1:10037
+MTU:        : 1500
+
+PC2> ping 20.1.0.1
+*10.0.0.2 icmp_seq=1 ttl=254 time=92.477 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.0.0.2 icmp_seq=2 ttl=254 time=45.185 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.0.0.2 icmp_seq=3 ttl=254 time=45.877 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.0.0.2 icmp_seq=4 ttl=254 time=46.050 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.0.0.2 icmp_seq=5 ttl=254 time=92.324 ms (ICMP type:3, code:13, Communication administratively prohibited)
+
+PC2> ping 20.2.0.1
+84 bytes from 20.2.0.1 icmp_seq=1 ttl=62 time=108.996 ms
+84 bytes from 20.2.0.1 icmp_seq=2 ttl=62 time=75.368 ms
+84 bytes from 20.2.0.1 icmp_seq=3 ttl=62 time=76.865 ms
+84 bytes from 20.2.0.1 icmp_seq=4 ttl=62 time=77.272 ms
+84 bytes from 20.2.0.1 icmp_seq=5 ttl=62 time=77.768 ms
+
+PC2> ping 10.2.0.1
+*10.1.0.10 icmp_seq=1 ttl=255 time=62.106 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.1.0.10 icmp_seq=2 ttl=255 time=15.175 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.1.0.10 icmp_seq=3 ttl=255 time=15.645 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.1.0.10 icmp_seq=4 ttl=255 time=15.580 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.1.0.10 icmp_seq=5 ttl=255 time=14.886 ms (ICMP type:3, code:13, Communication administratively prohibited)
+
+PC2> ping 10.2.0.2
+*10.1.0.10 icmp_seq=1 ttl=255 time=16.744 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.1.0.10 icmp_seq=2 ttl=255 time=15.693 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.1.0.10 icmp_seq=3 ttl=255 time=15.643 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.1.0.10 icmp_seq=4 ttl=255 time=15.664 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.1.0.10 icmp_seq=5 ttl=255 time=15.658 ms (ICMP type:3, code:13, Communication administratively prohibited)
+
+PC2>

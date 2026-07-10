@@ -1,0 +1,40 @@
+PC6> show ip
+
+NAME        : PC6[1]
+IP/MASK     : 20.2.0.1/24
+GATEWAY     : 20.2.0.10
+DNS         :
+MAC         : 00:50:79:66:68:05
+LPORT       : 10044
+RHOST:PORT  : 127.0.0.1:10045
+MTU:        : 1500
+
+PC6>  ping 20.1.0.1
+*20.2.0.10 icmp_seq=1 ttl=255 time=16.308 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*20.2.0.10 icmp_seq=2 ttl=255 time=15.186 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*20.2.0.10 icmp_seq=3 ttl=255 time=16.469 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*20.2.0.10 icmp_seq=4 ttl=255 time=16.174 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*20.2.0.10 icmp_seq=5 ttl=255 time=15.692 ms (ICMP type:3, code:13, Communication administratively prohibited)
+
+PC6>  ping 10.2.0.1
+10.2.0.1 icmp_seq=1 timeout
+10.2.0.1 icmp_seq=2 timeout
+10.2.0.1 icmp_seq=3 timeout
+10.2.0.1 icmp_seq=4 timeout
+10.2.0.1 icmp_seq=5 timeout
+
+PC6>  ping 10.1.0.1
+84 bytes from 10.1.0.1 icmp_seq=1 ttl=62 time=77.198 ms
+84 bytes from 10.1.0.1 icmp_seq=2 ttl=62 time=77.167 ms
+84 bytes from 10.1.0.1 icmp_seq=3 ttl=62 time=61.875 ms
+84 bytes from 10.1.0.1 icmp_seq=4 ttl=62 time=77.072 ms
+84 bytes from 10.1.0.1 icmp_seq=5 ttl=62 time=75.657 ms
+
+PC6>  ping 10.1.0.1
+10.1.0.1 icmp_seq=1 timeout
+10.1.0.1 icmp_seq=2 timeout
+84 bytes from 10.1.0.1 icmp_seq=3 ttl=62 time=78.104 ms
+84 bytes from 10.1.0.1 icmp_seq=4 ttl=62 time=76.231 ms
+84 bytes from 10.1.0.1 icmp_seq=5 ttl=62 time=77.389 ms
+
+PC6>

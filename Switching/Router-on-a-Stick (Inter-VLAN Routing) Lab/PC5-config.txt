@@ -1,0 +1,51 @@
+C:\>ipconfig
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: FE80::2E0:8FFF:FE34:B563
+   IPv6 Address....................: ::
+   IPv4 Address....................: 20.0.0.1
+   Subnet Mask.....................: 255.0.0.0
+   Default Gateway.................: ::
+                                     20.255.255.254
+
+Bluetooth Connection:
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: ::
+   IPv6 Address....................: ::
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: ::
+                                     0.0.0.0
+
+C:\>ping 10.0.0.2
+
+Pinging 10.0.0.2 with 32 bytes of data:
+
+Reply from 10.0.0.2: bytes=32 time<1ms TTL=127
+Reply from 10.0.0.2: bytes=32 time=11ms TTL=127
+Reply from 10.0.0.2: bytes=32 time<1ms TTL=127
+Reply from 10.0.0.2: bytes=32 time=1ms TTL=127
+
+Ping statistics for 10.0.0.2:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 11ms, Average = 3ms
+
+C:\>ping 30.0.0.2
+
+Pinging 30.0.0.2 with 32 bytes of data:
+
+Request timed out.
+Reply from 30.0.0.2: bytes=32 time=10ms TTL=127
+Reply from 30.0.0.2: bytes=32 time<1ms TTL=127
+Reply from 30.0.0.2: bytes=32 time=10ms TTL=127
+
+Ping statistics for 30.0.0.2:
+    Packets: Sent = 4, Received = 3, Lost = 1 (25% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 10ms, Average = 6ms
+
+C:\>

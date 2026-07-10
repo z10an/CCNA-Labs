@@ -1,0 +1,13 @@
+PC6> show ip
+
+NAME        : PC6[1]
+IP/MASK     : 20.2.0.1/24
+GATEWAY     : 20.2.0.10
+DNS         :
+MAC         : 00:50:79:66:68:05
+LPORT       : 10044
+RHOST:PORT  : 127.0.0.1:10045
+MTU:        : 1500
+
+PC6>
+

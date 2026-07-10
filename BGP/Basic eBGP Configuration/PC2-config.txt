@@ -1,0 +1,46 @@
+PC2> ip 192.168.20.1/24 192.168.20.10
+Checking for duplicate address...
+PC1 : 192.168.20.1 255.255.255.0 gateway 192.168.20.10
+
+PC2> ping 192.168.10.1
+192.168.10.1 icmp_seq=1 timeout
+192.168.10.1 icmp_seq=2 timeout
+192.168.10.1 icmp_seq=3 timeout
+192.168.10.1 icmp_seq=4 timeout
+192.168.10.1 icmp_seq=5 timeout
+
+PC2> ping 192.168.20.10
+84 bytes from 192.168.20.10 icmp_seq=1 ttl=255 time=15.571 ms
+84 bytes from 192.168.20.10 icmp_seq=2 ttl=255 time=15.833 ms
+84 bytes from 192.168.20.10 icmp_seq=3 ttl=255 time=15.568 ms
+84 bytes from 192.168.20.10 icmp_seq=4 ttl=255 time=16.350 ms
+84 bytes from 192.168.20.10 icmp_seq=5 ttl=255 time=15.613 ms
+PC2> ping 10.0.0.1
+10.0.0.1 icmp_seq=1 timeout
+10.0.0.1 icmp_seq=2 timeout
+10.0.0.1 icmp_seq=3 timeout
+10.0.0.1 icmp_seq=4 timeout
+10.0.0.1 icmp_seq=5 timeout
+
+PC2> ping 10.1.0.1
+10.1.0.1 icmp_seq=1 timeout
+10.1.0.1 icmp_seq=2 timeout
+10.1.0.1 icmp_seq=3 timeout
+10.1.0.1 icmp_seq=4 timeout
+10.1.0.1 icmp_seq=5 timeout
+
+PC2> ping 192.168.10.1
+192.168.10.1 icmp_seq=1 timeout
+192.168.10.1 icmp_seq=2 timeout
+84 bytes from 192.168.10.1 icmp_seq=3 ttl=61 time=106.173 ms
+84 bytes from 192.168.10.1 icmp_seq=4 ttl=61 time=91.878 ms
+84 bytes from 192.168.10.1 icmp_seq=5 ttl=61 time=107.857 ms
+
+PC2> ping 192.168.10.1
+84 bytes from 192.168.10.1 icmp_seq=1 ttl=61 time=92.572 ms
+84 bytes from 192.168.10.1 icmp_seq=2 ttl=61 time=91.479 ms
+84 bytes from 192.168.10.1 icmp_seq=3 ttl=61 time=108.175 ms
+84 bytes from 192.168.10.1 icmp_seq=4 ttl=61 time=92.800 ms
+84 bytes from 192.168.10.1 icmp_seq=5 ttl=61 time=110.094 ms
+
+PC2>

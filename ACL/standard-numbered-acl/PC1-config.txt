@@ -1,0 +1,37 @@
+
+PC1> show ip
+
+NAME        : PC1[1]
+IP/MASK     : 10.1.0.1/24
+GATEWAY     : 10.1.0.10
+DNS         :
+MAC         : 00:50:79:66:68:00
+LPORT       : 10034
+RHOST:PORT  : 127.0.0.1:10035
+MTU:        : 1500
+
+PC1> ping 20.1.0.1
+20.1.0.1 icmp_seq=1 timeout
+84 bytes from 20.1.0.1 icmp_seq=2 ttl=62 time=77.060 ms
+84 bytes from 20.1.0.1 icmp_seq=3 ttl=62 time=62.488 ms
+84 bytes from 20.1.0.1 icmp_seq=4 ttl=62 time=76.614 ms
+84 bytes from 20.1.0.1 icmp_seq=5 ttl=62 time=62.082 ms
+
+PC1>  ping 20.2.0.1
+20.2.0.1 icmp_seq=1 timeout
+20.2.0.1 icmp_seq=2 timeout
+84 bytes from 20.2.0.1 icmp_seq=3 ttl=62 time=77.855 ms
+84 bytes from 20.2.0.1 icmp_seq=4 ttl=62 time=61.985 ms
+84 bytes from 20.2.0.1 icmp_seq=5 ttl=62 time=75.854 ms
+
+PC1>  ping 10.2.0.1\
+Cannot resolve 10.2.0.1\
+
+PC1>  ping 10.2.0.1
+*10.1.0.10 icmp_seq=1 ttl=255 time=15.604 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.1.0.10 icmp_seq=2 ttl=255 time=15.414 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.1.0.10 icmp_seq=3 ttl=255 time=16.649 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.1.0.10 icmp_seq=4 ttl=255 time=16.586 ms (ICMP type:3, code:13, Communication administratively prohibited)
+*10.1.0.10 icmp_seq=5 ttl=255 time=16.203 ms (ICMP type:3, code:13, Communication administratively prohibited)
+
+PC1>
