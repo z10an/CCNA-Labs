@@ -1,0 +1,30 @@
+Jul 11 06:27:30.759 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Jul 11 06:27:30.760 HYPERVISOR: Started on IP = localhost, TCP port = 65354.
+Jul 11 06:27:31.246 HYPERVISOR: exec_cmd: hypervisor version 
+Jul 11 06:27:31.247 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\hi\Desktop\network academy\notes\hsrp\hsrp\project-files\dynamips 
+Jul 11 06:27:31.247 GENERAL: working_dir=C:\Users\hi\Desktop\network academy\notes\hsrp\hsrp\project-files\dynamips
+Jul 11 06:27:31.247 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\hi\Desktop\network academy\notes\hsrp\hsrp\project-files\dynamips\69a4495b-1336-44a4-9f0d-799f0e3db011 
+Jul 11 06:27:31.248 GENERAL: working_dir=C:\Users\hi\Desktop\network academy\notes\hsrp\hsrp\project-files\dynamips\69a4495b-1336-44a4-9f0d-799f0e3db011
+Jul 11 06:27:31.248 HYPERVISOR: exec_cmd: vm create R3 3 c2691 
+Jul 11 06:27:31.249 VM: VM R3 created.
+Jul 11 06:27:31.251 HYPERVISOR: exec_cmd: vm set_con_tcp_port R3 5006 
+Jul 11 06:27:31.251 HYPERVISOR: exec_cmd: c2691 get_mac_addr R3 
+Jul 11 06:27:31.251 HYPERVISOR: exec_cmd: vm set_disk0 R3 0 
+Jul 11 06:27:31.252 HYPERVISOR: exec_cmd: vm set_exec_area R3 64 
+Jul 11 06:27:31.252 HYPERVISOR: exec_cmd: vm get_status R3 
+Jul 11 06:27:31.253 HYPERVISOR: exec_cmd: vm set_idle_pc R3 0x60a2d954 
+Jul 11 06:27:31.253 HYPERVISOR: exec_cmd: vm set_ios R3 C:/Users/hi/GNS3/images/IOS/c2691-entservicesk9-mz.124-13b.image 
+Jul 11 06:27:31.253 HYPERVISOR: exec_cmd: c2691 set_mac_addr R3 c003.02d8.0000 
+Jul 11 06:27:31.255 HYPERVISOR: exec_cmd: vm set_nvram R3 256 
+Jul 11 06:27:31.255 HYPERVISOR: exec_cmd: vm set_ram R3 192 
+Jul 11 06:27:33.611 HYPERVISOR: exec_cmd: nio create_udp udp-10765a48-cfcb-40a6-8aeb-f09e696aeb7d 10014 127.0.0.1 10015 
+Jul 11 06:27:33.917 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R3 0 0 udp-10765a48-cfcb-40a6-8aeb-f09e696aeb7d 
+Jul 11 06:27:33.918 HYPERVISOR: exec_cmd: vm get_status R3 
+Jul 11 06:27:34.220 HYPERVISOR: exec_cmd: nio create_udp udp-d5d6c83c-fec6-4314-a6d7-01352ba814c6 10026 127.0.0.1 10027 
+Jul 11 06:27:34.226 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R3 0 1 udp-d5d6c83c-fec6-4314-a6d7-01352ba814c6 
+Jul 11 06:27:34.226 HYPERVISOR: exec_cmd: vm get_status R3 
+Jul 11 06:27:45.613 HYPERVISOR: exec_cmd: vm set_ghost_status R3 2 
+Jul 11 06:27:45.630 HYPERVISOR: exec_cmd: vm set_ghost_file R3 C:\Users\hi\Desktop\network academy\notes\hsrp\hsrp\project-files\dynamips\c2691-entservicesk9-mz.124-13b.image-192.ghost 
+Jul 11 06:27:45.630 HYPERVISOR: exec_cmd: vm get_status R3 
+Jul 11 06:27:45.645 HYPERVISOR: exec_cmd: vm set_config R3 configs\i3_startup-config.cfg 
+Jul 11 06:27:45.645 HYPERVISOR: exec_cmd: vm start R3 

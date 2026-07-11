@@ -1,0 +1,80 @@
+R3#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R3(config)#int f0/0
+R3(config-if)#glbp 10 ip 192.168.10.5
+R3(config-if)#glbp 10 priority
+% Incomplete command.
+
+R3(config-if)#glbp 10 priority 140
+R3(config-if)#int f0/1
+R3(config-if)#glbp 20 ip 192.168.20.5
+*Mar  1 00:16:29.935: %GLBP-6-FWDSTATECHANGE: FastEthernet0/0 Grp 10 Fwd 3 state Listen -> Active
+R3(config-if)#glbp 20 ip 192.168.20.5
+R3(config-if)#int f0/1
+*Mar  1 00:16:58.807: %GLBP-6-FWDSTATECHANGE: FastEthernet0/1 Grp 20 Fwd 3 state Listen -> Active
+R3(config-if)#int f0/0
+R3(config-if)#glbp 10 preempt
+R3(config-if)#int f0/1
+R3(config-if)#glbp 10 preempt
+*Mar  1 00:22:48.351: %GLBP-6-STATECHANGE: FastEthernet0/0 Grp 10 state Standby -> Active
+R3(config-if)#glbp 20 preempt
+R3(config-if)#do sh glbp br
+Interface   Grp  Fwd Pri State    Address         Active router   Standby router
+Fa0/0       10   -   140 Active   192.168.10.5    local           192.168.10.2
+Fa0/0       10   1   -   Listen   0007.b400.0a01  192.168.10.1    -
+Fa0/0       10   2   -   Listen   0007.b400.0a02  192.168.10.2    -
+Fa0/0       10   3   -   Active   0007.b400.0a03  local           -
+Fa0/1       20   -   100 Listen   192.168.20.5    192.168.20.2    192.168.20.1
+Fa0/1       20   1   -   Listen   0007.b400.1401  192.168.20.1    -
+Fa0/1       20   2   -   Listen   0007.b400.1402  192.168.20.2    -
+Fa0/1       20   3   -   Active   0007.b400.1403  local           -
+R3(config-if)#int f0/0
+R3(config-if)#sh
+R3(config-if)#sh
+*Mar  1 00:26:45.079: %GLBP-6-FWDSTATECHANGE: FastEthernet0/0 Grp 10 Fwd 3 state Active -> Init
+*Mar  1 00:26:45.083: %GLBP-6-STATECHANGE: FastEthernet0/0 Grp 10 state Active -> Init
+R3(config-if)#do sh glbp br
+*Mar  1 00:26:47.079: %LINK-5-CHANGED: Interface FastEthernet0/0, changed state to administratively down
+*Mar  1 00:26:48.079: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to down
+R3(config-if)#do sh glbp br
+Interface   Grp  Fwd Pri State    Address         Active router   Standby router
+Fa0/0       10   -   140 Init     192.168.10.5    unknown         unknown
+Fa0/0       10   1   -   Init     0007.b400.0a01  unknown         -
+Fa0/0       10   2   -   Init     0007.b400.0a02  unknown         -
+Fa0/0       10   3   -   Init     0007.b400.0a03  unknown         -
+Fa0/1       20   -   100 Listen   192.168.20.5    192.168.20.2    192.168.20.1
+Fa0/1       20   1   -   Listen   0007.b400.1401  192.168.20.1    -
+Fa0/1       20   2   -   Listen   0007.b400.1402  192.168.20.2    -
+Fa0/1       20   3   -   Active   0007.b400.1403  local           -
+R3(config-if)#no sh
+R3(config-if)#do sh glbp br
+*Mar  1 00:27:53.439: %LINK-3-UPDOWN: Interface FastEthernet0/0, changed state to up
+*Mar  1 00:27:54.439: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+R3(config-if)#do sh glbp br
+*Mar  1 00:27:55.019: %GLBP-6-STATECHANGE: FastEthernet0/0 Grp 10 state Speak -> Active
+R3(config-if)#do sh glbp br
+Interface   Grp  Fwd Pri State    Address         Active router   Standby router
+Fa0/0       10   -   140 Active   192.168.10.5    local           unknown
+Fa0/0       10   1   -   Listen   0007.b400.0a01  192.168.10.1    -
+Fa0/0       10   2   -   Listen   0007.b400.0a02  192.168.10.2    -
+Fa0/0       10   3   -   Listen   0007.b400.0a03  192.168.10.2    -
+Fa0/1       20   -   100 Listen   192.168.20.5    192.168.20.2    192.168.20.1
+Fa0/1       20   1   -   Listen   0007.b400.1401  192.168.20.1    -
+Fa0/1       20   2   -   Listen   0007.b400.1402  192.168.20.2    -
+Fa0/1       20   3   -   Active   0007.b400.1403  local           -
+R3(config-if)#do sh glbp br
+Interface   Grp  Fwd Pri State    Address         Active router   Standby router
+Fa0/0       10   -   140 Active   192.168.10.5    local           192.168.10.2
+Fa0/0       10   1   -   Listen   0007.b400.0a01  192.168.10.1    -
+Fa0/0       10   2   -   Listen   0007.b400.0a02  192.168.10.2    -
+Fa0/0       10   3   -   Listen   0007.b400.0a03  192.168.10.2    -
+Fa0/1       20   -   100 Listen   192.168.20.5    192.168.20.2    192.168.20.1
+Fa0/1       20   1   -   Listen   0007.b400.1401  192.168.20.1    -
+Fa0/1       20   2   -   Listen   0007.b400.1402  192.168.20.2    -
+Fa0/1       20   3   -   Active   0007.b400.1403  local           -
+R3(config-if)#
+*Mar  1 00:28:24.391: %GLBP-6-FWDSTATECHANGE: FastEthernet0/0 Grp 10 Fwd 3 state Listen -> Active
+R3(config-if)#do wr
+Building configuration...
+[OK]
+R3(config-if)#

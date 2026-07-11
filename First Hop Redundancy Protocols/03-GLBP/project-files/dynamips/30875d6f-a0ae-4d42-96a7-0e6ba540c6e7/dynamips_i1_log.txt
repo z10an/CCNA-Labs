@@ -1,0 +1,45 @@
+Jul 11 06:27:29.911 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Jul 11 06:27:29.913 HYPERVISOR: Started on IP = localhost, TCP port = 65348.
+Jul 11 06:27:30.088 HYPERVISOR: exec_cmd: hypervisor version 
+Jul 11 06:27:30.089 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\hi\Desktop\network academy\notes\hsrp\hsrp\project-files\dynamips 
+Jul 11 06:27:30.093 GENERAL: working_dir=C:\Users\hi\Desktop\network academy\notes\hsrp\hsrp\project-files\dynamips
+Jul 11 06:27:30.094 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\hi\Desktop\network academy\notes\hsrp\hsrp\project-files\dynamips\30875d6f-a0ae-4d42-96a7-0e6ba540c6e7 
+Jul 11 06:27:30.094 GENERAL: working_dir=C:\Users\hi\Desktop\network academy\notes\hsrp\hsrp\project-files\dynamips\30875d6f-a0ae-4d42-96a7-0e6ba540c6e7
+Jul 11 06:27:30.094 HYPERVISOR: exec_cmd: vm create R1 1 c2691 
+Jul 11 06:27:30.096 VM: VM R1 created.
+Jul 11 06:27:30.097 HYPERVISOR: exec_cmd: vm set_con_tcp_port R1 5004 
+Jul 11 06:27:30.097 HYPERVISOR: exec_cmd: c2691 get_mac_addr R1 
+Jul 11 06:27:30.098 HYPERVISOR: exec_cmd: vm set_disk0 R1 0 
+Jul 11 06:27:30.098 HYPERVISOR: exec_cmd: vm set_exec_area R1 64 
+Jul 11 06:27:30.099 HYPERVISOR: exec_cmd: vm get_status R1 
+Jul 11 06:27:30.099 HYPERVISOR: exec_cmd: vm set_idle_pc R1 0x60a2d954 
+Jul 11 06:27:30.100 HYPERVISOR: exec_cmd: vm set_ios R1 C:/Users/hi/GNS3/images/IOS/c2691-entservicesk9-mz.124-13b.image 
+Jul 11 06:27:30.101 HYPERVISOR: exec_cmd: c2691 set_mac_addr R1 c001.2c74.0000 
+Jul 11 06:27:30.101 HYPERVISOR: exec_cmd: vm set_nvram R1 256 
+Jul 11 06:27:30.103 HYPERVISOR: exec_cmd: vm set_ram R1 192 
+Jul 11 06:27:32.726 HYPERVISOR: exec_cmd: nio create_udp udp-e16bd29c-d806-4496-a923-d3677ebf7d00 10006 127.0.0.1 10007 
+Jul 11 06:27:33.076 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R1 0 0 udp-e16bd29c-d806-4496-a923-d3677ebf7d00 
+Jul 11 06:27:33.077 HYPERVISOR: exec_cmd: vm get_status R1 
+Jul 11 06:27:34.000 HYPERVISOR: exec_cmd: nio create_udp udp-468ba596-0c4f-4a1d-9ca9-10dce03d379a 10018 127.0.0.1 10019 
+Jul 11 06:27:34.008 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R1 0 1 udp-468ba596-0c4f-4a1d-9ca9-10dce03d379a 
+Jul 11 06:27:34.008 HYPERVISOR: exec_cmd: vm get_status R1 
+Jul 11 06:27:44.553 HYPERVISOR: exec_cmd: vm create Ghost 0 c2691 
+Jul 11 06:27:44.555 VM: VM Ghost created.
+Jul 11 06:27:44.657 HYPERVISOR: exec_cmd: vm set_ios Ghost C:/Users/hi/GNS3/images/IOS/c2691-entservicesk9-mz.124-13b.image 
+Jul 11 06:27:44.658 HYPERVISOR: exec_cmd: vm set_ghost_status Ghost 1 
+Jul 11 06:27:44.658 HYPERVISOR: exec_cmd: vm set_ghost_file Ghost C:\Users\hi\Desktop\network academy\notes\hsrp\hsrp\project-files\dynamips\c2691-entservicesk9-mz.124-13b.image-192.ghost 
+Jul 11 06:27:44.660 HYPERVISOR: exec_cmd: vm set_ram Ghost 192 
+Jul 11 06:27:44.660 HYPERVISOR: exec_cmd: vm get_status Ghost 
+Jul 11 06:27:44.660 HYPERVISOR: exec_cmd: vm set_config Ghost configs\i0_startup-config.cfg 
+Jul 11 06:27:44.660 HYPERVISOR: exec_cmd: vm start Ghost 
+Jul 11 06:27:45.372 HYPERVISOR: exec_cmd: vm get_status Ghost 
+Jul 11 06:27:45.373 HYPERVISOR: exec_cmd: vm stop Ghost 
+Jul 11 06:27:45.573 VM: VM Ghost shutdown.
+Jul 11 06:27:45.574 HYPERVISOR: exec_cmd: vm extract_config Ghost 
+Jul 11 06:27:45.575 HYPERVISOR: exec_cmd: vm clean_delete Ghost 
+Jul 11 06:27:45.575 VM: VM Ghost destroyed.
+Jul 11 06:27:45.601 HYPERVISOR: exec_cmd: vm set_ghost_status R1 2 
+Jul 11 06:27:45.601 HYPERVISOR: exec_cmd: vm set_ghost_file R1 C:\Users\hi\Desktop\network academy\notes\hsrp\hsrp\project-files\dynamips\c2691-entservicesk9-mz.124-13b.image-192.ghost 
+Jul 11 06:27:45.602 HYPERVISOR: exec_cmd: vm get_status R1 
+Jul 11 06:27:45.612 HYPERVISOR: exec_cmd: vm set_config R1 configs\i1_startup-config.cfg 
+Jul 11 06:27:45.612 HYPERVISOR: exec_cmd: vm start R1 

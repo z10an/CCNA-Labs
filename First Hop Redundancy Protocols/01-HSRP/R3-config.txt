@@ -1,0 +1,35 @@
+R3#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R3(config)#int f0/0
+R3(config-if)#no sh
+R3(config-if)#ip add 192.1
+*Mar  1 00:02:59.319: %LINK-3-UPDOWN: Interface FastEthernet0/0, changed state to up
+*Mar  1 00:03:00.351: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+R3(config-if)#ip add 192.168.10.3 255.255.255.0
+R3(config-if)#stan
+R3(config-if)#standby 1 ip 192.168.10.5
+R3(config-if)#standby 1 priority 140
+R3(config-if)#standby 1 preempt
+R3(config-if)#
+*Mar  1 00:03:38.443: %HSRP-5-STATECHANGE: FastEthernet0/0 Grp 1 state Speak -> Active
+R3(config-if)#int f0/1
+R3(config-if)#ip add 192.168.20.3 255.255.255.0
+R3(config-if)#standby 2 ip 192.168.20.5
+R3(config-if)#standby 2 priority 140
+R3(config-if)#standby 2 preempt
+R3(config-if)#no sh
+R3(config-if)#
+*Mar  1 00:08:38.127: %HSRP-5-STATECHANGE: FastEthernet0/1 Grp 2 state Listen -> Active
+R3(config-if)#
+*Mar  1 00:08:38.759: %LINK-3-UPDOWN: Interface FastEthernet0/1, changed state to up
+*Mar  1 00:08:39.759: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
+R3(config-if)#do sh standby br
+                     P indicates configured to preempt.
+                     |
+Interface   Grp Prio P State    Active          Standby         Virtual IP
+Fa0/0       1   140  P Active   local           192.168.10.2    192.168.10.5
+Fa0/1       2   140  P Active   local           192.168.20.2    192.168.20.5
+R3(config-if)#do wr
+Building configuration...
+[OK]
+R3(config-if)#

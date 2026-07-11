@@ -1,0 +1,24 @@
+PC2> ip 192.168.20.10/24 192.168.20.5
+Checking for duplicate address...
+PC1 : 192.168.20.10 255.255.255.0 gateway 192.168.20.5
+
+PC2> ping 192.168.10.10
+84 bytes from 192.168.10.10 icmp_seq=1 ttl=63 time=31.676 ms
+84 bytes from 192.168.10.10 icmp_seq=2 ttl=63 time=30.787 ms
+84 bytes from 192.168.10.10 icmp_seq=3 ttl=63 time=30.094 ms
+84 bytes from 192.168.10.10 icmp_seq=4 ttl=63 time=31.420 ms
+84 bytes from 192.168.10.10 icmp_seq=5 ttl=63 time=46.955 ms
+
+PC2> trace 192.168.10.10
+trace to 192.168.10.10, 8 hops max, press Ctrl+C to stop
+ 1   192.168.20.2   15.518 ms  15.758 ms  15.521 ms
+ 2   *192.168.10.10   31.613 ms (ICMP type:3, code:3, Destination port unreachable)
+
+PC2> save
+Saving startup configuration to startup.vpc
+.  done
+
+PC2>
+
+
+

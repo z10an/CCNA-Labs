@@ -1,0 +1,61 @@
+R2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R2(config)#int f0/0
+R2(config-if)#ip add 192.168.10.2 255.255.255.0
+R2(config-if)#no sh
+R2(config-if)#vrrp 10
+*Mar  1 00:02:47.263: %LINK-3-UPDOWN: Interface FastEthernet0/0, changed state to up
+*Mar  1 00:02:48.263: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to upi
+R2(config-if)#vrrp 10 ip 192.168.10.5
+R2(config-if)#vrrp 10 ip 192.168.10.5
+*Mar  1 00:02:55.499: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Init -> Backup
+R2(config-if)#vrrp 10 priority 130
+R2(config-if)#vrrp 10 preemp
+*Mar  1 00:03:07.915: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Backup -> Master
+R2(config-if)#vrrp 10 preempt
+R2(config-if)#int f0/1
+R2(config-if)#ip add 192.168.20.2 255.255.255.0
+R2(config-if)#no sh
+R2(config-if)#vrrp 10 priority 130
+*Mar  1 00:03:27.519: %LINK-3-UPDOWN: Interface FastEthernet0/1, changed state to up
+*Mar  1 00:03:28.519: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
+R2(config-if)#vrrp 20 priority 130
+R2(config-if)#vrrp 20 preempt
+R2(config-if)#
+*Mar  1 00:04:17.007: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Master -> Backup
+R2(config-if)#do sh vrrp br
+Interface          Grp Pri Time  Own Pre State   Master addr     Group addr
+Fa0/0              10  130 3492       Y  Backup  192.168.10.3    192.168.10.5
+R2(config-if)#ex
+R2(config)#do sh vrrp br
+Interface          Grp Pri Time  Own Pre State   Master addr     Group addr
+Fa0/0              10  130 3492       Y  Backup  192.168.10.3    192.168.10.5
+R2(config)#int f0/1
+R2(config-if)#vrrp 20 ip 192.168.20.5
+R2(config-if)#
+*Mar  1 00:09:49.951: %VRRP-6-STATECHANGE: Fa0/1 Grp 20 state Init -> Backup
+R2(config-if)#do sh vrrp br
+Interface          Grp Pri Time  Own Pre State   Master addr     Group addr
+Fa0/0              10  130 3492       Y  Backup  192.168.10.3    192.168.10.5
+Fa0/1              20  130 3492       Y  Backup  192.168.20.3    192.168.20.5
+R2(config-if)#
+*Mar  1 00:10:31.439: %VRRP-6-STATECHANGE: Fa0/1 Grp 20 state Backup -> Master
+R2(config-if)#
+*Mar  1 00:10:50.559: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Backup -> Master
+R2(config-if)#do sh vrrp br
+Interface          Grp Pri Time  Own Pre State   Master addr     Group addr
+Fa0/0              10  130 3492       Y  Master  192.168.10.2    192.168.10.5
+Fa0/1              20  130 3492       Y  Master  192.168.20.2    192.168.20.5
+R2(config-if)#
+*Mar  1 00:12:03.219: %VRRP-6-STATECHANGE: Fa0/1 Grp 20 state Master -> Backup
+R2(config-if)#
+*Mar  1 00:12:11.115: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Master -> Backup
+R2(config-if)#do wr
+Building configuration...
+[OK]
+R2(config-if)#
+*Mar  1 00:12:26.127: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Backup -> Master
+*Mar  1 00:12:26.131: %VRRP-6-STATECHANGE: Fa0/1 Grp 20 state Backup -> Master
+*Mar  1 00:12:28.367: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Master -> Backup
+*Mar  1 00:12:28.371: %VRRP-6-STATECHANGE: Fa0/1 Grp 20 state Master -> Backup
+R2(config-if)#

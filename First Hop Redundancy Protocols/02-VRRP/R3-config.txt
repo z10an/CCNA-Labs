@@ -1,0 +1,233 @@
+R3#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R3(config)#int f0/0
+R3(config-if)#ip add 192.168.10.3 255.255.255.0
+R3(config-if)#no sh
+R3(config-if)#vrrp 10 ip
+*Mar  1 00:03:05.247: %LINK-3-UPDOWN: Interface FastEthernet0/0, changed state to up
+*Mar  1 00:03:06.247: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+R3(config-if)#vrrp 10 ip 192.168.10.5
+R3(config-if)#vrrp 10 ip 192.168.10.
+*Mar  1 00:03:11.351: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Init -> Backup
+R3(config-if)#vrrp 10 priority 140
+R3(config-if)#vrrp 10 preempt
+*Mar  1 00:03:21.459: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Backup -> Master
+R3(config-if)#vrrp 10 preempt
+R3(config-if)#int f0/1
+R3(config-if)#ip add 192.168.20.3 255.255.255.0
+R3(config-if)#vrrp 20 ip 192.168.10.5
+% 192.168.10.5 is assigned to another application on FastEthernet0/0
+R3(config-if)#vrrp 20 ip 192.168.20.5
+R3(config-if)#vrrp 20 priority
+% Incomplete command.
+
+R3(config-if)#vrrp 20 priority 140
+R3(config-if)#vrrp 20 preempt
+R3(config-if)#do sh standby br
+
+R3(config-if)#no sh
+R3(config-if)#
+*Mar  1 00:05:21.023: %VRRP-6-STATECHANGE: Fa0/1 Grp 20 state Init -> Backup
+R3(config-if)#
+*Mar  1 00:05:23.019: %LINK-3-UPDOWN: Interface FastEthernet0/1, changed state to up
+*Mar  1 00:05:24.019: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
+R3(config-if)#
+*Mar  1 00:05:24.479: %VRRP-6-STATECHANGE: Fa0/1 Grp 20 state Backup -> Master
+R3(config-if)#do sh standby br
+
+R3(config-if)#do sh vrrp br
+Interface          Grp Pri Time  Own Pre State   Master addr     Group addr
+Fa0/0              10  140 3453       Y  Master  192.168.10.3    192.168.10.5
+Fa0/1              20  140 3453       Y  Master  192.168.20.3    192.168.20.5
+R3(config-if)#no sh
+R3(config-if)#do sh vrrp br
+Interface          Grp Pri Time  Own Pre State   Master addr     Group addr
+Fa0/0              10  140 3453       Y  Master  192.168.10.3    192.168.10.5
+Fa0/1              20  140 3453       Y  Master  192.168.20.3    192.168.20.5
+R3(config-if)#sh
+R3(config-if)#
+*Mar  1 00:09:52.895: %VRRP-6-STATECHANGE: Fa0/1 Grp 20 state Master -> Init
+R3(config-if)#do sh vrrp br
+Interface          Grp Pri Time  Own Pre State   Master addr     Group addr
+Fa0/0              10  140 3453       Y  Master  192.168.10.3    192.168.10.5
+Fa0/1              20  140 3453       Y  Init    0.0.0.0         192.168.20.5
+R3(config-if)#
+*Mar  1 00:09:54.895: %LINK-5-CHANGED: Interface FastEthernet0/1, changed state to administratively down
+*Mar  1 00:09:55.895: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to down
+R3(config-if)#int f0/0
+R3(config-if)#sh
+R3(config-if)#
+*Mar  1 00:10:13.007: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Master -> Init
+R3(config-if)#int f0/0
+*Mar  1 00:10:15.007: %LINK-5-CHANGED: Interface FastEthernet0/0, changed state to administratively down
+*Mar  1 00:10:16.007: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to down
+R3(config-if)#do sh vrrp br
+Interface          Grp Pri Time  Own Pre State   Master addr     Group addr
+Fa0/0              10  140 3453       Y  Init    0.0.0.0         192.168.10.5
+Fa0/1              20  140 3453       Y  Init    0.0.0.0         192.168.20.5
+R3(config-if)#do sh vrrp br
+Interface          Grp Pri Time  Own Pre State   Master addr     Group addr
+Fa0/0              10  140 3453       Y  Init    0.0.0.0         192.168.10.5
+Fa0/1              20  140 3453       Y  Init    0.0.0.0         192.168.20.5
+R3(config-if)#sh
+R3(config-if)#int f0/1
+R3(config-if)#sh
+R3(config-if)#no sh
+R3(config-if)#in
+*Mar  1 00:11:18.463: %VRRP-6-STATECHANGE: Fa0/1 Grp 20 state Init -> Backup
+R3(config-if)#int f0
+*Mar  1 00:11:20.455: %LINK-3-UPDOWN: Interface FastEthernet0/1, changed state to up
+*Mar  1 00:11:21.455: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
+R3(config-if)#int f0/0
+*Mar  1 00:11:21.919: %VRRP-6-STATECHANGE: Fa0/1 Grp 20 state Backup -> Master
+R3(config-if)#int f0/0
+R3(config-if)#no sh
+R3(config-if)#
+*Mar  1 00:11:27.123: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Init -> Backup
+R3(config-if)#
+*Mar  1 00:11:29.119: %LINK-3-UPDOWN: Interface FastEthernet0/0, changed state to up
+*Mar  1 00:11:30.119: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+R3(config-if)#int f0/0
+*Mar  1 00:11:30.579: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Backup -> Master
+R3(config-if)#do sh vrrp br
+Interface          Grp Pri Time  Own Pre State   Master addr     Group addr
+Fa0/0              10  140 3453       Y  Master  192.168.10.3    192.168.10.5
+Fa0/1              20  140 3453       Y  Master  192.168.20.3    192.168.20.5
+R3(config-if)#do wr
+Building configuration...
+[OK]
+R3(config-if)#do sh vrrp
+FastEthernet0/0 - Group 10
+  State is Master
+  Virtual IP address is 192.168.10.5
+  Virtual MAC address is 0000.5e00.010a
+  Advertisement interval is 1.000 sec
+  Preemption enabled
+  Priority is 140
+  Master Router is 192.168.10.3 (local), priority is 140
+  Master Advertisement interval is 1.000 sec
+  Master Down interval is 3.453 sec
+
+FastEthernet0/1 - Group 20
+  State is Master
+  Virtual IP address is 192.168.20.5
+  Virtual MAC address is 0000.5e00.0114
+  Advertisement interval is 1.000 sec
+  Preemption enabled
+  Priority is 140
+  Master Router is 192.168.20.3 (local), priority is 140
+  Master Advertisement interval is 1.000 sec
+  Master Down interval is 3.453 sec
+
+R3(config-if)#do sh ip int br
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            192.168.10.3    YES manual up                    up
+FastEthernet0/1            192.168.20.3    YES manual up                    up
+R3(config-if)#do sh run
+Building configuration...
+
+Current configuration : 907 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R3
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+ip cef
+!
+!
+!
+!
+no ip domain lookup
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip tcp synwait-time 5
+!
+!
+!
+interface FastEthernet0/0
+ ip address 192.168.10.3 255.255.255.0
+ duplex auto
+ speed auto
+ vrrp 10 ip 192.168.10.5
+ vrrp 10 priority 140
+!
+interface FastEthernet0/1
+ ip address 192.168.20.3 255.255.255.0
+ duplex auto
+ speed auto
+ vrrp 20 ip 192.168.20.5
+ vrrp 20 priority 140
+!
+!
+!
+no ip http server
+no ip http secure-server
+!
+no cdp log mismatch duplex
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ login
+!
+!
+end
+
+R3(config-if)# do sh ip route
+Codes: C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.10.0/24 is directly connected, FastEthernet0/0
+C    192.168.20.0/24 is directly connected, FastEthernet0/1
+R3(config-if)#

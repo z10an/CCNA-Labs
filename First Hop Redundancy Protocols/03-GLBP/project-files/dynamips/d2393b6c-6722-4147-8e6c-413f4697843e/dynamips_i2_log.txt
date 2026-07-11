@@ -1,0 +1,30 @@
+Jul 11 06:27:30.178 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Jul 11 06:27:30.181 HYPERVISOR: Started on IP = localhost, TCP port = 65351.
+Jul 11 06:27:30.680 HYPERVISOR: exec_cmd: hypervisor version 
+Jul 11 06:27:30.681 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\hi\Desktop\network academy\notes\hsrp\hsrp\project-files\dynamips 
+Jul 11 06:27:30.681 GENERAL: working_dir=C:\Users\hi\Desktop\network academy\notes\hsrp\hsrp\project-files\dynamips
+Jul 11 06:27:30.681 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\hi\Desktop\network academy\notes\hsrp\hsrp\project-files\dynamips\d2393b6c-6722-4147-8e6c-413f4697843e 
+Jul 11 06:27:30.682 GENERAL: working_dir=C:\Users\hi\Desktop\network academy\notes\hsrp\hsrp\project-files\dynamips\d2393b6c-6722-4147-8e6c-413f4697843e
+Jul 11 06:27:30.682 HYPERVISOR: exec_cmd: vm create R2 2 c2691 
+Jul 11 06:27:30.684 VM: VM R2 created.
+Jul 11 06:27:30.685 HYPERVISOR: exec_cmd: vm set_con_tcp_port R2 5005 
+Jul 11 06:27:30.685 HYPERVISOR: exec_cmd: c2691 get_mac_addr R2 
+Jul 11 06:27:30.685 HYPERVISOR: exec_cmd: vm set_disk0 R2 0 
+Jul 11 06:27:30.686 HYPERVISOR: exec_cmd: vm set_exec_area R2 64 
+Jul 11 06:27:30.686 HYPERVISOR: exec_cmd: vm get_status R2 
+Jul 11 06:27:30.687 HYPERVISOR: exec_cmd: vm set_idle_pc R2 0x60a2d954 
+Jul 11 06:27:30.687 HYPERVISOR: exec_cmd: vm set_ios R2 C:/Users/hi/GNS3/images/IOS/c2691-entservicesk9-mz.124-13b.image 
+Jul 11 06:27:30.688 HYPERVISOR: exec_cmd: c2691 set_mac_addr R2 c002.4fa4.0000 
+Jul 11 06:27:30.688 HYPERVISOR: exec_cmd: vm set_nvram R2 256 
+Jul 11 06:27:30.689 HYPERVISOR: exec_cmd: vm set_ram R2 192 
+Jul 11 06:27:33.173 HYPERVISOR: exec_cmd: nio create_udp udp-a56acd62-744a-4969-998d-6aab92abbb6d 10010 127.0.0.1 10011 
+Jul 11 06:27:33.471 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 0 0 udp-a56acd62-744a-4969-998d-6aab92abbb6d 
+Jul 11 06:27:33.471 HYPERVISOR: exec_cmd: vm get_status R2 
+Jul 11 06:27:34.093 HYPERVISOR: exec_cmd: nio create_udp udp-168182ef-4e47-4094-9a4b-c4f66fab5ef5 10022 127.0.0.1 10023 
+Jul 11 06:27:34.100 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 0 1 udp-168182ef-4e47-4094-9a4b-c4f66fab5ef5 
+Jul 11 06:27:34.101 HYPERVISOR: exec_cmd: vm get_status R2 
+Jul 11 06:27:45.602 HYPERVISOR: exec_cmd: vm set_ghost_status R2 2 
+Jul 11 06:27:45.612 HYPERVISOR: exec_cmd: vm set_ghost_file R2 C:\Users\hi\Desktop\network academy\notes\hsrp\hsrp\project-files\dynamips\c2691-entservicesk9-mz.124-13b.image-192.ghost 
+Jul 11 06:27:45.613 HYPERVISOR: exec_cmd: vm get_status R2 
+Jul 11 06:27:45.628 HYPERVISOR: exec_cmd: vm set_config R2 configs\i2_startup-config.cfg 
+Jul 11 06:27:45.630 HYPERVISOR: exec_cmd: vm start R2 

@@ -1,0 +1,47 @@
+R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#int f0/0
+R1(config-if)#ip add 192.168.10.1 255.255.255.0
+R1(config-if)#no sh
+R1(config-if)#vrr
+*Mar  1 00:02:36.463: %LINK-3-UPDOWN: Interface FastEthernet0/0, changed state to up
+*Mar  1 00:02:37.463: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+R1(config-if)#vrrp 10 ip 192.168.10.5
+R1(config-if)#vrrp 10 ip 192.168.10.5
+*Mar  1 00:02:47.243: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Init -> Backup
+R1(config-if)#vrrp 10 prioi
+*Mar  1 00:02:50.855: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Backup -> Master
+R1(config-if)#vrrp 10 priority 120
+R1(config-if)#vrrp 10 preempt
+R1(config-if)#int f0/1
+R1(config-if)#ip add 192.168.20.1 255.255.255.0
+R1(config-if)#no sh
+R1(config-if)#vrrp 10 ip 192.168.10.5
+*Mar  1 00:03:19.339: %LINK-3-UPDOWN: Interface FastEthernet0/1, changed state to up
+*Mar  1 00:03:20.339: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
+R1(config-if)#no vrrp 10 ip 192.168.10.5
+R1(config-if)#vrrp 20 ip 192.168.20.5
+R1(config-if)#ip add 192.168.20.1 255.255.255.0
+*Mar  1 00:03:53.035: %VRRP-6-STATECHANGE: Fa0/1 Grp 20 state Init -> Backup
+R1(config-if)#vrrp 10 priority 120
+*Mar  1 00:03:56.647: %VRRP-6-STATECHANGE: Fa0/1 Grp 20 state Backup -> Master
+R1(config-if)#vrrp 20 priority 120
+R1(config-if)#vrrp 20 preempt
+R1(config-if)#
+*Mar  1 00:05:19.747: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Master -> Backup
+R1(config-if)#
+*Mar  1 00:08:22.827: %VRRP-6-STATECHANGE: Fa0/1 Grp 20 state Master -> Backup
+R1(config-if)#do sh vrrp br
+Interface          Grp Pri Time  Own Pre State   Master addr     Group addr
+Fa0/0              10  120 3531       Y  Backup  192.168.10.3    192.168.10.5
+Fa0/1              20  120 3531       Y  Backup  192.168.20.3    192.168.20.5
+R1(config-if)#do wr
+Building configuration...
+[OK]
+R1(config-if)#
+*Mar  1 00:14:30.907: %VRRP-6-STATECHANGE: Fa0/1 Grp 20 state Backup -> Master
+*Mar  1 00:14:32.127: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Backup -> Master
+R1(config-if)#
+*Mar  1 00:14:33.107: %VRRP-6-STATECHANGE: Fa0/1 Grp 20 state Master -> Backup
+*Mar  1 00:14:33.559: %VRRP-6-STATECHANGE: Fa0/0 Grp 10 state Master -> Backup
+R1(config-if)#

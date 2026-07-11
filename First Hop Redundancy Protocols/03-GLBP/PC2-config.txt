@@ -1,0 +1,16 @@
+Checking for duplicate address...
+PC1 : 192.168.20.10 255.255.255.0 gateway 192.168.20.5
+
+PC2> ping 192.168.10.10
+84 bytes from 192.168.10.10 icmp_seq=1 ttl=63 time=31.057 ms
+84 bytes from 192.168.10.10 icmp_seq=2 ttl=63 time=31.329 ms
+84 bytes from 192.168.10.10 icmp_seq=3 ttl=63 time=31.796 ms
+84 bytes from 192.168.10.10 icmp_seq=4 ttl=63 time=31.441 ms
+84 bytes from 192.168.10.10 icmp_seq=5 ttl=63 time=31.264 ms
+
+PC2> trace 192.168.10.10
+trace to 192.168.10.10, 8 hops max, press Ctrl+C to stop
+ 1   192.168.20.1   15.803 ms  15.067 ms  15.762 ms
+ 2   *192.168.10.10   30.203 ms (ICMP type:3, code:3, Destination port unreachable)
+
+PC2>

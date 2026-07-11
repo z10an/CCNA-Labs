@@ -1,0 +1,51 @@
+R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#int f0/0
+R1(config-if)#gl
+R1(config-if)#glbp 10 ip 192.168.10.5
+R1(config-if)#glbp 10 prio
+R1(config-if)#glbp 10 priority 120
+R1(config-if)#glbp 10 preempt
+R1(config-if)#int f0/1
+R1(config-if)#glbp 20 ip 192.168.20.5
+R1(config-if)#glbp 20 priority 120
+R1(config-if)#int f0/1
+*Mar  1 00:15:21.063: %GLBP-6-STATECHANGE: FastEthernet0/0 Grp 10 state Standby -> Active
+R1(config-if)#glbp 20 preempt
+R1(config-if)#
+*Mar  1 00:15:31.063: %GLBP-6-FWDSTATECHANGE: FastEthernet0/0 Grp 10 Fwd 1 state Listen -> Active
+R1(config-if)#
+*Mar  1 00:15:45.659: %GLBP-6-STATECHANGE: FastEthernet0/1 Grp 20 state Standby -> Active
+R1(config-if)#
+*Mar  1 00:15:51.123: %GLBP-6-STATECHANGE: FastEthernet0/0 Grp 10 state Active -> Speak
+R1(config-if)#
+*Mar  1 00:15:55.659: %GLBP-6-FWDSTATECHANGE: FastEthernet0/1 Grp 20 Fwd 1 state Listen -> Active
+R1(config-if)#
+*Mar  1 00:16:12.723: %GLBP-6-STATECHANGE: FastEthernet0/1 Grp 20 state Active -> Speak
+R1(config-if)#do sh glbp br
+Interface   Grp  Fwd Pri State    Address         Active router   Standby router
+Fa0/0       10   -   120 Listen   192.168.10.5    192.168.10.3    192.168.10.2
+Fa0/0       10   1   -   Active   0007.b400.0a01  local           -
+Fa0/0       10   2   -   Listen   0007.b400.0a02  192.168.10.2    -
+Fa0/0       10   3   -   Listen   0007.b400.0a03  192.168.10.3    -
+Fa0/1       20   -   120 Standby  192.168.20.5    192.168.20.2    local
+Fa0/1       20   1   -   Active   0007.b400.1401  local           -
+Fa0/1       20   2   -   Listen   0007.b400.1402  192.168.20.2    -
+Fa0/1       20   3   -   Listen   0007.b400.1403  192.168.20.3    -
+R1(config-if)#
+*Mar  1 00:27:01.439: %GLBP-6-FWDSTATECHANGE: FastEthernet0/0 Grp 10 Fwd 3 state Listen -> Active
+*Mar  1 00:27:01.531: %GLBP-6-FWDSTATECHANGE: FastEthernet0/0 Grp 10 Fwd 3 state Active -> Listen
+R1(config-if)#do sh glbp br
+Interface   Grp  Fwd Pri State    Address         Active router   Standby router
+Fa0/0       10   -   120 Standby  192.168.10.5    192.168.10.2    local
+Fa0/0       10   1   -   Active   0007.b400.0a01  local           -
+Fa0/0       10   2   -   Listen   0007.b400.0a02  192.168.10.2    -
+Fa0/0       10   3   -   Listen   0007.b400.0a03  192.168.10.2    -
+Fa0/1       20   -   120 Standby  192.168.20.5    192.168.20.2    local
+Fa0/1       20   1   -   Active   0007.b400.1401  local           -
+Fa0/1       20   2   -   Listen   0007.b400.1402  192.168.20.2    -
+Fa0/1       20   3   -   Listen   0007.b400.1403  192.168.20.3    -
+R1(config-if)#do wr
+Building configuration...
+[OK]
+R1(config-if)#
