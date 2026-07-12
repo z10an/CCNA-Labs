@@ -1,0 +1,140 @@
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int g0/0
+Router(config-if)#ip add 192.168.2.1 255.255.255.0
+Router(config-if)#no sh
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#enc
+Router(config-if)#encap
+Router(config-if)#int s0/0/0
+Router(config-if)#ip add 10.0.0.2 255.255.255.252
+Router(config-if)#no sh
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+Router(config-if)#encap
+Router(config-if)#encapsulation ppp
+Router(config-if)#
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+Router(config-if)#ex
+Router(config)#do sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     192.168.2.1     YES manual up                    up 
+GigabitEthernet0/1     unassigned      YES unset  administratively down down 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Serial0/0/0            10.0.0.2        YES manual up                    up 
+Serial0/0/1            unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+Router(config)#do show interfaces serial0/0/0
+Serial0/0/0 is up, line protocol is up (connected)
+  Hardware is HD64570
+  Internet address is 10.0.0.2/30
+  MTU 1500 bytes, BW 1544 Kbit, DLY 20000 usec,
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation PPP, loopback not set, keepalive set (10 sec)
+  LCP Open
+  Open: IPCP, CDPCP
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0 (size/max/drops); Total output drops: 0
+  Queueing strategy: weighted fair
+  Output queue: 0/1000/64/0 (size/max total/threshold/drops)
+     Conversations  0/0/256 (active/max active/max total)
+     Reserved Conversations 0/0 (allocated/max allocated)
+     Available Bandwidth 1158 kilobits/sec
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts, 0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+     0 packets output, 0 bytes, 0 underruns
+     0 output errors, 0 collisions, 1 interface resets
+     0 output buffer failures, 0 output buffers swapped out
+     0 carrier transitions
+     DCD=up  DSR=up  DTR=up  RTS=up  CTS=up
+
+Router(config)#do sh ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks
+C       10.0.0.0/30 is directly connected, Serial0/0/0
+C       10.0.0.1/32 is directly connected, Serial0/0/0
+L       10.0.0.2/32 is directly connected, Serial0/0/0
+     192.168.2.0/24 is variably subnetted, 2 subnets, 2 masks
+C       192.168.2.0/24 is directly connected, GigabitEthernet0/0
+L       192.168.2.1/32 is directly connected, GigabitEthernet0/0
+
+Router(config)#ip route 192.168.1.0 255.255.255.0 10.0.0.1
+Router(config)#do show interfaces serial0/0/0
+Serial0/0/0 is up, line protocol is up (connected)
+  Hardware is HD64570
+  Internet address is 10.0.0.2/30
+  MTU 1500 bytes, BW 1544 Kbit, DLY 20000 usec,
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation PPP, loopback not set, keepalive set (10 sec)
+  LCP Open
+  Open: IPCP, CDPCP
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0 (size/max/drops); Total output drops: 0
+  Queueing strategy: weighted fair
+  Output queue: 0/1000/64/0 (size/max total/threshold/drops)
+     Conversations  0/0/256 (active/max active/max total)
+     Reserved Conversations 0/0 (allocated/max allocated)
+     Available Bandwidth 1158 kilobits/sec
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts, 0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+     0 packets output, 0 bytes, 0 underruns
+     0 output errors, 0 collisions, 1 interface resets
+     0 output buffer failures, 0 output buffers swapped out
+     0 carrier transitions
+     DCD=up  DSR=up  DTR=up  RTS=up  CTS=up
+
+Router(config)#do sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     192.168.2.1     YES manual up                    up 
+GigabitEthernet0/1     unassigned      YES unset  administratively down down 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Serial0/0/0            10.0.0.2        YES manual up                    up 
+Serial0/0/1            unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+Router(config)#do sh ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks
+C       10.0.0.0/30 is directly connected, Serial0/0/0
+C       10.0.0.1/32 is directly connected, Serial0/0/0
+L       10.0.0.2/32 is directly connected, Serial0/0/0
+S    192.168.1.0/24 [1/0] via 10.0.0.1
+     192.168.2.0/24 is variably subnetted, 2 subnets, 2 masks
+C       192.168.2.0/24 is directly connected, GigabitEthernet0/0
+L       192.168.2.1/32 is directly connected, GigabitEthernet0/0
+
+Router(config)#

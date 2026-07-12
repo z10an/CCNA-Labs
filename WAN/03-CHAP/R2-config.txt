@@ -1,0 +1,131 @@
+Router>enable
+Router#conf t
+Router(config)#hostname R2
+R2(config)#username R1 password cisco
+R2(config)#interface Serial0/0/0
+R2(config-if)#ppp authentication chap
+R2(config-if)#do sh run
+Building configuration...
+
+Current configuration : 955 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname R2
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+username R1 password 0 cisco
+!
+!
+license udi pid CISCO2911/K9 sn FTX1524C5RY-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 192.168.2.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface GigabitEthernet0/2
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial0/0/0
+ ip address 10.0.0.2 255.255.255.252
+ encapsulation ppp
+ ppp authentication chap
+!
+interface Serial0/0/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+ip route 192.168.1.0 255.255.255.0 10.0.0.1 
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+
+R2(config-if)#do sh int s0/0/0
+Serial0/0/0 is up, line protocol is up (connected)
+  Hardware is HD64570
+  Internet address is 10.0.0.2/30
+  MTU 1500 bytes, BW 1544 Kbit, DLY 20000 usec,
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation PPP, loopback not set, keepalive set (10 sec)
+  LCP Open
+  Open: IPCP, CDPCP
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0 (size/max/drops); Total output drops: 0
+  Queueing strategy: weighted fair
+  Output queue: 0/1000/64/0 (size/max total/threshold/drops)
+     Conversations  0/0/256 (active/max active/max total)
+     Reserved Conversations 0/0 (allocated/max allocated)
+     Available Bandwidth 1158 kilobits/sec
+  5 minute input rate 20 bits/sec, 0 packets/sec
+  5 minute output rate 17 bits/sec, 0 packets/sec
+     6 packets input, 768 bytes, 0 no buffer
+     Received 0 broadcasts, 0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+     5 packets output, 640 bytes, 0 underruns
+ --More-- 
+%LINK-3-UPDOWN: Interface Serial0/0/0, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to down
+
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINK-3-UPDOWN: Interface Serial0/0/0, changed state to down
+
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
