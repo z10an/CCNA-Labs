@@ -1,0 +1,75 @@
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#host SW1
+SW1(config)#int f0/1
+SW1(config-if)#switc
+SW1(config-if)#switchport mode access
+SW1(config-if)#spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when portfast is enabled, can cause temporary bridging loops.
+Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/1 but will only
+have effect when the interface is in a non-trunking mode.
+SW1(config-if)#do show spanning-tree interface fa0/1 detail
+
+
+Port 1 (FastEthernet0/1) of VLAN0001 is designated forwarding
+  Port path cost 19, Port priority 128, Port Identifier 128.1
+  Designated root has priority 32769, address 0090.2B64.A609
+  Designated bridge has priority 32769, address 0090.2B64.A609
+  Designated port id is 128.1, designated path cost 19
+  Timers: message age 16, forward delay 0, hold 0
+  Number of transitions to forwarding state: 1
+  The port is in the portfast mode
+  Link type is point-to-point by default
+SW1(config-if)#
+%LINK-3-UPDOWN: Interface FastEthernet0/1, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to down
+
+%LINK-5-CHANGED: Interface FastEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
+
+SW1(config-if)#show spanning-tree summary
+                 ^
+% Invalid input detected at '^' marker.
+	
+SW1(config-if)#do show spanning-tree summary
+Switch is in pvst mode
+Root bridge for: default
+Extended system ID           is enabled
+Portfast Default             is disabled
+PortFast BPDU Guard Default  is disabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is disabled
+EtherChannel misconfig guard is disabled
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+Configured Pathcost method used is short
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0001                     0         0        0          1          1
+
+---------------------- -------- --------- -------- ---------- ----------
+1 vlans                      0         0        0          1          1
+
+SW1(config-if)#do show running-config interface fa0/1
+show running-config interface fa0/1
+                    ^
+% Invalid input detected at '^' marker.
+	
+SW1(config-if)#ex
+SW1(config)#ex
+SW1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+SW1#show running-config interface fa0/1
+                        ^
+% Invalid input detected at '^' marker.
+	
+SW1#\

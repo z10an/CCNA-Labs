@@ -1,0 +1,39 @@
+Switch#sh spann
+Switch#sh spanning-tree 
+VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32769
+             Address     0001.6312.A3E3
+             Cost        19
+             Port        1(FastEthernet0/1)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     00E0.A36C.3E90
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Fa0/1            Root FWD 19        128.1    P2p
+Fa0/2            Altn BLK 19        128.2    P2p
+Fa0/3            Altn BLK 19        128.3    P2p
+Fa0/4            Altn BLK 19        128.4    P2p
+
+Switch#sh spanning-tree int f0/1
+Vlan             Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+VLAN0001         Root FWD 19        128.1     P2p
+Switch#sh spanning-tree int f0/2
+Vlan             Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+VLAN0001         Altn BLK 19        128.2     P2p
+Switch#sh spanning-tree int f0/3
+Vlan             Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+VLAN0001         Altn BLK 19        128.3     P2p
+Switch#sh spanning-tree int f0/4
+Vlan             Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+VLAN0001         Altn BLK 19        128.4     P2p
+Switch#

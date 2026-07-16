@@ -1,0 +1,26 @@
+Switch>en
+Switch#sh spanning tree
+                   ^
+% Invalid input detected at '^' marker.
+	
+Switch#sh spanning
+Switch#sh spanning-tree 
+VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32769
+             Address     0001.6312.A3E3
+             Cost        4
+             Port        25(GigabitEthernet0/1)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     0040.0B93.CA90
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Gi0/1            Root FWD 4         128.25   P2p
+Gi0/2            Desg FWD 4         128.26   P2p
+
+Switch#

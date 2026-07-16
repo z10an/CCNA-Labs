@@ -1,0 +1,123 @@
+C:\>ping 2001:DB8:2:2::10
+
+Pinging 2001:DB8:2:2::10 with 32 bytes of data:
+
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+
+Ping statistics for 2001:DB8:2:2::10:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+
+C:\>ping 2001:DB8:2:2::10
+
+Pinging 2001:DB8:2:2::10 with 32 bytes of data:
+
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+
+Ping statistics for 2001:DB8:2:2::10:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+
+C:\>ping 2001:DB8:2:2::1
+
+Pinging 2001:DB8:2:2::1 with 32 bytes of data:
+
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+
+Ping statistics for 2001:DB8:2:2::1:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+
+C:\>ping 2001:DB8:12:2::2
+
+Pinging 2001:DB8:12:2::2 with 32 bytes of data:
+
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+
+Ping statistics for 2001:DB8:12:2::2:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+
+C:\>ping 2001:DB8:12:2::1
+
+Pinging 2001:DB8:12:2::1 with 32 bytes of data:
+
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+
+Ping statistics for 2001:DB8:12:2::1:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+
+C:\>ping 2001:DB8:12:12::1
+
+Pinging 2001:DB8:12:12::1 with 32 bytes of data:
+
+Reply from 2001:DB8:12:12::1: bytes=32 time=7ms TTL=255
+Reply from 2001:DB8:12:12::1: bytes=32 time<1ms TTL=255
+Reply from 2001:DB8:12:12::1: bytes=32 time<1ms TTL=255
+Reply from 2001:DB8:12:12::1: bytes=32 time=1ms TTL=255
+
+Ping statistics for 2001:DB8:12:12::1:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 7ms, Average = 2ms
+
+C:\>ping 2001:DB8:12:12::2
+
+Pinging 2001:DB8:12:12::2 with 32 bytes of data:
+
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+Reply from FE80::2D0:FFFF:FEE0:EA01: Destination host unreachable.
+
+Ping statistics for 2001:DB8:12:12::2:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+
+C:\>ipconfig
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: FE80::20C:85FF:FE24:80B2
+   IPv6 Address....................: ::
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: 2001:DB8:1:1::1
+                                     0.0.0.0
+
+Bluetooth Connection:
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: ::
+   IPv6 Address....................: ::
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: ::
+                                     0.0.0.0
+
+C:\>ping 2001:DB8:2:2::10
+
+Pinging 2001:DB8:2:2::10 with 32 bytes of data:
+
+Reply from 2001:DB8:2:2::10: bytes=32 time=11ms TTL=126
+Reply from 2001:DB8:2:2::10: bytes=32 time=2ms TTL=126
+Reply from 2001:DB8:2:2::10: bytes=32 time=2ms TTL=126
+Reply from 2001:DB8:2:2::10: bytes=32 time=1ms TTL=126
+
+Ping statistics for 2001:DB8:2:2::10:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 1ms, Maximum = 11ms, Average = 4ms
+
+C:\>

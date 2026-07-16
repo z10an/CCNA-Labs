@@ -1,0 +1,62 @@
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int g0/0
+Router(config-if)#ipv6 add 2001:DB8:2:2::1/64
+Router(config-if)#no sh
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+Router(config-if)#int s0/0/0
+Router(config-if)#ipv6 add 2001:DB8:12:12::2/64
+Router(config-if)#no sh
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+Router(config-if)#ex
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to u
+Router(config-if)#ex
+Router(config)#ipv6 unicast-routing
+Router(config)#int s0/0/0
+Router(config-if)#clock rate 64000
+Router(config-if)#ex
+Router(config)#ipv6 route 2001:DB8:1:1::/64 2001:DB8:12:12::1
+Router(config)#do show ipv6 interface brief
+GigabitEthernet0/0         [up/up]
+    FE80::201:96FF:FE0A:7101
+    2001:DB8:2:2::1
+GigabitEthernet0/1         [administratively down/down]
+    unassigned
+Serial0/0/0                [up/up]
+    FE80::201:96FF:FE0A:7101
+    2001:DB8:12:12::2
+Serial0/0/1                [administratively down/down]
+    unassigned
+Vlan1                      [administratively down/down]
+    unassigned
+Router(config)#do show ipv6 route
+IPv6 Routing Table - 6 entries
+Codes: C - Connected, L - Local, S - Static, R - RIP, B - BGP
+       U - Per-user Static route, M - MIPv6
+       I1 - ISIS L1, I2 - ISIS L2, IA - ISIS interarea, IS - ISIS summary
+       ND - ND Default, NDp - ND Prefix, DCE - Destination, NDr - Redirect
+       O - OSPF intra, OI - OSPF inter, OE1 - OSPF ext 1, OE2 - OSPF ext 2
+       ON1 - OSPF NSSA ext 1, ON2 - OSPF NSSA ext 2
+       D - EIGRP, EX - EIGRP external
+S   2001:DB8:1:1::/64 [1/0]
+     via 2001:DB8:12:12::1
+C   2001:DB8:2:2::/64 [0/0]
+     via GigabitEthernet0/0, directly connected
+L   2001:DB8:2:2::1/128 [0/0]
+     via GigabitEthernet0/0, receive
+C   2001:DB8:12:12::/64 [0/0]
+     via Serial0/0/0, directly connected
+L   2001:DB8:12:12::2/128 [0/0]
+     via Serial0/0/0, receive
+L   FF00::/8 [0/0]
+     via Null0, receive
+Router(config)#

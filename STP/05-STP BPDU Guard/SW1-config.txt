@@ -1,0 +1,161 @@
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#host SW1
+SW1(config)#int f0/1
+SW1(config-if)#switchport mode access
+SW1(config-if)#spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when portfast is enabled, can cause temporary bridging loops.
+Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/1 but will only
+have effect when the interface is in a non-trunking mode.
+SW1(config-if)#spanning-tree bpduguard enable
+SW1(config-if)#%SPANTREE-2-BLOCK_BPDUGUARD: Received BPDU on port FastEthernet0/1 with BPDU Guard enabled. Disabling port.
+
+%PM-4-ERR_DISABLE: bpduguard error detected on 0/1, putting 0/1 in err-disable state
+
+
+%LINK-5-CHANGED: Interface FastEthernet0/1, changed state to administratively down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to down
+
+SW1(config-if)#do show interfaces status
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa0/1                        err-disabled 1          auto    auto  10/100BaseTX
+Fa0/2                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/3                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/4                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/5                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/6                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/7                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/8                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/9                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/10                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/11                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/12                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/13                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/14                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/15                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/16                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/17                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/18                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/19                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/20                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/21                       notconnect   1          auto    auto  10/100BaseTX
+
+SW1(config-if)#do show spanning-tree interface fa0/1
+no spanning tree info available for FastEthernet0/1
+SW1(config-if)#exit
+SW1(config)#exit
+SW1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+SW1#show spanning-tree interface fa0/1
+no spanning tree info available for FastEthernet0/1
+SW1#show errdisable recovery
+          ^
+% Invalid input detected at '^' marker.
+	
+SW1#
+SW1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+SW1(config)#int f0/1
+SW1(config-if)#sh
+
+%LINK-5-CHANGED: Interface FastEthernet0/1, changed state to administratively down
+SW1(config-if)#no sh
+
+SW1(config-if)#
+%LINK-5-CHANGED: Interface FastEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
+%SPANTREE-2-BLOCK_BPDUGUARD: Received BPDU on port FastEthernet0/1 with BPDU Guard enabled. Disabling port.
+
+%PM-4-ERR_DISABLE: bpduguard error detected on 0/1, putting 0/1 in err-disable state
+
+
+%LINK-5-CHANGED: Interface FastEthernet0/1, changed state to administratively down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to down
+
+SW1(config-if)#do show interfaces status
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa0/1                        err-disabled 1          auto    auto  10/100BaseTX
+Fa0/2                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/3                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/4                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/5                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/6                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/7                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/8                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/9                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/10                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/11                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/12                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/13                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/14                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/15                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/16                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/17                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/18                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/19                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/20                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/21                       notconnect   1          auto    auto  10/100BaseTX
+
+SW1(config-if)#do show interfaces status
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa0/1                        err-disabled 1          auto    auto  10/100BaseTX
+Fa0/2                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/3                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/4                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/5                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/6                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/7                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/8                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/9                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/10                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/11                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/12                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/13                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/14                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/15                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/16                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/17                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/18                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/19                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/20                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/21                       notconnect   1          auto    auto  10/100BaseTX
+
+SW1(config-if)#sh
+
+%LINK-5-CHANGED: Interface FastEthernet0/1, changed state to administratively down
+SW1(config-if)#no sh
+
+%LINK-5-CHANGED: Interface FastEthernet0/1, changed state to down
+SW1(config-if)#do show interfaces status
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa0/1                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/2                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/3                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/4                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/5                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/6                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/7                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/8                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/9                        notconnect   1          auto    auto  10/100BaseTX
+Fa0/10                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/11                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/12                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/13                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/14                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/15                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/16                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/17                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/18                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/19                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/20                       notconnect   1          auto    auto  10/100BaseTX
+Fa0/21                       notconnect   1          auto    auto  10/100BaseTX
+ --More-- 
