@@ -1,0 +1,111 @@
+R1>en
+R1#sh cdp neigh
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone
+Device ID    Local Intrfce   Holdtme    Capability   Platform    Port ID
+R2           Gig 0/1          146            R       C2900       Gig 0/0
+SW1          Gig 0/2          146            S       2960        Gig 0/1
+R3           Gig 0/0          146            R       C2900       Gig 0/1
+R1#sh inter
+R1#sh interfaces g0/0
+GigabitEthernet0/0 is up, line protocol is up (connected)
+  Hardware is CN Gigabit Ethernet, address is 0010.119d.2501 (bia 0010.119d.2501)
+  Internet address is 10.0.13.1/30
+  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec,
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 100Mb/s, media type is RJ45
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00, 
+  Last input 00:00:08, output 00:00:05, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0 (size/max/drops); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue :0/40 (size/max)
+  5 minute input rate 104 bits/sec, 0 packets/sec
+  5 minute output rate 104 bits/sec, 0 packets/sec
+     173 packets input, 10434 bytes, 0 no buffer
+     Received 0 broadcasts, 0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+     0 watchdog, 1017 multicast, 0 pause input
+     0 input packets with dribble condition detected
+
+R1#sh cdp entry R3
+
+Device ID: R3
+Entry address(es): 
+  IP address : 10.0.13.2
+Platform: cisco C2900, Capabilities: Router
+Interface: GigabitEthernet0/0, Port ID (outgoing port): GigabitEthernet0/1
+Holdtime: 151
+
+Version :
+Cisco IOS Software, C2900 Software (C2900-UNIVERSALK9-M), Version 15.1(4)M4, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2012 by Cisco Systems, Inc.
+Compiled Thurs 5-Jan-12 15:41 by pt_team
+
+advertisement version: 2
+Duplex: full
+---------------------------
+
+R1#sho in
+R1#sho interfaces g0/1
+GigabitEthernet0/1 is up, line protocol is up (connected)
+  Hardware is CN Gigabit Ethernet, address is 0010.119d.2502 (bia 0010.119d.2502)
+  Internet address is 10.0.12.1/30
+  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec,
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 100Mb/s, media type is RJ45
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00, 
+  Last input 00:00:08, output 00:00:05, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0 (size/max/drops); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue :0/40 (size/max)
+  5 minute input rate 104 bits/sec, 0 packets/sec
+  5 minute output rate 104 bits/sec, 0 packets/sec
+     199 packets input, 11934 bytes, 0 no buffer
+     Received 0 broadcasts, 0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+     0 watchdog, 1017 multicast, 0 pause input
+     0 input packets with dribble condition detected
+
+R1#sh cdp entry r2
+
+R1#sh cdp entry R2
+
+Device ID: R2
+Entry address(es): 
+  IP address : 10.0.12.2
+Platform: cisco C2900, Capabilities: Router
+Interface: GigabitEthernet0/1, Port ID (outgoing port): GigabitEthernet0/0
+Holdtime: 140
+
+Version :
+Cisco IOS Software, C2900 Software (C2900-UNIVERSALK9-M), Version 15.1(4)M4, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2012 by Cisco Systems, Inc.
+Compiled Thurs 5-Jan-12 15:41 by pt_team
+
+advertisement version: 2
+Duplex: full
+---------------------------
+
+R1#
+R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#no cdp run
+R1(config)#lldp run
+R1(config)#int g0/0-2
+                  ^
+% Invalid input detected at '^' marker.
+	
+R1(config)#int ran g0/0-2
+R1(config-if-range)#lldp tra
+R1(config-if-range)#lldp rec
+R1(config-if-range)#

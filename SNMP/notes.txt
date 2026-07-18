@@ -1,0 +1,357 @@
+SNMP in Simple Words
+
+Imagine you manage 500 routers and switches.
+
+Without SNMP:
+
+Router 1
+login
+check CPU
+logout
+
+Router 2
+login
+check CPU
+logout
+
+Router 3...
+
+Impossible.
+
+Instead, one monitoring server asks every device:
+
+"How are you doing?"
+
+Each device replies automatically.
+
+That's SNMP.
+
+The Three Main Components
+1. Managed Device
+
+These are the network devices.
+
+Examples:
+
+Router
+Switch
+Firewall
+Wireless Controller
+
+These contain the information we want.
+
+2. SNMP Agent
+
+Every managed device runs an SNMP Agent.
+
+Think of it as a receptionist.
+
+The agent knows:
+
+CPU usage
+Memory
+Interface status
+Uptime
+Device name
+Bandwidth
+
+The agent never searches for information.
+
+It already knows where everything is.
+
+3. NMS (Network Management System)
+
+Examples:
+
+SolarWinds
+PRTG
+LibreNMS
+Zabbix
+
+The NMS is the manager.
+
+It asks:
+
+"Router, what's your CPU usage?"
+
+Router replies:
+
+"18%"
+
+Picture the Flow
+        NMS
+         |
+         |  "What's your CPU?"
+         |
+     SNMP GET
+         |
+     +---------+
+     | Router  |
+     | Agent   |
+     +---------+
+         |
+         |
+      CPU = 18%
+         |
+     RESPONSE
+         |
+        NMS
+
+That is SNMP in one picture.
+
+What Information Can SNMP Read?
+
+Almost anything.
+
+Examples:
+
+Hostname
+CPU
+RAM
+Interface status
+Interface speed
+Interface errors
+Device temperature
+Uptime
+Routing statistics
+OIDs (Object Identifiers)
+
+This confuses many beginners.
+
+Think of the router as a huge library.
+
+Every piece of information has an address.
+
+Example:
+
+CPU
+↓
+
+Shelf 12
+
+↓
+
+Row 4
+
+↓
+
+Book 8
+
+SNMP calls that address an OID.
+
+Example:
+
+1.3.6.1.2.1.1.3.0
+
+That number represents one specific piece of information (for example, system uptime).
+
+The NMS doesn't ask:
+
+"Give me uptime."
+
+It asks:
+
+"Give me the value stored at OID X."
+
+The agent understands that OID and returns the value.
+
+SNMP Operations
+
+There are only a few operations you need to know for CCNA.
+
+GET
+
+Read information.
+
+Example:
+
+NMS
+
+↓
+
+What's your CPU usage?
+
+↓
+
+Router
+
+↓
+
+18%
+
+Nothing changes.
+
+SET
+
+Change information.
+
+Example:
+
+Change interface description
+
+↓
+
+Router changes configuration
+
+For security reasons, many organizations disable this.
+
+TRAP
+
+Router sends information without being asked.
+
+Example:
+
+Interface goes down
+
+↓
+
+Router immediately tells NMS
+
+↓
+
+"No one asked me...
+
+but something just broke."
+
+A trap is unsolicited.
+
+RESPONSE
+
+Reply to a GET or SET request.
+
+SNMP Versions
+SNMPv1
+
+Old.
+
+Almost never used today.
+
+SNMPv2c
+
+Most common in CCNA.
+
+Uses a community string.
+
+Example:
+
+Community = CCNA
+
+Think of it like a simple password.
+
+If it matches:
+
+Access granted.
+
+If not:
+
+Denied.
+
+Problem:
+
+The community string is sent in plain text.
+
+SNMPv3
+
+Enterprise standard.
+
+Adds:
+
+Authentication
+Encryption
+User accounts
+Better security
+
+Whenever possible, production networks prefer SNMPv3 over v1 or v2c.
+
+Community Strings
+
+Jeremy's lab uses:
+
+snmp-server community CCNA RO
+
+Break it down:
+
+snmp-server
+
+Enable SNMP configuration.
+
+community
+
+Create a community string.
+
+CCNA
+
+The shared "password."
+
+RO
+
+Read Only.
+
+The NMS can read information but cannot modify the device.
+
+If it were:
+
+RW
+
+The NMS could also make changes.
+
+That's why RO is much safer.
+
+The Lab
+
+Jeremy's lab is intentionally simple.
+
+On each device:
+
+conf t
+
+snmp-server community CCNA RO
+
+end
+
+Verification:
+
+show running-config | include snmp
+
+Output:
+
+snmp-server community CCNA RO
+
+That's enough for CCNA because Packet Tracer doesn't fully simulate an NMS querying live data.
+
+SNMP vs Syslog
+
+Many students mix these up.
+
+Syslog	SNMP
+Reports events	Reports device status
+"Interface went down"	"CPU is 92%"
+Historical log messages	Live monitoring data
+Central log server	Network Management System
+
+Think of it like this:
+
+Syslog tells you what happened.
+SNMP tells you how healthy the device is.
+
+Together they give network administrators a much more complete picture.
+
+What You Need to Remember for the CCNA
+
+You don't need to memorize dozens of OIDs.
+
+Focus on these points:
+
+SNMP is used for centralized monitoring.
+The managed device runs an SNMP agent.
+The NMS collects information from many devices.
+GET reads information.
+SET changes information.
+TRAP is an unsolicited notification from the device.
+RESPONSE is the reply to a request.
+SNMPv2c uses community strings.
+RO means read-only.
+RW means read-write.
+SNMPv3 is the secure version and is preferred in modern enterprise networks.
+
+If you understand those concepts, you'll be well prepared for the CCNA topics Jeremy covers and you'll also have a solid foundation for using real monitoring platforms later.

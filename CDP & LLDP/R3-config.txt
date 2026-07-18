@@ -1,0 +1,17 @@
+R3>en
+R3#sh cdp neigh
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone
+Device ID    Local Intrfce   Holdtme    Capability   Platform    Port ID
+R1           Gig 0/1          153            R       C2900       Gig 0/0
+SW3          Gig 0/0          153            S       2960        Gig 0/1
+R2           Gig 0/2          153            R       C2900       Gig 0/2
+R3#
+R3#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R3(config)#no cdp run
+R3(config)#lldp run
+R3(config)#int ran g0/0-2
+R3(config-if-range)#lldp tra
+R3(config-if-range)#lldp rec
+R3(config-if-range)#

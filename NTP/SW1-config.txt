@@ -1,0 +1,35 @@
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#int vlan 1
+Switch(config-if)#ip add 192.168.1.2 255.255.255.0 
+Switch(config-if)#no sh
+
+Switch(config-if)#
+%LINK-3-UPDOWN: Interface Vlan1, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+
+Switch(config-if)#ex
+Switch(config)#ip def
+Switch(config)#ip default-gateway 192.168.1.1
+Switch(config)#ntp server 192.168.1.1
+Switch(config)#ex
+Switch#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Switch#show ntp status
+Clock is synchronized, stratum 9, reference is 192.168.1.1
+nominal freq is 250.0000 Hz, actual freq is 249.9990 Hz, precision is 2**24
+reference time is EDDB9E4E.00000274 (10:5:2.628 UTC Sat Jul 18 2026)
+clock offset is 0.00 msec, root delay is 0.00  msec
+root dispersion is 10.29 msec, peer dispersion is 0.24 msec.
+loopfilter state is 'CTRL' (Normal Controlled Loop), drift is - 0.000001193 s/s system poll interval is 4, last update was 6 sec ago.
+Switch#show ntp associations
+
+address         ref clock       st   when     poll    reach  delay          offset            disp
+*~192.168.1.1   127.127.1.1     8    21       16      372    0.00           0.00              0.24
+ * sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured
+Switch#show clock
+10:5:35.391 UTC Sat Jul 18 2026
+Switch#

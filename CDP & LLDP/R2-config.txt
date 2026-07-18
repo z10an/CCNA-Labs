@@ -1,0 +1,41 @@
+R2>en
+R2#sh cdp neigh
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone
+Device ID    Local Intrfce   Holdtme    Capability   Platform    Port ID
+R1           Gig 0/0          172            R       C2900       Gig 0/1
+SW2          Gig 0/1          172            S       2960        Gig 0/2
+R3           Gig 0/2          172            R       C2900       Gig 0/2
+R2#sh int g0/2
+GigabitEthernet0/2 is up, line protocol is up (connected)
+  Hardware is CN Gigabit Ethernet, address is 00e0.8f6c.6103 (bia 00e0.8f6c.6103)
+  Internet address is 10.0.23.1/30
+  MTU 1500 bytes, BW 1000000 Kbit, DLY 10 usec,
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 100Mb/s, media type is RJ45
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00, 
+  Last input 00:00:08, output 00:00:05, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0 (size/max/drops); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue :0/40 (size/max)
+  5 minute input rate 104 bits/sec, 0 packets/sec
+  5 minute output rate 104 bits/sec, 0 packets/sec
+     342 packets input, 20554 bytes, 0 no buffer
+     Received 0 broadcasts, 0 runts, 0 giants, 0 throttles
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+     0 watchdog, 1017 multicast, 0 pause input
+     0 input packets with dribble condition detected
+
+R2#
+R2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R2(config)#no cdp run
+R2(config)#lldp run
+R2(config)#int ran g0/0-2
+R2(config-if-range)#lldp rec
+R2(config-if-range)#lldp tra
+R2(config-if-range)#

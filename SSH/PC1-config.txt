@@ -1,0 +1,89 @@
+C:\>ssh -l user1 192.168.10.1
+
+Password: 
+% Login invalid
+
+
+Password: 
+% Login invalid
+
+
+Password: 
+
+[Connection to 192.168.10.1 closed by foreign host]
+C:\>ssh -l user1 192.168.10.1
+
+Password: 
+
+
+
+R1>en
+Password: 
+Password: 
+Password: 
+% Bad secrets
+
+R1>en
+Password: 
+Password: 
+Password: 
+% Bad secrets
+
+R1>en
+Password: 
+R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#int g0/1
+R1(config-if)#ip add 192.168.20.1 255.255.255.0 
+R1(config-if)#no sh
+R1(config-if)#wx
+              ^
+% Invalid input detected at '^' marker.
+	
+R1(config-if)#ex
+R1(config)#ex
+R1#ex
+
+[Connection to 192.168.10.1 closed by foreign host]
+C:\>ssh -l user2 192.168.20.2
+
+% Connection timed out; remote host not responding
+C:\>ssh -l user2 192.168.20.2
+
+Password: 
+% Login invalid
+
+
+Password: 
+
+
+
+R2>en
+Password: 
+R2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R2(config)#do sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     192.168.20.2    YES manual up                    up 
+GigabitEthernet0/1     unassigned      YES unset  administratively down down 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+R2(config)#exit 
+R2#exit
+
+[Connection to 192.168.20.2 closed by foreign host]
+C:\>ssh -l user1 192.168.10.1
+
+Password: 
+
+
+
+R1>en
+Password: 
+R1#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     192.168.10.1    YES manual up                    up 
+GigabitEthernet0/1     192.168.20.1    YES manual up                    up 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+R1#
