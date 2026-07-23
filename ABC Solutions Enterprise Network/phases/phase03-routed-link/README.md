@@ -1,4 +1,4 @@
-# Phase 6 – Routed Link Between DIST-SW1 and EDGE-R1
+# Phase 3 – Routed Link Between DIST-SW1 and EDGE-R1
 
 ## Objective
 

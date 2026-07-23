@@ -1,4 +1,4 @@
-# Phase 4 – Layer 2 Network Configuration
+# Phase 1 – Layer 2 Network Configuration
 
 ## Objective
 

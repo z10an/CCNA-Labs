@@ -1,4 +1,4 @@
-# Phase 7 – Centralized DHCP Configuration
+# Phase 4 – Centralized DHCP Configuration
 
 ## Objective
 

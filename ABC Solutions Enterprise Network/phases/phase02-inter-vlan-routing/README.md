@@ -1,4 +1,4 @@
-# Phase 5 – Inter-VLAN Routing
+# Phase 2 – Inter-VLAN Routing
 
 ## Objective
 

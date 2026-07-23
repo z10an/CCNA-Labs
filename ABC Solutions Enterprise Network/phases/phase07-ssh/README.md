@@ -1,4 +1,4 @@
-# Phase 10 – Secure Remote Management (SSH)
+# Phase 7 – Secure Remote Management (SSH)
 
 ## Objective
 

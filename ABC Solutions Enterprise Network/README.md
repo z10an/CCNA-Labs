@@ -1,7 +1,7 @@
 # ABC Solutions Enterprise Network
 
 <p align="center">
-  <img src="images/phase16/topology.png" alt="ABC Solutions Enterprise Network Topology" width="100%">
+  <img src="images/topology/enterprise_topology.png" alt="ABC Solutions Enterprise Network Topology" width="100%">
 </p>
 
 <p align="center">
@@ -119,7 +119,7 @@ The enterprise network was designed using a hierarchical architecture consisting
 The topology below represents the final implementation after all deployment phases were completed.
 
 <p align="center">
-  <img src="images/phase16/topology.png" alt="Enterprise Network Topology" width="100%">
+  <img src="images/topology/enterprise_topology.png" alt="Enterprise Network Topology" width="100%">
 </p>
 
 <p align="center">

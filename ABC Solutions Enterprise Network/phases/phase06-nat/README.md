@@ -1,4 +1,4 @@
-# Phase 9 – Network Address Translation (NAT)
+# Phase 6 – Network Address Translation (NAT)
 
 ## Objective
 

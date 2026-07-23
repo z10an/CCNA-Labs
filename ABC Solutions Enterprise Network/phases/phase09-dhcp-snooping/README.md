@@ -1,4 +1,4 @@
-# Phase 12 – DHCP Snooping
+# Phase 9 – DHCP Snooping
 
 ## Objective
 

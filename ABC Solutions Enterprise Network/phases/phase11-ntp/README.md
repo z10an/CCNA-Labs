@@ -1,4 +1,4 @@
-# Phase 14 – Network Time Protocol (NTP)
+# Phase 11 – Network Time Protocol (NTP)
 
 ## Objective
 

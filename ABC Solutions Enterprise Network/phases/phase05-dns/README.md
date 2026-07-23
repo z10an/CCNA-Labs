@@ -1,4 +1,4 @@
-# Phase 8 – DNS Configuration
+# Phase 5 – DNS Configuration
 
 ## Objective
 
