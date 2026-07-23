@@ -1,0 +1,864 @@
+Switch>enable
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname ACC-SW2
+ACC-SW2(config)#no ip domain-lookup
+ACC-SW2(config)#service password-encryption
+ACC-SW2(config)#enable secret Cisco@123
+ACC-SW2(config)#banner motd #
+Enter TEXT message.  End with the character '#'.
+********************************************
+* Unauthorized access is prohibited.       *
+* ABC Solutions Pvt. Ltd.                  *
+********************************************
+#
+
+ACC-SW2(config)#line console 0
+ACC-SW2(config-line)#password Console@123
+ACC-SW2(config-line)#login
+ACC-SW2(config-line)#logging synchronous
+ACC-SW2(config-line)#exec-timeout 10 0
+ACC-SW2(config-line)#exit
+ACC-SW2(config)#line vty 0 15
+ACC-SW2(config-line)#password VTY@123
+ACC-SW2(config-line)#login
+ACC-SW2(config-line)#exec-timeout 10 0
+ACC-SW2(config-line)#transport input telnet
+ACC-SW2(config-line)#exit
+ACC-SW2(config)#end
+ACC-SW2#write
+%SYS-5-CONFIG_I: Configured from console by console
+
+ACC-SW2#write
+Building configuration...
+[OK]
+ACC-SW2#end
+
+ACC-SW2>en
+Password: 
+ACC-SW2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC-SW2(config)#spanning-tree mode rapid-pvst
+ACC-SW2(config)#vlan 10
+ACC-SW2(config-vlan)#name HR
+ACC-SW2(config-vlan)#vlan 20
+ACC-SW2(config-vlan)#name FINANCE
+ACC-SW2(config-vlan)#vlan 30
+ACC-SW2(config-vlan)#name SALES
+ACC-SW2(config-vlan)#vlan 40
+ACC-SW2(config-vlan)#name IT
+ACC-SW2(config-vlan)#vlan 50
+ACC-SW2(config-vlan)#name SERVERS
+ACC-SW2(config-vlan)#vlan 99
+ACC-SW2(config-vlan)#name MANAGEMENT
+ACC-SW2(config-vlan)#vlan 999
+ACC-SW2(config-vlan)#name NATIVE
+ACC-SW2(config-vlan)#end
+ACC-SW2#write memory
+Building configuration...
+[OK]
+ACC-SW2#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/4
+                                                Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/1, Gig0/2
+10   HR                               active    
+20   FINANCE                          active    
+30   SALES                            active    
+40   IT                               active    
+50   SERVERS                          active    
+99   MANAGEMENT                       active    
+999  NATIVE                           active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+ACC-SW2#show spanning-tree summary
+%SYS-5-CONFIG_I: Configured from console by console
+
+ACC-SW2#show spanning-tree summary
+Switch is in rapid-pvst mode
+Root bridge for: default
+Extended system ID           is enabled
+Portfast Default             is disabled
+PortFast BPDU Guard Default  is disabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is disabled
+EtherChannel misconfig guard is disabled
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+Configured Pathcost method used is short
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0001                     5         0        0          0          5
+
+---------------------- -------- --------- -------- ---------- ----------
+8 vlans                      5         0        0          0          5
+
+ACC-SW2#
+ACC-SW2(config)#interface range fa0/1-2
+ACC-SW2(config-if-range)#switchport mode access
+ACC-SW2(config-if-range)#switchport access vlan 10
+ACC-SW2(config-if-range)#spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when portfast is enabled, can cause temporary bridging loops.
+Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/1 but will only
+have effect when the interface is in a non-trunking mode.
+%Warning: portfast should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when portfast is enabled, can cause temporary bridging loops.
+Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/2 but will only
+have effect when the interface is in a non-trunking mode.
+ACC-SW2(config-if-range)#spanning-tree bpduguard enable
+ACC-SW2(config-if-range)#exit
+ACC-SW2(config)#interface range fa0/3-4
+ACC-SW2(config-if-range)#switchport mode access
+ACC-SW2(config-if-range)#switchport access vlan 20
+ACC-SW2(config-if-range)#spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when portfast is enabled, can cause temporary bridging loops.
+Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/3 but will only
+have effect when the interface is in a non-trunking mode.
+%Warning: portfast should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when portfast is enabled, can cause temporary bridging loops.
+Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/4 but will only
+have effect when the interface is in a non-trunking mode.
+ACC-SW2(config-if-range)#spanning-tree bpduguard enable
+ACC-SW2(config-if-range)#exit
+ACC-SW2(config)#end
+ACC-SW2#write memory
+Building configuration...
+[OK]
+ACC-SW2#
+%SYS-5-CONFIG_I: Configured from console by console
+
+ACC-SW2#
+ACC-SW2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC-SW2(config)#interface gi0/1
+ACC-SW2(config-if)#switchport mode trunk
+ACC-SW2(config-if)#switchport trunk native vlan 999
+ACC-SW2(config-if)#switchport trunk allowed vlan 10,20,30,40,50,99
+ACC-SW2(config-if)#no shutdown
+ACC-SW2(config-if)#exit
+ACC-SW2(config)#end
+ACC-SW2#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+ACC-SW2#write memory
+Building configuration...
+[OK]
+ACC-SW2#show interfaces trunk
+Port        Mode         Encapsulation  Status        Native vlan
+Gig0/1      on           802.1q         trunking      999
+
+Port        Vlans allowed on trunk
+Gig0/1      10,20,30,40,50,99
+
+Port        Vlans allowed and active in management domain
+Gig0/1      10,20,30,40,50,99
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Gig0/1      10,20,30,40,50,99
+
+ACC-SW2#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/2
+10   HR                               active    Fa0/1, Fa0/2
+20   FINANCE                          active    Fa0/3, Fa0/4
+30   SALES                            active    
+40   IT                               active    
+50   SERVERS                          active    
+99   MANAGEMENT                       active    
+999  NATIVE                           active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+ACC-SW2#show spanning-tree summary
+Switch is in rapid-pvst mode
+Root bridge for: default
+Extended system ID           is enabled
+Portfast Default             is disabled
+PortFast BPDU Guard Default  is disabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is disabled
+EtherChannel misconfig guard is disabled
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+Configured Pathcost method used is short
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0001                     1         0        0          4          5
+VLAN0010                     2         0        0          3          5
+VLAN0020                     2         0        0          3          5
+VLAN0030                     4         0        0          1          5
+VLAN0040                     4         0        0          1          5
+VLAN0050                     4         0        0          1          5
+VLAN0099                     4         0        0          1          5
+VLAN0999                     4         0        0          1          5
+
+---------------------- -------- --------- -------- ---------- ----------
+8 vlans                     25         0        0         15         40
+
+ACC-SW2#
+
+
+
+ACC-SW2>en
+ACC-SW2#sh vlan br
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/2
+10   HR                               active    Fa0/1, Fa0/2
+20   FINANCE                          active    Fa0/3, Fa0/4
+30   SALES                            active    
+40   IT                               active    
+50   SERVERS                          active    
+99   MANAGEMENT                       active    
+999  NATIVE                           active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+ACC-SW2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC-SW2(config)#int range f0/1-2
+ACC-SW2(config-if-range)#sw mo acc
+ACC-SW2(config-if-range)#sw acc vlan 30
+ACC-SW2(config-if-range)#ex
+ACC-SW2(config)#do sh vlan br
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/2
+10   HR                               active    
+20   FINANCE                          active    Fa0/3, Fa0/4
+30   SALES                            active    Fa0/1, Fa0/2
+40   IT                               active    
+50   SERVERS                          active    
+99   MANAGEMENT                       active    
+999  NATIVE                           active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+ACC-SW2(config)#int range f0/3-4
+ACC-SW2(config-if-range)#sw mo acc
+ACC-SW2(config-if-range)#sw acc vlan 40
+ACC-SW2(config-if-range)#do sh vlan br
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/5, Fa0/6, Fa0/7, Fa0/8
+                                                Fa0/9, Fa0/10, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Fa0/19, Fa0/20
+                                                Fa0/21, Fa0/22, Fa0/23, Fa0/24
+                                                Gig0/2
+10   HR                               active    
+20   FINANCE                          active    
+30   SALES                            active    Fa0/1, Fa0/2
+40   IT                               active    Fa0/3, Fa0/4
+50   SERVERS                          active    
+99   MANAGEMENT                       active    
+999  NATIVE                           active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+ACC-SW2(config-if-range)#
+
+
+ACC-SW2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC-SW2(config)#username admin privilege 15 secret Admin@123
+ACC-SW2(config)#ip domain-name abcsolutions.local
+ACC-SW2(config)#crypto key generate rsa
+The name for the keys will be: ACC-SW2.abcsolutions.local
+Choose the size of the key modulus in the range of 360 to 4096 for your
+  General Purpose Keys. Choosing a key modulus greater than 512 may take
+  a few minutes.
+
+How many bits in the modulus [512]: 2048
+% Generating 2048 bit RSA keys, keys will be non-exportable...[OK]
+
+ACC-SW2(config)#ip ssh version 2
+*Mar 1 8:49:41.715: %SSH-5-ENABLED: SSH 1.99 has been enabled
+ACC-SW2(config)#line vty 0 15
+ACC-SW2(config-line)#login local
+ACC-SW2(config-line)#transport input ssh
+ACC-SW2(config-line)#exec-timeout 10 0
+ACC-SW2(config-line)#exit
+ACC-SW2(config)#end
+ACC-SW2#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+ACC-SW2#write memory
+Building configuration...
+[OK]
+ACC-SW2#show ip ssh
+SSH Enabled - version 2.0
+Authentication timeout: 120 secs; Authentication retries: 3
+ACC-SW2#show running-config | section line vty
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+ACC-SW2#show users
+    Line       User       Host(s)              Idle       Location
+*  0 con 0                idle                 00:00:00 
+
+  Interface    User               Mode         Idle     Peer Address
+ACC-SW2#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+FastEthernet0/1        unassigned      YES manual up                    up 
+FastEthernet0/2        unassigned      YES manual up                    up 
+FastEthernet0/3        unassigned      YES manual up                    up 
+FastEthernet0/4        unassigned      YES manual up                    up 
+FastEthernet0/5        unassigned      YES manual down                  down 
+FastEthernet0/6        unassigned      YES manual down                  down 
+FastEthernet0/7        unassigned      YES manual down                  down 
+FastEthernet0/8        unassigned      YES manual down                  down 
+FastEthernet0/9        unassigned      YES manual down                  down 
+FastEthernet0/10       unassigned      YES manual down                  down 
+FastEthernet0/11       unassigned      YES manual down                  down 
+FastEthernet0/12       unassigned      YES manual down                  down 
+FastEthernet0/13       unassigned      YES manual down                  down 
+FastEthernet0/14       unassigned      YES manual down                  down 
+FastEthernet0/15       unassigned      YES manual down                  down 
+FastEthernet0/16       unassigned      YES manual down                  down 
+FastEthernet0/17       unassigned      YES manual down                  down 
+FastEthernet0/18       unassigned      YES manual down                  down 
+FastEthernet0/19       unassigned      YES manual down                  down 
+FastEthernet0/20       unassigned      YES manual down                  down 
+FastEthernet0/21       unassigned      YES manual down                  down 
+FastEthernet0/22       unassigned      YES manual down                  down 
+FastEthernet0/23       unassigned      YES manual down                  down 
+FastEthernet0/24       unassigned      YES manual down                  down 
+GigabitEthernet0/1     unassigned      YES manual up                    up 
+GigabitEthernet0/2     unassigned      YES manual down                  down 
+Vlan1                  unassigned      YES manual administratively down down
+ACC-SW2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC-SW2(config)#interface vlan 99
+ACC-SW2(config-if)#ip address 192.168.99.3 255.255.255.0
+ACC-SW2(config-if)#no shutdown
+ACC-SW2(config-if)#exit
+ACC-SW2(config)#ip default-gateway 192.168.99.1
+ACC-SW2(config)#end
+ACC-SW2#write memory
+%LINK-5-CHANGED: Interface Vlan99, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan99, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+ACC-SW2#write memory
+Building configuration...
+[OK]
+ACC-SW2#
+
+
+
+
+
+ACC-SW2>en
+ACC-SW2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC-SW2(config)#interface range FastEthernet0/1 - 4
+ACC-SW2(config-if-range)#switchport mode access
+ACC-SW2(config-if-range)#switchport port-security
+ACC-SW2(config-if-range)#switchport port-security maximum 2
+ACC-SW2(config-if-range)#switchport port-security mac-address sticky
+ACC-SW2(config-if-range)#switchport port-security violation restrict
+ACC-SW2(config-if-range)#spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when portfast is enabled, can cause temporary bridging loops.
+Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/1 but will only
+have effect when the interface is in a non-trunking mode.
+%Warning: portfast should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when portfast is enabled, can cause temporary bridging loops.
+Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/2 but will only
+have effect when the interface is in a non-trunking mode.
+%Warning: portfast should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when portfast is enabled, can cause temporary bridging loops.
+Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/3 but will only
+have effect when the interface is in a non-trunking mode.
+%Warning: portfast should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when portfast is enabled, can cause temporary bridging loops.
+Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/4 but will only
+have effect when the interface is in a non-trunking mode.
+ACC-SW2(config-if-range)#spanning-tree bpduguard enable
+ACC-SW2(config-if-range)#exit
+ACC-SW2(config)#end
+ACC-SW2#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+ACC-SW2#write memory
+Building configuration...
+[OK]
+ACC-SW2#show port-security
+Secure Port MaxSecureAddr CurrentAddr SecurityViolation Security Action
+               (Count)       (Count)        (Count)
+--------------------------------------------------------------------
+        Fa0/1        2          0                 0         Restrict
+        Fa0/2        2          0                 0         Restrict
+        Fa0/3        2          0                 0         Restrict
+        Fa0/4        2          0                 0         Restrict
+----------------------------------------------------------------------
+ACC-SW2#show port-security interface FastEthernet0/1
+Port Security              : Enabled
+Port Status                : Secure-up
+Violation Mode             : Restrict
+Aging Time                 : 0 mins
+Aging Type                 : Absolute
+SecureStatic Address Aging : Disabled
+Maximum MAC Addresses      : 2
+Total MAC Addresses        : 0
+Configured MAC Addresses   : 0
+Sticky MAC Addresses       : 0
+Last Source Address:Vlan   : 0000.0000.0000:0
+Security Violation Count   : 0
+
+ACC-SW2#show port-security address
+               Secure Mac Address Table
+-----------------------------------------------------------------------------
+Vlan    Mac Address       Type                          Ports   Remaining Age
+                                                                   (mins)
+----    -----------       ----                          -----   -------------
+-----------------------------------------------------------------------------
+Total Addresses in System (excluding one mac per port)     : 0
+Max Addresses limit in System (excluding one mac per port) : 1024
+ACC-SW2#show running-config interface FastEthernet0/1
+                            ^
+% Invalid input detected at '^' marker.
+	
+ACC-SW2#sh run ?
+  |  Output Modifiers
+  <cr>
+ACC-SW2#sh run | ?
+  begin    Begins unfiltered output of the show command with the first line
+           that contains the regular expression.
+  exclude  Displays output lines that do not contain the regular expression.
+  include  Displays output lines that contain the regular expression.	
+  section  Filter a section of output
+ACC-SW2#sh run | inclu ?
+  LINE  Regular expression.
+ACC-SW2#sh run | inclu inter ?
+  <cr>
+ACC-SW2#sh run | inclu inter f0/1
+ACC-SW2#sh run | inclu inter f0/1
+ACC-SW2#show port-security
+Secure Port MaxSecureAddr CurrentAddr SecurityViolation Security Action
+               (Count)       (Count)        (Count)
+--------------------------------------------------------------------
+        Fa0/1        2          1                 0         Restrict
+        Fa0/2        2          1                 0         Restrict
+        Fa0/3        2          1                 0         Restrict
+        Fa0/4        2          1                 0         Restrict
+----------------------------------------------------------------------
+ACC-SW2#show port-security
+Secure Port MaxSecureAddr CurrentAddr SecurityViolation Security Action
+               (Count)       (Count)        (Count)
+--------------------------------------------------------------------
+        Fa0/1        2          1                 0         Restrict
+        Fa0/2        2          1                 0         Restrict
+        Fa0/3        2          1                 0         Restrict
+        Fa0/4        2          1                 0         Restrict
+----------------------------------------------------------------------
+ACC-SW2#show port-security interface FastEthernet0/1
+Port Security              : Enabled
+Port Status                : Secure-up
+Violation Mode             : Restrict
+Aging Time                 : 0 mins
+Aging Type                 : Absolute
+SecureStatic Address Aging : Disabled
+Maximum MAC Addresses      : 2
+Total MAC Addresses        : 1
+Configured MAC Addresses   : 0
+Sticky MAC Addresses       : 1
+Last Source Address:Vlan   : 0001.6469.6C0E:30
+Security Violation Count   : 0
+
+ACC-SW2#show port-security address
+               Secure Mac Address Table
+-----------------------------------------------------------------------------
+Vlan    Mac Address       Type                          Ports   Remaining Age
+                                                                   (mins)
+----    -----------       ----                          -----   -------------
+  30    0001.6469.6C0E    SecureSticky                  Fa0/1        -
+  30    0050.0F02.2BB4    SecureSticky                  Fa0/2        -
+  40    0001.642C.0A8B    SecureSticky                  Fa0/3        -
+  40    0090.0CC2.A51E    SecureSticky                  Fa0/4        -
+-----------------------------------------------------------------------------
+Total Addresses in System (excluding one mac per port)     : 0
+Max Addresses limit in System (excluding one mac per port) : 1024
+ACC-SW2#show running-config interface FastEthernet0/1
+                            ^
+% Invalid input detected at '^' marker.
+	
+ACC-SW2#show running-config | section inter f0/1
+ACC-SW2#
+
+
+ACC-SW2>en
+ACC-SW2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC-SW2(config)#ip dhcp snooping
+ACC-SW2(config)#ip dhcp snooping vlan 10,20,30,40,50,99
+ACC-SW2(config)#end
+ACC-SW2#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+ACC-SW2#write memory
+Building configuration...
+[OK]
+ACC-SW2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC-SW2(config)#interface gi0/1
+ACC-SW2(config-if)#ip dhcp snooping trust
+ACC-SW2(config-if)#end
+ACC-SW2#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+ACC-SW2#write memory
+Building configuration...
+[OK]
+ACC-SW2#show ip dhcp snooping
+Switch DHCP snooping is enabled
+DHCP snooping is configured on following VLANs:
+10,20,30,40,50,99
+Insertion of option 82 is enabled
+Option 82 on untrusted port is not allowed
+Verification of hwaddr field is enabled
+Interface                  Trusted    Rate limit (pps)
+-----------------------    -------    ----------------
+GigabitEthernet0/1         yes        unlimited       
+ACC-SW2#
+
+
+ACC-SW2>en
+ACC-SW2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC-SW2(config)#ip arp inspection vlan 10,20,30,40,50,99
+ACC-SW2(config)#end
+ACC-SW2#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+ACC-SW2#write memory
+Building configuration...
+[OK]
+ACC-SW2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC-SW2(config)#interface gi0/1
+ACC-SW2(config-if)# ip arp inspection trust
+ACC-SW2(config-if)#end
+ACC-SW2#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+ACC-SW2#write memory
+Building configuration...
+[OK]
+ACC-SW2#show ip arp inspection
+
+Source Mac Validation      : Disabled
+Destination Mac Validation : Disabled
+IP Address Validation      : Disabled
+
+ Vlan     Configuration    Operation   ACL Match          Static ACL
+ ----     -------------    ---------   ---------          ----------
+   10     Enabled          Active
+   20     Enabled          Active
+   30     Enabled          Active
+   40     Enabled          Active
+   50     Enabled          Active
+   99     Enabled          Active
+
+ Vlan     ACL Logging      DHCP Logging      Probe Logging
+ ----     -----------      ------------      -------------
+   10     Deny             Deny              Off
+   20     Deny             Deny              Off
+   30     Deny             Deny              Off
+   40     Deny             Deny              Off
+   50     Deny             Deny              Off
+   99     Deny             Deny              Off
+
+ACC-SW2#how ip arp inspection statistics
+            ^
+% Invalid input detected at '^' marker.
+	
+ACC-SW2#show ip arp inspection
+
+Source Mac Validation      : Disabled
+Destination Mac Validation : Disabled
+IP Address Validation      : Disabled
+
+ Vlan     Configuration    Operation   ACL Match          Static ACL
+ ----     -------------    ---------   ---------          ----------
+   10     Enabled          Active
+   20     Enabled          Active
+   30     Enabled          Active
+   40     Enabled          Active
+   50     Enabled          Active
+   99     Enabled          Active
+
+ Vlan     ACL Logging      DHCP Logging      Probe Logging
+ ----     -----------      ------------      -------------
+   10     Deny             Deny              Off
+   20     Deny             Deny              Off
+   30     Deny             Deny              Off
+   40     Deny             Deny              Off
+   50     Deny             Deny              Off
+   99     Deny             Deny              Off
+
+ACC-SW2#show ip arp inspection statistics
+
+ Vlan      Forwarded        Dropped     DHCP Drops     ACL Drops
+ ----      ---------        -------     ----------     ---------
+   10              0              0              0             0
+   20              0              0              0             0
+   30              0              0              0             0
+   40              0              0              0             0
+   50              0              0              0             0
+   99              0              0              0             0
+
+ Vlan   DHCP Permits    ACL Permits   Source MAC Failures
+ ----   ------------    -----------   -------------------
+   10              0              0                     0
+   20              0              0                     0
+   30              0              0                     0
+   40              0              0                     0
+   50              0              0                     0
+   99              0              0                     0
+
+ Vlan   Dest MAC Failures   IP Validation Failures
+ ----   -----------------   ----------------------
+   10                   0                        0
+   20                   0                        0
+   30                   0                        0
+   40                   0                        0
+   50                   0                        0
+   99                   0                        0
+
+ACC-SW2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC-SW2(config)#ntp server 209.165.200.226
+ACC-SW2(config)#end
+ACC-SW2#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+ACC-SW2#write memory
+Building configuration...
+[OK]
+ACC-SW2#
+ACC-SW2>en
+ACC-SW2#sh clock
+16:30:5.831 UTC Mon Mar 1 1993
+ACC-SW2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC-SW2(config)#clock timezone IST 5 30
+ACC-SW2(config)#ntp server 209.165.200.226
+ACC-SW2(config)#end
+ACC-SW2#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+ACC-SW2#write memory
+Building configuration...
+[OK]
+ACC-SW2#show ntp associations
+
+address         ref clock       st   when     poll    reach  delay          offset            disp
+ ~209.165.200.226.INIT.          16   -        64      0      0.00           0.00              0.01
+ * sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured
+ACC-SW2#show clock
+22:4:6.317 IST Mon Mar 1 1993
+ACC-SW2#show running-config | include ntp
+ntp server 209.165.200.226
+ACC-SW2#show ntp status
+Clock is unsynchronized, stratum 16, no reference clock
+nominal freq is 250.0000 Hz, actual freq is 249.9990 Hz, precision is 2**24
+reference time is 00000000.00000000 (00:00:00.000 UTC Mon Jan 1 1990)
+clock offset is 0.00 msec, root delay is 0.00  msec
+root dispersion is 0.00 msec, peer dispersion is 0.00 msec.
+loopfilter state is 'FSET' (Drift set from file), drift is - 0.000001193 s/s system poll interval is 4, never updated.
+ACC-SW2#
+
+
+
+
+ACC-SW2>en
+ACC-SW2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC-SW2(config)#logging host 192.168.50.10
+ACC-SW2(config)#logging trap informational
+                             ^
+% Invalid input detected at '^' marker.
+	
+ACC-SW2(config)#service timestamps log datetime localtime
+                                                ^
+% Invalid input detected at '^' marker.
+	
+ACC-SW2(config)#end
+ACC-SW2#write memory
+Building configuration...
+[OK]
+ACC-SW2#show logging
+%SYS-5-CONFIG_I: Configured from console by console
+%SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 192.168.50.10 port 514 started - CLI initiated
+
+ACC-SW2#show logging
+Syslog logging: enabled (0 messages dropped, 0 messages rate-limited,
+          0 flushes, 0 overruns, xml disabled, filtering disabled)
+
+No Active Message Discriminator.
+
+
+No Inactive Message Discriminator.
+
+
+    Console logging: level debugging, 23 messages logged, xml disabled,
+          filtering disabled
+    Monitor logging: level debugging, 23 messages logged, xml disabled,
+          filtering disabled
+    Buffer logging:  level debugging, 0 messages logged, xml disabled,
+          filtering disabled
+
+    Logging Exception size (4096 bytes) 
+    Count and timestamp logging messages: disabled
+    Persistent logging: disabled
+
+No active filter modules.
+
+ESM: 0 messages dropped
+    Trap logging: level informational, 23 message lines logged
+        Logging to 192.168.50.10  (udp port 514,  audit disabled,
+             authentication disabled, encryption disabled, link up),
+             2 message lines logged,
+             0 message lines rate-limited,
+             0 message lines dropped-by-MD,
+             xml disabled, sequence number disabled
+             filtering disabled
+
+Log Buffer (4096 bytes):
+
+
+%LINK-3-UPDOWN: Interface Vlan99, changed state to down
+
+%LINK-5-CHANGED: Interface Vlan99, changed state to up
+
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan99, changed state to up
+
+%LINK-5-CHANGED: Interface FastEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
+
+%LINK-5-CHANGED: Interface FastEthernet0/2, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/2, changed state to up
+
+%LINK-5-CHANGED: Interface FastEthernet0/3, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/3, changed state to up
+
+%LINK-5-CHANGED: Interface FastEthernet0/4, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/4, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+%SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 192.168.50.10 port 514 started - CLI initiated
+ACC-SW2#
+
+ACC-SW2#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC-SW2(config)#snmp-server community ABCSolutions RO
+ACC-SW2(config)#snmp-server location Server Room
+                            ^
+% Invalid input detected at '^' marker.
+	
+ACC-SW2(config)#snmp-server contact Network Administrator
+                              ^
+% Invalid input detected at '^' marker.
+	
+ACC-SW2(config)#end
+ACC-SW2#write memory
+Building configuration...
+[OK]
+ACC-SW2#show running-config | include snmp
+snmp-server community ABCSolutions RO
+ACC-SW2#show snmp
+%SYS-5-CONFIG_I: Configured from console by console
+
+ACC-SW2#show snmp
+ACC-SW2#

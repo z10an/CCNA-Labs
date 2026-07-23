@@ -1,0 +1,397 @@
+Router>enable
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname EDGE-R1
+EDGE-R1(config)#no ip domain-lookup
+EDGE-R1(config)#service password-encryption
+EDGE-R1(config)#enable secret Cisco@123
+EDGE-R1(config)#banner motd #
+Enter TEXT message.  End with the character '#'.
+********************************************
+* Unauthorized access is prohibited.       *
+* ABC Solutions Pvt. Ltd.                  *
+********************************************
+#
+
+EDGE-R1(config)#line console 0
+EDGE-R1(config-line)#password Console@123
+EDGE-R1(config-line)#login
+EDGE-R1(config-line)#logging synchronous
+EDGE-R1(config-line)#exec-timeout 10 0
+EDGE-R1(config-line)#exit
+EDGE-R1(config)#line vty 0 15
+EDGE-R1(config-line)#password VTY@123
+EDGE-R1(config-line)#login
+EDGE-R1(config-line)#exec-timeout 10 0
+EDGE-R1(config-line)#transport input telnet
+EDGE-R1(config-line)#exit
+EDGE-R1(config)#end
+EDGE-R1#write
+%SYS-5-CONFIG_I: Configured from console by console
+
+EDGE-R1#write
+Building configuration...
+[OK]
+EDGE-R1#
+
+
+EDGE-R1>en
+EDGE-R1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+EDGE-R1(config)#interface gi0/1
+EDGE-R1(config-if)#ip address 10.0.0.1 255.255.255.252
+EDGE-R1(config-if)#no shutdown
+
+EDGE-R1(config-if)#exit
+EDGE-R1(config)#ip route 192.168.10.0 255.255.255.0 10.0.0.2
+EDGE-R1(config)#ip route 192.168.20.0 255.255.255.0 10.0.0.2
+EDGE-R1(config)#ip route 192.168.30.0 255.255.255.0 10.0.0.2
+EDGE-R1(config)#ip route 192.168.40.0 255.255.255.0 10.0.0.2
+EDGE-R1(config)#ip route 192.168.50.0 255.255.255.0 10.0.0.2
+EDGE-R1(config)#ip route 192.168.99.0 255.255.255.0 10.0.0.2
+EDGE-R1(config)#end
+EDGE-R1#write memory
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+EDGE-R1#write memory
+Building configuration...
+[OK]
+EDGE-R1#
+EDGE-R1#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     unassigned      YES unset  administratively down down 
+GigabitEthernet0/1     10.0.0.1        YES manual up                    up 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+EDGE-R1#show ip route
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/8 is variably subnetted, 2 subnets, 2 masks
+C       10.0.0.0/30 is directly connected, GigabitEthernet0/1
+L       10.0.0.1/32 is directly connected, GigabitEthernet0/1
+S    192.168.10.0/24 [1/0] via 10.0.0.2
+S    192.168.20.0/24 [1/0] via 10.0.0.2
+S    192.168.30.0/24 [1/0] via 10.0.0.2
+S    192.168.40.0/24 [1/0] via 10.0.0.2
+S    192.168.50.0/24 [1/0] via 10.0.0.2
+S    192.168.99.0/24 [1/0] via 10.0.0.2
+
+EDGE-R1#
+
+
+
+EDGE-R1>en
+EDGE-R1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+EDGE-R1(config)#username admin privilege 15 secret Admin@123
+EDGE-R1(config)#ip domain-name abcsolutions.local
+EDGE-R1(config)#crypto key generate rsa
+The name for the keys will be: EDGE-R1.abcsolutions.local
+Choose the size of the key modulus in the range of 360 to 4096 for your
+  General Purpose Keys. Choosing a key modulus greater than 512 may take
+  a few minutes.
+
+How many bits in the modulus [512]: 2048
+% Generating 2048 bit RSA keys, keys will be non-exportable...[OK]
+
+EDGE-R1(config)#ip ssh version 2
+*Mar 1 8:51:30.691: %SSH-5-ENABLED: SSH 1.99 has been enabled
+EDGE-R1(config)#line vty 0 15
+EDGE-R1(config-line)#login local
+EDGE-R1(config-line)#transport input ssh
+EDGE-R1(config-line)#exec-timeout 10 0
+EDGE-R1(config-line)#exit
+EDGE-R1(config)#end
+EDGE-R1#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+EDGE-R1#write memory
+Building configuration...
+[OK]
+EDGE-R1#show ip ssh
+SSH Enabled - version 2.0
+Authentication timeout: 120 secs; Authentication retries: 3
+EDGE-R1#show running-config | section line vty
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+EDGE-R1#show users
+    Line       User       Host(s)              Idle       Location
+*  0 con 0                idle                 00:00:00 
+
+  Interface    User               Mode         Idle     Peer Address
+EDGE-R1#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     209.165.200.225 YES manual up                    up 
+GigabitEthernet0/1     10.0.0.1        YES manual up                    up 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+EDGE-R1#
+
+
+
+
+EDGE-R1>en
+EDGE-R1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+EDGE-R1(config)#clock timezone IST 5 30
+EDGE-R1(config)#ntp server 209.165.200.226
+EDGE-R1(config)#end
+EDGE-R1#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+EDGE-R1#write memory
+Building configuration...
+[OK]
+EDGE-R1#show ntp associations
+
+address         ref clock       st   when     poll    reach  delay          offset            disp
+ ~209.165.200.226.INIT.          16   -        64      0      0.00           0.00              0.12
+ * sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured
+EDGE-R1#show clock
+21:50:58.24 IST Mon Mar 1 1993
+EDGE-R1#show clock
+21:52:25.328 IST Mon Mar 1 1993
+EDGE-R1#ping 209.165.200.226
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 209.165.200.226, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
+
+EDGE-R1#show ntp associations
+
+address         ref clock       st   when     poll    reach  delay          offset            disp
+ ~209.165.200.226.INIT.          16   -        64      0      0.00           0.00              0.48
+ * sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured
+EDGE-R1#show clock
+21:53:48.13 IST Mon Mar 1 1993
+EDGE-R1#show running-config | include ntp
+ntp server 209.165.200.226
+EDGE-R1#show ntp status
+Clock is unsynchronized, stratum 16, no reference clock
+nominal freq is 250.0000 Hz, actual freq is 249.9990 Hz, precision is 2**24
+reference time is 00000000.00000000 (00:00:00.000 UTC Mon Jan 1 1990)
+clock offset is 0.00 msec, root delay is 0.00  msec
+root dispersion is 0.00 msec, peer dispersion is 0.00 msec.
+loopfilter state is 'FSET' (Drift set from file), drift is - 0.000001193 s/s system poll interval is 4, never updated.
+EDGE-R1#
+
+
+
+EDGE-R1>en
+EDGE-R1#sh clo
+22:12:40.730 IST Mon Mar 1 1993
+EDGE-R1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+EDGE-R1(config)#logging host 192.168.50.10
+EDGE-R1(config)#logging trap informational
+                             ^
+% Invalid input detected at '^' marker.
+	
+EDGE-R1(config)#service timestamps log datetime localtime
+                                                ^
+% Invalid input detected at '^' marker.
+	
+EDGE-R1(config)#end
+EDGE-R1#write memory
+Building configuration...
+[OK]
+EDGE-R1#show logging
+%SYS-5-CONFIG_I: Configured from console by console
+%SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 192.168.50.10 port 514 started - CLI initiated
+
+EDGE-R1#show logging
+Syslog logging: enabled (0 messages dropped, 0 messages rate-limited,
+          0 flushes, 0 overruns, xml disabled, filtering disabled)
+
+No Active Message Discriminator.
+
+
+No Inactive Message Discriminator.
+
+
+    Console logging: level debugging, 6 messages logged, xml disabled,
+          filtering disabled
+    Monitor logging: level debugging, 6 messages logged, xml disabled,
+          filtering disabled
+    Buffer logging:  level debugging, 0 messages logged, xml disabled,
+          filtering disabled
+
+    Logging Exception size (4096 bytes) 
+    Count and timestamp logging messages: disabled
+    Persistent logging: disabled
+
+No active filter modules.
+
+ESM: 0 messages dropped
+    Trap logging: level informational, 6 message lines logged
+        Logging to 192.168.50.10  (udp port 514,  audit disabled,
+             authentication disabled, encryption disabled, link up),
+             2 message lines logged,
+             0 message lines rate-limited,
+             0 message lines dropped-by-MD,
+             xml disabled, sequence number disabled
+             filtering disabled
+
+Log Buffer (4096 bytes):
+
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+%SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 192.168.50.10 port 514 started - CLI initiated
+%SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 192.168.50.10 port 514 started - CLI initiated
+EDGE-R1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+EDGE-R1(config)#interface g0/0
+EDGE-R1(config-if)#shutdown
+
+EDGE-R1(config-if)#no shutdown
+
+EDGE-R1(config-if)#end
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to administratively down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to down
+
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+EDGE-R1(config-if)#end
+EDGE-R1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+EDGE-R1#show logging
+Syslog logging: enabled (0 messages dropped, 0 messages rate-limited,
+          0 flushes, 0 overruns, xml disabled, filtering disabled)
+
+No Active Message Discriminator.
+
+
+No Inactive Message Discriminator.
+
+
+    Console logging: level debugging, 11 messages logged, xml disabled,
+          filtering disabled
+    Monitor logging: level debugging, 11 messages logged, xml disabled,
+          filtering disabled
+    Buffer logging:  level debugging, 0 messages logged, xml disabled,
+          filtering disabled
+
+    Logging Exception size (4096 bytes) 
+    Count and timestamp logging messages: disabled
+    Persistent logging: disabled
+
+No active filter modules.
+
+ESM: 0 messages dropped
+    Trap logging: level informational, 11 message lines logged
+        Logging to 192.168.50.10  (udp port 514,  audit disabled,
+             authentication disabled, encryption disabled, link up),
+             7 message lines logged,
+             0 message lines rate-limited,
+             0 message lines dropped-by-MD,
+             xml disabled, sequence number disabled
+             filtering disabled
+
+Log Buffer (4096 bytes):
+
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+%SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 192.168.50.10 port 514 started - CLI initiated
+%SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 192.168.50.10 port 514 started - CLI initiated
+
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to administratively down
+
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to administratively down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to down
+
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+EDGE-R1#
+
+EDGE-R1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+EDGE-R1(config)#snmp-server community ABCSolutions RO
+%SNMP-5-WARMSTART: SNMP agent on host EDGE-R1 is undergoing a warm start
+EDGE-R1(config)#snmp-server location Server Room
+                            ^
+% Invalid input detected at '^' marker.
+	
+EDGE-R1(config)#snmp-server contact Network Administrator
+                              ^
+% Invalid input detected at '^' marker.
+	
+EDGE-R1(config)#end
+EDGE-R1#write memory
+Building configuration...
+[OK]
+EDGE-R1#show running-config | include snmp
+snmp-server community ABCSolutions RO
+EDGE-R1#show snmp
+%SYS-5-CONFIG_I: Configured from console by console
+
+EDGE-R1#show snmp
+EDGE-R1#

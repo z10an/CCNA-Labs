@@ -1,0 +1,319 @@
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#end
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router#enable
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname ISP-R1
+ISP-R1(config)#no ip domain-lookup
+ISP-R1(config)#service password-encryption
+ISP-R1(config)#enable secret Cisco@123
+ISP-R1(config)#banner motd #
+Enter TEXT message.  End with the character '#'.
+********************************************
+* Unauthorized access is prohibited.       *
+* ABC Solutions Pvt. Ltd.                  *
+********************************************
+#
+
+ISP-R1(config)#line console 0
+ISP-R1(config-line)#password Console@123
+ISP-R1(config-line)#login
+ISP-R1(config-line)#logging synchronous
+ISP-R1(config-line)#exec-timeout 10 0
+ISP-R1(config-line)#exit
+ISP-R1(config)#line vty 0 15
+ISP-R1(config-line)#password VTY@123
+ISP-R1(config-line)#login
+ISP-R1(config-line)#exec-timeout 10 0
+ISP-R1(config-line)#transport input telnet
+ISP-R1(config-line)#exit
+ISP-R1(config)#end
+ISP-R1#write
+%SYS-5-CONFIG_I: Configured from console by console
+
+ISP-R1#write
+Building configuration...
+[OK]
+ISP-R1#
+
+
+
+ISP-R1>en
+ISP-R1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP-R1(config)#username admin privilege 15 secret Admin@123
+ISP-R1(config)#ip domain-name abcsolutions.local
+ISP-R1(config)#crypto key generate rsa
+The name for the keys will be: ISP-R1.abcsolutions.local
+Choose the size of the key modulus in the range of 360 to 4096 for your
+  General Purpose Keys. Choosing a key modulus greater than 512 may take
+  a few minutes.
+
+How many bits in the modulus [512]: 2048
+% Generating 2048 bit RSA keys, keys will be non-exportable...[OK]
+
+ISP-R1(config)#ip ssh version 2
+*Mar 1 8:51:53.220: %SSH-5-ENABLED: SSH 1.99 has been enabled
+ISP-R1(config)#line vty 0 15
+ISP-R1(config-line)#login local
+ISP-R1(config-line)#transport input ssh
+ISP-R1(config-line)#exec-timeout 10 0
+ISP-R1(config-line)#exit
+ISP-R1(config)#end
+ISP-R1#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+ISP-R1#write memory
+Building configuration...
+[OK]
+ISP-R1#show ip ssh
+SSH Enabled - version 2.0
+Authentication timeout: 120 secs; Authentication retries: 3
+ISP-R1#show running-config | section line vty
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+ISP-R1#show users
+    Line       User       Host(s)              Idle       Location
+*  0 con 0                idle                 00:00:00 
+
+  Interface    User               Mode         Idle     Peer Address
+ISP-R1#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     209.165.200.226 YES manual up                    up 
+GigabitEthernet0/1     unassigned      YES unset  administratively down down 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+ISP-R1#
+
+
+
+
+ISP-R1>en
+ISP-R1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP-R1(config)#clock timezone IST 5 30
+ISP-R1(config)#ntp master 1
+ISP-R1(config)#end
+ISP-R1#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+ISP-R1#write memory
+Building configuration...
+[OK]
+ISP-R1#show ntp associations
+
+address         ref clock       st   when     poll    reach  delay          offset            disp
+*~127.127.1.1   .LOCL.          0    1        64      377    0.00           0.00              0.24
+ * sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured
+ISP-R1#show clock
+21:37:46.609 IST Mon Mar 1 1993
+ISP-R1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP-R1(config)#clock timezone IST 5 30
+ISP-R1(config)#ntp master 1
+ISP-R1(config)#end
+ISP-R1#clock set HH:MM:SS 23 July 2026
+                 ^
+% Invalid input detected at '^' marker.
+	
+ISP-R1#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+ISP-R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP-R1(config)#clock set 13:19:30 23 July 2026
+                     ^
+% Invalid input detected at '^' marker.
+	
+ISP-R1(config)#ex
+ISP-R1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+ISP-R1#ISP-R1(config)#clock set 13:19:30 23 July 2026
+                            ^
+% Invalid input detected at '^' marker.
+	
+ISP-R1#                     ^
+Translating "^"
+% Unknown command or computer name, or unable to find computer address
+
+ISP-R1#% Invalid input detected at '^' marker.
+         ^
+% Invalid input detected at '^' marker.
+	
+ISP-R1#
+ISP-R1#
+ISP-R1#clock set 13:20:00 23 July 2026
+ISP-R1#wr
+Building configuration...
+[OK]
+ISP-R1#show ntp associations
+
+address         ref clock       st   when     poll    reach  delay          offset            disp
+*~127.127.1.1   .LOCL.          0    16       64      377    0.00           0.00              0.48
+ * sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured
+ISP-R1#show clock
+18:51:0.883 IST Thu Jul 23 2026
+ISP-R1#clock set 07:54:00 23 Jul 2026
+ISP-R1#show ntp associations
+
+address         ref clock       st   when     poll    reach  delay          offset            disp
+*~127.127.1.1   .LOCL.          0    3        64      377    0.00           0.00              0.48
+ * sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured
+ISP-R1#show clock
+13:24:9.406 IST Thu Jul 23 2026
+ISP-R1#show clock
+13:24:15.116 IST Thu Jul 23 2026
+ISP-R1#show running-config | include ntp
+ntp master 1
+ISP-R1#show ntp status
+Clock is synchronized, stratum 1, reference is 127.127.1.1
+nominal freq is 250.0000 Hz, actual freq is 249.9990 Hz, precision is 2**24
+reference time is EDE21860.000003DA (7:59:28.986 UTC Thu Jul 23 2026)
+clock offset is 0.00 msec, root delay is 0.00  msec
+root dispersion is 0.00 msec, peer dispersion is 0.48 msec.
+loopfilter state is 'CTRL' (Normal Controlled Loop), drift is - 0.000001193 s/s system poll interval is 6, last update was 11 sec ago.
+ISP-R1#
+
+
+
+ISP-R1>en
+ISP-R1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP-R1(config)#logging host 192.168.50.10
+ISP-R1(config)#logging trap informational
+                            ^
+% Invalid input detected at '^' marker.
+	
+ISP-R1(config)#service timestamps log datetime localtime
+                                               ^
+% Invalid input detected at '^' marker.
+	
+ISP-R1(config)#end
+ISP-R1#write memory
+Building configuration...
+[OK]
+ISP-R1#show logging
+%SYS-5-CONFIG_I: Configured from console by console
+%SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 192.168.50.10 port 514 started - CLI initiated
+
+ISP-R1#show logging
+Syslog logging: enabled (0 messages dropped, 0 messages rate-limited,
+          0 flushes, 0 overruns, xml disabled, filtering disabled)
+
+No Active Message Discriminator.
+
+
+No Inactive Message Discriminator.
+
+
+    Console logging: level debugging, 6 messages logged, xml disabled,
+          filtering disabled
+    Monitor logging: level debugging, 6 messages logged, xml disabled,
+          filtering disabled
+    Buffer logging:  level debugging, 0 messages logged, xml disabled,
+          filtering disabled
+
+    Logging Exception size (4096 bytes) 
+    Count and timestamp logging messages: disabled
+    Persistent logging: disabled
+
+No active filter modules.
+
+ESM: 0 messages dropped
+    Trap logging: level informational, 6 message lines logged
+        Logging to 192.168.50.10  (udp port 514,  audit disabled,
+             authentication disabled, encryption disabled, link up),
+             2 message lines logged,
+             0 message lines rate-limited,
+             0 message lines dropped-by-MD,
+             xml disabled, sequence number disabled
+             filtering disabled
+
+Log Buffer (4096 bytes):
+
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+%SYS-5-CONFIG_I: Configured from console by console
+%SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 192.168.50.10 port 514 started - CLI initiated
+%SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 192.168.50.10 port 514 started - CLI initiated
+ISP-R1#
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+ISP-R1#
+
+ISP-R1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP-R1(config)#snmp-server community ABCSolutions RO
+%SNMP-5-WARMSTART: SNMP agent on host ISP-R1 is undergoing a warm start
+ISP-R1(config)#snmp-server location Server Room
+                           ^
+% Invalid input detected at '^' marker.
+	
+ISP-R1(config)#snmp-server contact Network Administrator
+                             ^
+% Invalid input detected at '^' marker.
+	
+ISP-R1(config)#end
+ISP-R1#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+ISP-R1#write memory
+Building configuration...
+[OK]
+ISP-R1#show running-config | include snmp
+snmp-server community ABCSolutions RO
+ISP-R1#show snmp
+ISP-R1#
+
+
+ISP-R1>en
+ISP-R1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP-R1(config)#interface g0/1
+ISP-R1(config-if)#ip address 203.0.113.1 255.255.255.0
+ISP-R1(config-if)#no shutdown
+
+ISP-R1(config-if)#end
+ISP-R1#write memory
+%LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+ISP-R1#write memory
+Building configuration...
+[OK]
+ISP-R1#
+
+
+
