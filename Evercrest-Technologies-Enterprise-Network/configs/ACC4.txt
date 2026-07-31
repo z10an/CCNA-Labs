@@ -1,0 +1,242 @@
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname ACC4
+ACC4(config)#no ip domain-lookup
+ACC4(config)#interface GigabitEthernet0/1
+ACC4(config-if)#description Uplink to DIST1
+ACC4(config-if)#interface GigabitEthernet0/2
+ACC4(config-if)#description Uplink to DIST2
+ACC4(config-if)#interface FastEthernet0/1
+ACC4(config-if)#description IT-PC
+ACC4(config-if)#end
+ACC4#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+ACC4#
+
+ACC4>en
+ACC4#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC4(config)#vlan 10
+ACC4(config-vlan)#name EXEC
+ACC4(config-vlan)#vlan 20
+ACC4(config-vlan)#name HR
+ACC4(config-vlan)#vlan 30
+ACC4(config-vlan)#name FINANCE
+ACC4(config-vlan)#vlan 40
+ACC4(config-vlan)#name SALES
+ACC4(config-vlan)#vlan 50
+ACC4(config-vlan)#name DEV
+ACC4(config-vlan)#vlan 60
+ACC4(config-vlan)#name IT
+ACC4(config-vlan)#vlan 70
+ACC4(config-vlan)#name SERVER
+ACC4(config-vlan)#vlan 99
+ACC4(config-vlan)#name MANAGEMENT
+ACC4(config-vlan)#vlan 999
+ACC4(config-vlan)#name NATIVE
+ACC4(config-vlan)#interface FastEthernet0/1
+ACC4(config-if)#switchport mode access
+ACC4(config-if)#switchport access vlan 60
+ACC4(config-if)#interface range GigabitEthernet0/1-2
+ACC4(config-if-range)#switchport mode trunk
+ACC4(config-if-range)#switchport trunk native vlan 999
+ACC4(config-if-range)#switchport trunk allowed vlan 10,20,30,40,50,60,70,99,999
+ACC4(config-if-range)#end
+ACC4#wr
+Building configuration...
+[OK]
+ACC4#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/2, Fa0/3, Fa0/4, Fa0/5
+                                                Fa0/6, Fa0/7, Fa0/8, Fa0/9
+                                                Fa0/10, Fa0/11, Fa0/12, Fa0/13
+                                                Fa0/14, Fa0/15, Fa0/16, Fa0/17
+                                                Fa0/18, Fa0/19, Fa0/20, Fa0/21
+                                                Fa0/22, Fa0/23, Fa0/24
+10   EXEC                             active    
+20   HR                               active    
+30   FINANCE                          active    
+40   SALES                            active    
+50   DEV                              active    
+60   IT                               active    Fa0/1
+70   SERVER                           active    
+99   MANAGEMENT                       active    
+999  NATIVE                           active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+ACC4#show interfaces trunk
+%SYS-5-CONFIG_I: Configured from console by console
+
+Port        Mode         Encapsulation  Status        Native vlan
+Gig0/1      on           802.1q         trunking      999
+Gig0/2      on           802.1q         trunking      999
+
+Port        Vlans allowed on trunk
+Gig0/1      10,20,30,40,50,60,70,99,999
+Gig0/2      10,20,30,40,50,60,70,99,999
+
+Port        Vlans allowed and active in management domain
+Gig0/1      10,20,30,40,50,60,70,99,999
+Gig0/2      10,20,30,40,50,60,70,99,999
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Gig0/1      none
+Gig0/2      none
+
+ACC4#
+
+ACC4>en
+ACC4#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC4(config)#spanning-tree mode rapid-pvst
+ACC4(config)#end
+ACC4#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+ACC4#
+
+
+
+ACC4#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC4(config)#ip domain-name evercrest.local
+ACC4(config)#username admin privilege 15 secret Cisco@123
+ACC4(config)#crypto key generate rsa
+The name for the keys will be: ACC4.evercrest.local
+Choose the size of the key modulus in the range of 360 to 4096 for your
+  General Purpose Keys. Choosing a key modulus greater than 512 may take
+  a few minutes.
+
+How many bits in the modulus [512]: 1024
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+
+ACC4(config)#ip ssh version 2
+*Mar 1 14:39:4.354: %SSH-5-ENABLED: SSH 1.99 has been enabled
+ACC4(config)#line vty 0 15
+ACC4(config-line)#login local
+ACC4(config-line)#transport input ssh
+ACC4(config-line)#exec-timeout 10 0
+ACC4(config-line)#end
+ACC4#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+ACC4#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC4(config)#
+ACC4(config)#interface vlan 99
+ACC4(config-if)#ip address 10.10.99.14 255.255.255.0
+ACC4(config-if)#no shutdown
+ACC4(config-if)#
+ACC4(config-if)#ip default-gateway 10.10.99.1
+ACC4(config)#
+ACC4(config)#end
+ACC4#wr
+%LINK-5-CHANGED: Interface Vlan99, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan99, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+ACC4#
+ACC4>en
+ACC4#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC4(config)#ip dhcp snooping
+ACC4(config)#ip dhcp snooping vlan 10,20,30,40,50,60,70,99
+ACC4(config)#no ip dhcp snooping information option
+ACC4(config)#interface GigabitEthernet0/1
+ACC4(config-if)# ip dhcp snooping trust
+ACC4(config-if)#interface GigabitEthernet0/2
+ACC4(config-if)# ip dhcp snooping trust
+ACC4(config-if)#end
+ACC4#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+ACC4#
+
+ACC4#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC4(config)#ip arp inspection vlan 10,20,30,40,50,60,70,99
+ACC4(config)#interface GigabitEthernet0/1
+ACC4(config-if)# ip arp inspection trust
+ACC4(config-if)#interface GigabitEthernet0/2
+ACC4(config-if)# ip arp inspection trust
+ACC4(config-if)#end
+ACC4#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+ACC4#
+
+
+ACC4>en
+ACC4#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC4(config)#ntp server 10.10.70.10
+ACC4(config)#end
+ACC4#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+ACC4#
+
+
+
+
+
+
+
+
+ACC4 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+ACC4>en
+ACC4#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ACC4(config)#service timestamps log datetime msec
+ACC4(config)#logging 10.10.70.10
+ACC4(config)#end
+ACC4#write memory
+*Jul 29, 22:02:10.022: SYS-5-CONFIG_I: Configured from console by console
+*Jul 29, 22:02:10.022:  %SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 10.10.70.10 port 514 started - CLI initiated
+Building configuration...
+[OK]
+ACC4#
+
+

@@ -1,0 +1,120 @@
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#hostname ISP-R1
+ISP-R1(config)#no ip domain-lookup
+ISP-R1(config)#wr
+               ^
+% Invalid input detected at '^' marker.
+	
+ISP-R1(config)#do wr
+Building configuration...
+[OK]
+ISP-R1(config)#
+
+
+ISP-R1>en
+ISP-R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP-R1(config)#int g0/0
+ISP-R1(config-if)#ip add 209.165.200.226 255.255.255.252
+ISP-R1(config-if)#no sh
+
+ISP-R1(config-if)#
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+ISP-R1(config-if)#
+
+ISP-R1>
+ISP-R1>en
+ISP-R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP-R1(config)#
+ISP-R1(config)#ip route 0.0.0.0 0.0.0.0 203.0.113.1
+ISP-R1(config)#
+ISP-R1(config)#end
+ISP-R1#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+ISP-R1#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     209.165.200.226 YES manual up                    down 
+GigabitEthernet0/1     unassigned      YES unset  administratively down down 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+ISP-R1#
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+ISP-R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP-R1(config)#interface g0/0
+ISP-R1(config-if)#ip address 209.165.200.226 255.255.255.252
+ISP-R1(config-if)#no shutdown
+ISP-R1(config-if)#end
+ISP-R1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+ISP-R1#wr
+Building configuration...
+[OK]
+ISP-R1#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     209.165.200.226 YES manual up                    up 
+GigabitEthernet0/1     unassigned      YES unset  administratively down down 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+ISP-R1#
+
+ISP-R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP-R1(config)#ip domain-name evercrest.local
+ISP-R1(config)#username admin privilege 15 secret Cisco@123
+ISP-R1(config)#crypto key generate rsa
+The name for the keys will be: ISP-R1.evercrest.local
+Choose the size of the key modulus in the range of 360 to 4096 for your
+  General Purpose Keys. Choosing a key modulus greater than 512 may take
+  a few minutes.
+
+How many bits in the modulus [512]: 1024
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+
+ISP-R1(config)#ip ssh version 2
+*Mar 1 14:37:50.545: %SSH-5-ENABLED: SSH 1.99 has been enabled
+ISP-R1(config)#line vty 0 15
+ISP-R1(config-line)#login local
+ISP-R1(config-line)#transport input ssh
+ISP-R1(config-line)#exec-timeout 10 0
+ISP-R1(config-line)#end
+ISP-R1#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+ISP-R1#sh ip int br
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     209.165.200.226 YES manual up                    up 
+GigabitEthernet0/1     unassigned      YES unset  administratively down down 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+ISP-R1#
+ISP-R1>en
+ISP-R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP-R1(config)#ip route 10.10.0.0 255.255.0.0 209.165.200.226
+%Invalid next hop address (it's this router)
+ISP-R1(config)#ex
+ISP-R1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+ISP-R1#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     209.165.200.226 YES manual up                    up 
+GigabitEthernet0/1     unassigned      YES unset  administratively down down 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+ISP-R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP-R1(config)#ip route 10.10.0.0 255.255.0.0 209.165.200.225
+ISP-R1(config)#

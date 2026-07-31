@@ -1,0 +1,1738 @@
+DIST1>en
+DIST1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DIST1(config)#hostname DIST1
+DIST1(config)#no ip domain-lookup
+DIST1(config)#ip routing
+DIST1(config)#interface GigabitEthernet1/0/1
+DIST1(config-if)#description Link to EDGE-R1
+DIST1(config-if)#interface GigabitEthernet1/0/2
+DIST1(config-if)#description EtherChannel to DIST2
+DIST1(config-if)#interface GigabitEthernet1/0/3
+DIST1(config-if)#description EtherChannel to DIST2
+DIST1(config-if)#interface GigabitEthernet1/0/4
+DIST1(config-if)#description Uplink to ACC1
+DIST1(config-if)#interface GigabitEthernet1/0/5
+DIST1(config-if)#description Uplink to ACC2
+DIST1(config-if)#interface GigabitEthernet1/0/6
+DIST1(config-if)#description Uplink to SRV1
+DIST1(config-if)#interface GigabitEthernet1/0/7
+DIST1(config-if)#description Uplink to ACC3
+DIST1(config-if)#interface GigabitEthernet1/0/8
+DIST1(config-if)#description Uplink to ACC4
+DIST1(config-if)#end
+DIST1#copy running-config startup-config
+%SYS-5-CONFIG_I: Configured from console by console
+
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+DIST1#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet1/0/1   unassigned      YES unset  down                  down 
+GigabitEthernet1/0/2   unassigned      YES unset  up                    up 
+GigabitEthernet1/0/3   unassigned      YES unset  up                    up 
+GigabitEthernet1/0/4   unassigned      YES unset  up                    up 
+GigabitEthernet1/0/5   unassigned      YES unset  up                    up 
+GigabitEthernet1/0/6   unassigned      YES unset  up                    up 
+GigabitEthernet1/0/7   unassigned      YES unset  up                    up 
+GigabitEthernet1/0/8   unassigned      YES unset  up                    up 
+GigabitEthernet1/0/9   unassigned      YES unset  down                  down 
+GigabitEthernet1/0/10  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/11  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/12  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/13  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/14  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/15  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/16  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/17  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/18  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/19  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/20  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/21  unassigned      YES unset  down                  down 
+
+DIST1#show running-config
+Building configuration...
+
+Current configuration : 1628 bytes
+!
+version 16.3.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname DIST1
+!
+!
+no profinet
+!
+!
+!
+!
+!
+!
+no ip cef
+ip routing
+!
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet1/0/1
+ description Link to EDGE-R1
+!
+interface GigabitEthernet1/0/2
+ description EtherChannel to DIST2
+!
+interface GigabitEthernet1/0/3
+ description EtherChannel to DIST2
+!
+interface GigabitEthernet1/0/4
+ description Uplink to ACC1
+!
+interface GigabitEthernet1/0/5
+ description Uplink to ACC2
+!
+interface GigabitEthernet1/0/6
+ description Uplink to SRV1
+!
+interface GigabitEthernet1/0/7
+ description Uplink to ACC3
+!
+interface GigabitEthernet1/0/8
+ description Uplink to ACC4
+!
+interface GigabitEthernet1/0/9
+!
+interface GigabitEthernet1/0/10
+!
+interface GigabitEthernet1/0/11
+!
+interface GigabitEthernet1/0/12
+!
+interface GigabitEthernet1/0/13
+!
+interface GigabitEthernet1/0/14
+!
+interface GigabitEthernet1/0/15
+!
+interface GigabitEthernet1/0/16
+!
+interface GigabitEthernet1/0/17
+!
+interface GigabitEthernet1/0/18
+!
+interface GigabitEthernet1/0/19
+!
+interface GigabitEthernet1/0/20
+!
+interface GigabitEthernet1/0/21
+!
+interface GigabitEthernet1/0/22
+!
+interface GigabitEthernet1/0/23
+!
+interface GigabitEthernet1/0/24
+!
+interface GigabitEthernet1/1/1
+!
+interface GigabitEthernet1/1/2
+!
+interface GigabitEthernet1/1/3
+!
+interface GigabitEthernet1/1/4
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+!
+end
+
+
+DIST1#
+
+
+
+DIST1>en
+DIST1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DIST1(config)#vlan 10
+DIST1(config-vlan)#name EXEC
+DIST1(config-vlan)#vlan 20
+DIST1(config-vlan)#name HR
+DIST1(config-vlan)#vlan 30
+DIST1(config-vlan)#name FINANCE
+DIST1(config-vlan)#vlan 40
+DIST1(config-vlan)#name SALES
+DIST1(config-vlan)#vlan 50
+DIST1(config-vlan)#name DEV
+DIST1(config-vlan)#vlan 60
+DIST1(config-vlan)#name IT
+DIST1(config-vlan)#vlan 70
+DIST1(config-vlan)#name SERVER
+DIST1(config-vlan)#vlan 99
+DIST1(config-vlan)#name MANAGEMENT
+DIST1(config-vlan)#vlan 999
+DIST1(config-vlan)#name NATIVE
+DIST1(config-vlan)#interface range GigabitEthernet1/0/2-8
+DIST1(config-if-range)#switchport mode trunk
+
+
+
+
+
+
+
+DIST1(config-if-range)#switchport trunk native vlan 999
+DIST1(config-if-range)#switchport trunk allowed vlan 10,20,30,40,50,60,70,99,999
+DIST1(config-if-range)#end
+DIST1#wr
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/2, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/2, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/3, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/3, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/4, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/4, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/5, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/5, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/6, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/6, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/7, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/7, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/8, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/8, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+DIST1#
+DIST1#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Gig1/0/1, Gig1/0/9, Gig1/0/10, Gig1/0/11
+                                                Gig1/0/12, Gig1/0/13, Gig1/0/14, Gig1/0/15
+                                                Gig1/0/16, Gig1/0/17, Gig1/0/18, Gig1/0/19
+                                                Gig1/0/20, Gig1/0/21, Gig1/0/22, Gig1/0/23
+                                                Gig1/0/24, Gig1/1/1, Gig1/1/2, Gig1/1/3
+                                                Gig1/1/4
+10   EXEC                             active    
+20   HR                               active    
+30   FINANCE                          active    
+40   SALES                            active    
+50   DEV                              active    
+60   IT                               active    
+70   SERVER                           active    
+99   MANAGEMENT                       active    
+999  NATIVE                           active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+DIST1#show interfaces trunk
+Port        Mode         Encapsulation  Status        Native vlan
+Gig1/0/2    on           802.1q         trunking      999
+Gig1/0/3    on           802.1q         trunking      999
+Gig1/0/4    on           802.1q         trunking      999
+Gig1/0/5    on           802.1q         trunking      999
+Gig1/0/6    on           802.1q         trunking      999
+Gig1/0/7    on           802.1q         trunking      999
+Gig1/0/8    on           802.1q         trunking      999
+
+Port        Vlans allowed on trunk
+Gig1/0/2    10,20,30,40,50,60,70,99,999
+Gig1/0/3    10,20,30,40,50,60,70,99,999
+Gig1/0/4    10,20,30,40,50,60,70,99,999
+Gig1/0/5    10,20,30,40,50,60,70,99,999
+Gig1/0/6    10,20,30,40,50,60,70,99,999
+Gig1/0/7    10,20,30,40,50,60,70,99,999
+Gig1/0/8    10,20,30,40,50,60,70,99,999
+
+Port        Vlans allowed and active in management domain
+Gig1/0/2    10,20,30,40,50,60,70,99,999
+Gig1/0/3    10,20,30,40,50,60,70,99,999
+Gig1/0/4    10,20,30,40,50,60,70,99,999
+Gig1/0/5    10,20,30,40,50,60,70,99,999
+Gig1/0/6    10,20,30,40,50,60,70,99,999
+Gig1/0/7    10,20,30,40,50,60,70,99,999
+Gig1/0/8    10,20,30,40,50,60,70,99,999
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Gig1/0/2    10,20,30,40,50,60,70,99,999
+Gig1/0/3    none
+Gig1/0/4    10,20,30,40,50,60,70,99,999
+Gig1/0/5    10,20,30,40,50,60,70,99,999
+Gig1/0/6    10,20,30,40,50,60,70,99
+Gig1/0/7    10,20,30,40,50,60,70,99
+Gig1/0/8    10,20,30,40,50,60,70,99,999
+DIST1>en
+DIST1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DIST1(config)#interface GigabitEthernet1/0/1
+DIST1(config-if)#no switchport
+DIST1(config-if)#ip address 10.10.254.2 255.255.255.252
+DIST1(config-if)#no shutdown
+DIST1(config-if)#end
+DIST1#copy running-config startup-config
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/1, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/1, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+DIST1#
+DIST1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DIST1(config)#interface vlan 10
+DIST1(config-if)#ip address 10.10.10.2 255.255.255.0
+DIST1(config-if)#no shutdown
+DIST1(config-if)#interface vlan 20
+DIST1(config-if)#ip address 10.10.20.2 255.255.255.0
+DIST1(config-if)#no shutdown
+DIST1(config-if)#interface vlan 30
+DIST1(config-if)#ip address 10.10.30.2 255.255.255.0
+DIST1(config-if)#no shutdown
+DIST1(config-if)#interface vlan 40
+DIST1(config-if)#ip address 10.10.40.2 255.255.255.0
+DIST1(config-if)#no shutdown
+DIST1(config-if)#interface vlan 50
+DIST1(config-if)#ip address 10.10.50.2 255.255.255.0
+DIST1(config-if)#no shutdown
+DIST1(config-if)#interface vlan 60
+DIST1(config-if)#ip address 10.10.60.2 255.255.255.0
+DIST1(config-if)#no shutdown
+DIST1(config-if)#interface vlan 70
+DIST1(config-if)#ip address 10.10.70.2 255.255.255.0
+DIST1(config-if)#no shutdown
+DIST1(config-if)#interface vlan 99
+DIST1(config-if)#ip address 10.10.99.2 255.255.255.0
+DIST1(config-if)#no shutdown
+DIST1(config-if)#end
+DIST1#wr
+%LINK-5-CHANGED: Interface Vlan10, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan10, changed state to up
+
+%LINK-5-CHANGED: Interface Vlan20, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan20, changed state to up
+
+%LINK-5-CHANGED: Interface Vlan30, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan30, changed state to up
+
+%LINK-5-CHANGED: Interface Vlan40, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan40, changed state to up
+
+%LINK-5-CHANGED: Interface Vlan50, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan50, changed state to up
+
+%LINK-5-CHANGED: Interface Vlan60, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan60, changed state to up
+
+%LINK-5-CHANGED: Interface Vlan70, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan70, changed state to up
+
+%LINK-5-CHANGED: Interface Vlan99, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan99, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+DIST1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DIST1(config)#router ospf 1
+DIST1(config-router)#router-id 2.2.2.2
+DIST1(config-router)#network 10.10.0.0 0.0.255.255 area 0
+DIST1(config-router)#passive-interface default
+DIST1(config-router)#no passive-interface GigabitEthernet1/0/1
+DIST1(config-router)#end
+DIST1#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+DIST1#
+06:36:44: %OSPF-5-ADJCHG: Process 1, Nbr 1.1.1.1 on GigabitEthernet1/0/1 from LOADING to FULL, Loading Done
+
+DIST1#show ip ospf neighbor
+
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+1.1.1.1           1   FULL/DR         00:00:34    10.10.254.1     GigabitEthernet1/0/1
+DIST1#show ip route
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/8 is variably subnetted, 19 subnets, 3 masks
+C       10.10.10.0/24 is directly connected, Vlan10
+L       10.10.10.2/32 is directly connected, Vlan10
+C       10.10.20.0/24 is directly connected, Vlan20
+L       10.10.20.2/32 is directly connected, Vlan20
+C       10.10.30.0/24 is directly connected, Vlan30
+L       10.10.30.2/32 is directly connected, Vlan30
+C       10.10.40.0/24 is directly connected, Vlan40
+L       10.10.40.2/32 is directly connected, Vlan40
+C       10.10.50.0/24 is directly connected, Vlan50
+L       10.10.50.2/32 is directly connected, Vlan50
+C       10.10.60.0/24 is directly connected, Vlan60
+
+DIST1#how ip interface brief
+          ^
+% Invalid input detected at '^' marker.
+	
+DIST1#show ip protocols
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set 
+  Incoming update filter list for all interfaces is not set 
+  Router ID 2.2.2.2
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.10.0.0 0.0.255.255 area 0
+  Passive Interface(s): 
+    Vlan1
+    GigabitEthernet1/0/2
+    GigabitEthernet1/0/3
+    GigabitEthernet1/0/4
+    GigabitEthernet1/0/5
+    GigabitEthernet1/0/6
+    GigabitEthernet1/0/7
+    GigabitEthernet1/0/8
+    GigabitEthernet1/0/9
+    GigabitEthernet1/0/10
+    GigabitEthernet1/0/11
+    GigabitEthernet1/0/12
+    GigabitEthernet1/0/13
+    GigabitEthernet1/0/14
+    GigabitEthernet1/0/15
+    GigabitEthernet1/0/16
+    GigabitEthernet1/0/17
+    GigabitEthernet1/0/18
+    GigabitEthernet1/0/19
+    GigabitEthernet1/0/20
+    GigabitEthernet1/0/21
+    GigabitEthernet1/0/22
+    GigabitEthernet1/0/23
+    GigabitEthernet1/0/24
+    GigabitEthernet1/1/1
+    GigabitEthernet1/1/2
+    GigabitEthernet1/1/3
+    GigabitEthernet1/1/4
+    Vlan10
+    Vlan20
+    Vlan30
+    Vlan40
+    Vlan50
+    Vlan60
+    Vlan70
+    Vlan99
+  Routing Information Sources:  
+    Gateway         Distance      Last Update 
+    1.1.1.1              110      00:01:38
+    2.2.2.2              110      00:01:58
+    3.3.3.3              110      00:01:38
+  Distance: (default is 110)
+
+DIST1# 
+
+
+DIST1>en
+DIST1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DIST1(config)#spanning-tree mode rapid-pvst
+DIST1(config)#spanning-tree vlan 10,30,50,70,99 root primary
+DIST1(config)#spanning-tree vlan 20,40,60 root secondary
+DIST1(config)#end
+DIST1#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+DIST1#show spanning-tree summary
+Switch is in rapid-pvst mode
+Root bridge for: EXEC FINANCE DEV SERVER MANAGEMENT
+Extended system ID           is enabled
+Portfast Default             is disabled
+PortFast BPDU Guard Default  is disabled
+Portfast BPDU Filter Default is disabled
+Loopguard Default            is disabled
+EtherChannel misconfig guard is disabled
+UplinkFast                   is disabled
+BackboneFast                 is disabled
+Configured Pathcost method used is short
+
+Name                   Blocking Listening Learning Forwarding STP Active
+---------------------- -------- --------- -------- ---------- ----------
+VLAN0010                     1         0        0          8          9
+VLAN0020                     2         0        0          7          9
+VLAN0030                     3         0        0          6          9
+VLAN0040                     3         0        0          6          9
+VLAN0050                     3         0        0          6          9
+VLAN0060                     1         0        0          8          9
+VLAN0070                     2         0        0          7          9
+VLAN0099                     3         0        0          6          9
+VLAN0999                     4         0        0          5          9
+
+---------------------- -------- --------- -------- ---------- ----------
+10 vlans                    22         0        0         59         81
+
+DIST1#show spanning-tree vlan 10
+VLAN0010
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24586
+             Address     00E0.F78E.0070
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24586  (priority 24576 sys-id-ext 10)
+             Address     00E0.F78E.0070
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Gi1/0/4          Desg FWD 4         128.4    P2p
+Gi1/0/5          Desg FWD 4         128.5    P2p
+Gi1/0/6          Desg FWD 4         128.6    P2p
+Gi1/0/7          Desg FWD 4         128.7    P2p
+Gi1/0/8          Desg FWD 4         128.8    P2p
+Po1              Desg FWD 3         128.29   P2p
+
+DIST1#show spanning-tree vlan 20
+VLAN0020
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24596
+             Address     00E0.A3C7.3DDB
+             Cost        3
+             Port        29(Port-channel1)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    28692  (priority 28672 sys-id-ext 20)
+             Address     00E0.F78E.0070
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Gi1/0/4          Desg FWD 4         128.4    P2p
+Gi1/0/5          Desg FWD 4         128.5    P2p
+Gi1/0/6          Desg FWD 4         128.6    P2p
+Gi1/0/7          Desg FWD 4         128.7    P2p
+Gi1/0/8          Desg FWD 4         128.8    P2p
+Po1              Root FWD 3         128.29   P2p
+
+DIST1#
+
+DIST1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DIST1(config)#interface vlan 10
+DIST1(config-if)#standby version 2
+DIST1(config-if)#standby 10 ip 10.10.10.1
+DIST1(config-if)#standby 10 priority 110
+DIST1(config-if)#standby 10 preempt
+DIST1(config-if)#interface vlan 30
+DIST1(config-if)#standby version 2
+DIST1(config-if)#standby 30 ip 10.10.30.1
+DIST1(config-if)#standby 30 priority 110
+DIST1(config-if)#standby 30 preempt
+DIST1(config-if)#interface vlan 50
+DIST1(config-if)#standby version 2
+DIST1(config-if)#standby 50 ip 10.10.50.1
+DIST1(config-if)#standby 50 priority 110
+DIST1(config-if)#standby 50 preempt
+DIST1(config-if)#interface vlan 70
+DIST1(config-if)#standby version 2
+DIST1(config-if)#standby 70 ip 10.10.70.1
+DIST1(config-if)#standby 70 priority 110
+DIST1(config-if)#standby 70 preempt
+DIST1(config-if)#interface vlan 99
+DIST1(config-if)#standby version 2
+DIST1(config-if)#standby 99 ip 10.10.99.1
+DIST1(config-if)#standby 99 priority 110
+DIST1(config-if)#standby 99 preempt
+DIST1(config-if)#interface vlan 20
+DIST1(config-if)#standby version 2
+DIST1(config-if)#standby 20 ip 10.10.20.1
+DIST1(config-if)#standby 20 priority 100
+DIST1(config-if)#standby 20 preempt
+DIST1(config-if)#interface vlan 40
+DIST1(config-if)#standby version 2
+DIST1(config-if)#standby 40 ip 10.10.40.1
+DIST1(config-if)#standby 40 priority 100
+DIST1(config-if)#standby 40 preempt
+DIST1(config-if)#interface vlan 60
+DIST1(config-if)#standby version 2
+DIST1(config-if)#standby 60 ip 10.10.60.1
+DIST1(config-if)#standby 60 priority 100
+DIST1(config-if)#standby 60 preempt
+DIST1(config-if)#end
+DIST1#wr
+%HSRP-6-STATECHANGE: Vlan10 Grp 10 state Init -> Init
+
+%HSRP-6-STATECHANGE: Vlan30 Grp 30 state Init -> Init
+
+%HSRP-6-STATECHANGE: Vlan50 Grp 50 state Init -> Init
+
+%HSRP-6-STATECHANGE: Vlan70 Grp 70 state Init -> Init
+
+%HSRP-6-STATECHANGE: Vlan99 Grp 99 state Init -> Init
+
+%HSRP-6-STATECHANGE: Vlan20 Grp 20 state Init -> Init
+
+%HSRP-6-STATECHANGE: Vlan40 Grp 40 state Init -> Init
+
+%HSRP-6-STATECHANGE: Vlan60 Grp 60 state Init -> Init
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+DIST1#
+%HSRP-6-STATECHANGE: Vlan70 Grp 70 state Speak -> Standby
+
+%HSRP-6-STATECHANGE: Vlan70 Grp 70 state Standby -> Active
+
+%HSRP-6-STATECHANGE: Vlan50 Grp 50 state Speak -> Standby
+
+%HSRP-6-STATECHANGE: Vlan50 Grp 50 state Standby -> Active
+
+%HSRP-6-STATECHANGE: Vlan30 Grp 30 state Speak -> Standby
+
+%HSRP-6-STATECHANGE: Vlan30 Grp 30 state Standby -> Active
+
+%HSRP-6-STATECHANGE: Vlan60 Grp 60 state Speak -> Standby
+
+%HSRP-6-STATECHANGE: Vlan60 Grp 60 state Standby -> Active
+
+%HSRP-6-STATECHANGE: Vlan10 Grp 10 state Speak -> Standby
+
+%HSRP-6-STATECHANGE: Vlan10 Grp 10 state Standby -> Active
+
+%HSRP-6-STATECHANGE: Vlan99 Grp 99 state Speak -> Standby
+
+%HSRP-6-STATECHANGE: Vlan99 Grp 99 state Standby -> Active
+
+%HSRP-6-STATECHANGE: Vlan40 Grp 40 state Speak -> Standby
+
+%HSRP-6-STATECHANGE: Vlan40 Grp 40 state Standby -> Active
+
+%HSRP-6-STATECHANGE: Vlan20 Grp 20 state Speak -> Standby
+
+%HSRP-6-STATECHANGE: Vlan20 Grp 20 state Standby -> Active
+
+%HSRP-6-STATECHANGE: Vlan40 Grp 40 state Speak -> Standby
+
+%HSRP-6-STATECHANGE: Vlan20 Grp 20 state Speak -> Standby
+
+%HSRP-6-STATECHANGE: Vlan60 Grp 60 state Speak -> Standby
+
+DIST1#show etherchannel summary
+Flags:  D - down        P - in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      f - failed to allocate aggregator
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+
+Number of channel-groups in use: 1
+Number of aggregators:           1
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+----------------------------------------------
+
+1      Po1(SU)           -      Gig1/0/2(P) Gig1/0/3(P) 
+DIST1#show spanning-tree root
+                         ^
+% Invalid input detected at '^' marker.
+	
+DIST1#show standby brief
+                     P indicates configured to preempt.
+                     |
+Interface   Grp  Pri P State    Active          Standby         Virtual IP
+Vl10        10   110 P Active   local           10.10.10.3      10.10.10.1     
+Vl20        20   100 P Standby  10.10.20.3      local           10.10.20.1     
+Vl30        30   110 P Active   local           10.10.30.3      10.10.30.1     
+Vl40        40   100 P Standby  10.10.40.3      local           10.10.40.1     
+Vl50        50   110 P Active   local           10.10.50.3      10.10.50.1     
+Vl60        60   100 P Standby  10.10.60.3      local           10.10.60.1     
+Vl70        70   110 P Active   local           10.10.70.3      10.10.70.1     
+Vl99        99   110 P Active   local           10.10.99.3      10.10.99.1     
+DIST1#show spanning-tree ?
+  active     Report on active interfaces only
+  detail     Detailed information
+  interface  Spanning Tree interface status and configuration
+  summary    Summary of port states
+  vlan       VLAN Switch Spanning Trees
+  <cr>
+DIST1#show spanning-tree vlan 10
+VLAN0010
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24586
+             Address     00E0.F78E.0070
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24586  (priority 24576 sys-id-ext 10)
+             Address     00E0.F78E.0070
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Gi1/0/4          Desg FWD 4         128.4    P2p
+Gi1/0/5          Desg FWD 4         128.5    P2p
+Gi1/0/6          Desg FWD 4         128.6    P2p
+Gi1/0/7          Desg FWD 4         128.7    P2p
+Gi1/0/8          Desg FWD 4         128.8    P2p
+Po1              Desg FWD 3         128.29   P2p
+
+DIST1#show spanning-tree vlan 20
+VLAN0020
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24596
+             Address     00E0.A3C7.3DDB
+             Cost        3
+             Port        29(Port-channel1)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    28692  (priority 28672 sys-id-ext 20)
+             Address     00E0.F78E.0070
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Gi1/0/4          Desg FWD 4         128.4    P2p
+Gi1/0/5          Desg FWD 4         128.5    P2p
+Gi1/0/6          Desg FWD 4         128.6    P2p
+Gi1/0/7          Desg FWD 4         128.7    P2p
+Gi1/0/8          Desg FWD 4         128.8    P2p
+Po1              Root FWD 3         128.29   P2p
+
+DIST1#show spanning-tree vlan 30
+VLAN0030
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24606
+             Address     00E0.F78E.0070
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24606  (priority 24576 sys-id-ext 30)
+             Address     00E0.F78E.0070
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Gi1/0/4          Desg FWD 4         128.4    P2p
+Gi1/0/5          Desg FWD 4         128.5    P2p
+Gi1/0/6          Desg FWD 4         128.6    P2p
+Gi1/0/7          Desg FWD 4         128.7    P2p
+Gi1/0/8          Desg FWD 4         128.8    P2p
+Po1              Desg FWD 3         128.29   P2p
+
+DIST1#show spanning-tree vlan 40
+VLAN0040
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24616
+             Address     00E0.A3C7.3DDB
+             Cost        3
+             Port        29(Port-channel1)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    28712  (priority 28672 sys-id-ext 40)
+             Address     00E0.F78E.0070
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Gi1/0/4          Desg FWD 4         128.4    P2p
+Gi1/0/5          Desg FWD 4         128.5    P2p
+Gi1/0/6          Desg FWD 4         128.6    P2p
+Gi1/0/7          Desg FWD 4         128.7    P2p
+Gi1/0/8          Desg FWD 4         128.8    P2p
+Po1              Root FWD 3         128.29   P2p
+
+DIST1#show spanning-tree vlan 50
+VLAN0050
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24626
+             Address     00E0.F78E.0070
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24626  (priority 24576 sys-id-ext 50)
+             Address     00E0.F78E.0070
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Gi1/0/4          Desg FWD 4         128.4    P2p
+Gi1/0/5          Desg FWD 4         128.5    P2p
+Gi1/0/6          Desg FWD 4         128.6    P2p
+Gi1/0/7          Desg BLK 4         128.7    P2p
+Gi1/0/8          Desg FWD 4         128.8    P2p
+Po1              Desg FWD 3         128.29   P2p
+
+DIST1#show spanning-tree vlan 60
+VLAN0060
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24636
+             Address     00E0.A3C7.3DDB
+             Cost        3
+             Port        29(Port-channel1)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    28732  (priority 28672 sys-id-ext 60)
+             Address     00E0.F78E.0070
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Gi1/0/4          Desg FWD 4         128.4    P2p
+Gi1/0/5          Desg FWD 4         128.5    P2p
+Gi1/0/6          Desg FWD 4         128.6    P2p
+Gi1/0/7          Desg FWD 4         128.7    P2p
+Gi1/0/8          Desg FWD 4         128.8    P2p
+Po1              Root FWD 3         128.29   P2p
+
+DIST1#show spanning-tree vlan 70
+VLAN0070
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24646
+             Address     00E0.F78E.0070
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24646  (priority 24576 sys-id-ext 70)
+             Address     00E0.F78E.0070
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Gi1/0/4          Desg FWD 4         128.4    P2p
+Gi1/0/5          Desg FWD 4         128.5    P2p
+Gi1/0/6          Desg FWD 4         128.6    P2p
+Gi1/0/7          Desg FWD 4         128.7    P2p
+Gi1/0/8          Desg FWD 4         128.8    P2p
+Po1              Desg FWD 3         128.29   P2p
+
+DIST1#show spanning-tree vlan 99
+VLAN0099
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24675
+             Address     00E0.F78E.0070
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24675  (priority 24576 sys-id-ext 99)
+             Address     00E0.F78E.0070
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Gi1/0/4          Desg FWD 4         128.4    P2p
+Gi1/0/5          Desg FWD 4         128.5    P2p
+Gi1/0/6          Desg FWD 4         128.6    P2p
+Gi1/0/7          Desg FWD 4         128.7    P2p
+Gi1/0/8          Desg FWD 4         128.8    P2p
+Po1              Desg FWD 3         128.29   P2p
+
+DIST1#
+
+DIST1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DIST1(config)#interface vlan10
+DIST1(config-if)#shutdown
+
+DIST1(config-if)#end
+%LINK-5-CHANGED: Interface Vlan10, changed state to administratively down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan10, changed state to down
+
+DIST1#
+%SYS-5-CONFIG_I: Configured from console by console
+DIST1>en
+DIST1#show ip route
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/8 is variably subnetted, 18 subnets, 3 masks
+O       10.10.10.0/24 [110/3] via 10.10.254.1, 00:02:06, GigabitEthernet1/0/1
+C       10.10.20.0/24 is directly connected, Vlan20
+L       10.10.20.2/32 is directly connected, Vlan20
+C       10.10.30.0/24 is directly connected, Vlan30
+L       10.10.30.2/32 is directly connected, Vlan30
+C       10.10.40.0/24 is directly connected, Vlan40
+L       10.10.40.2/32 is directly connected, Vlan40
+C       10.10.50.0/24 is directly connected, Vlan50
+L       10.10.50.2/32 is directly connected, Vlan50
+C       10.10.60.0/24 is directly connected, Vlan60
+L       10.10.60.2/32 is directly connected, Vlan60
+C       10.10.70.0/24 is directly connected, Vlan70
+L       10.10.70.2/32 is directly connected, Vlan70
+C       10.10.99.0/24 is directly connected, Vlan99
+L       10.10.99.2/32 is directly connected, Vlan99
+C       10.10.254.0/30 is directly connected, GigabitEthernet1/0/1
+L       10.10.254.2/32 is directly connected, GigabitEthernet1/0/1
+O       10.10.254.4/30 [110/2] via 10.10.254.1, 00:02:06, GigabitEthernet1/0/1
+
+DIST1#show ip route
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/8 is variably subnetted, 18 subnets, 3 masks
+O       10.10.10.0/24 [110/3] via 10.10.254.1, 00:02:18, GigabitEthernet1/0/1
+C       10.10.20.0/24 is directly connected, Vlan20
+L       10.10.20.2/32 is directly connected, Vlan20
+C       10.10.30.0/24 is directly connected, Vlan30
+L       10.10.30.2/32 is directly connected, Vlan30
+C       10.10.40.0/24 is directly connected, Vlan40
+L       10.10.40.2/32 is directly connected, Vlan40
+C       10.10.50.0/24 is directly connected, Vlan50
+L       10.10.50.2/32 is directly connected, Vlan50
+C       10.10.60.0/24 is directly connected, Vlan60
+L       10.10.60.2/32 is directly connected, Vlan60
+C       10.10.70.0/24 is directly connected, Vlan70
+L       10.10.70.2/32 is directly connected, Vlan70
+C       10.10.99.0/24 is directly connected, Vlan99
+L       10.10.99.2/32 is directly connected, Vlan99
+C       10.10.254.0/30 is directly connected, GigabitEthernet1/0/1
+L       10.10.254.2/32 is directly connected, GigabitEthernet1/0/1
+O       10.10.254.4/30 [110/2] via 10.10.254.1, 00:02:18, GigabitEthernet1/0/1
+
+DIST1#show ip route
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/8 is variably subnetted, 18 subnets, 3 masks
+O       10.10.10.0/24 [110/3] via 10.10.254.1, 00:02:46, GigabitEthernet1/0/1
+C       10.10.20.0/24 is directly connected, Vlan20
+L       10.10.20.2/32 is directly connected, Vlan20
+C       10.10.30.0/24 is directly connected, Vlan30
+L       10.10.30.2/32 is directly connected, Vlan30
+C       10.10.40.0/24 is directly connected, Vlan40
+L       10.10.40.2/32 is directly connected, Vlan40
+C       10.10.50.0/24 is directly connected, Vlan50
+L       10.10.50.2/32 is directly connected, Vlan50
+C       10.10.60.0/24 is directly connected, Vlan60
+L       10.10.60.2/32 is directly connected, Vlan60
+C       10.10.70.0/24 is directly connected, Vlan70
+L       10.10.70.2/32 is directly connected, Vlan70
+C       10.10.99.0/24 is directly connected, Vlan99
+L       10.10.99.2/32 is directly connected, Vlan99
+C       10.10.254.0/30 is directly connected, GigabitEthernet1/0/1
+L       10.10.254.2/32 is directly connected, GigabitEthernet1/0/1
+O       10.10.254.4/30 [110/2] via 10.10.254.1, 00:02:46, GigabitEthernet1/0/1
+
+DIST1#show ip route
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is 10.10.254.1 to network 0.0.0.0
+
+     10.0.0.0/8 is variably subnetted, 18 subnets, 3 masks
+O       10.10.10.0/24 [110/3] via 10.10.254.1, 00:06:17, GigabitEthernet1/0/1
+C       10.10.20.0/24 is directly connected, Vlan20
+L       10.10.20.2/32 is directly connected, Vlan20
+C       10.10.30.0/24 is directly connected, Vlan30
+L       10.10.30.2/32 is directly connected, Vlan30
+C       10.10.40.0/24 is directly connected, Vlan40
+L       10.10.40.2/32 is directly connected, Vlan40
+C       10.10.50.0/24 is directly connected, Vlan50
+L       10.10.50.2/32 is directly connected, Vlan50
+C       10.10.60.0/24 is directly connected, Vlan60
+L       10.10.60.2/32 is directly connected, Vlan60
+C       10.10.70.0/24 is directly connected, Vlan70
+L       10.10.70.2/32 is directly connected, Vlan70
+C       10.10.99.0/24 is directly connected, Vlan99
+L       10.10.99.2/32 is directly connected, Vlan99
+C       10.10.254.0/30 is directly connected, GigabitEthernet1/0/1
+L       10.10.254.2/32 is directly connected, GigabitEthernet1/0/1
+O       10.10.254.4/30 [110/2] via 10.10.254.1, 00:06:17, GigabitEthernet1/0/1
+O*E2 0.0.0.0/0 [110/1] via 10.10.254.1, 00:00:41, GigabitEthernet1/0/1
+
+DIST1#
+
+
+DIST1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DIST1(config)#ip domain-name evercrest.local
+DIST1(config)#username admin privilege 15 secret Cisco@123
+DIST1(config)#crypto key generate rsa
+The name for the keys will be: DIST1.evercrest.local
+Choose the size of the key modulus in the range of 360 to 4096 for your
+  General Purpose Keys. Choosing a key modulus greater than 512 may take
+  a few minutes.
+
+How many bits in the modulus [512]: 1024
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+
+DIST1(config)#ip ssh version 2
+*Mar 1 13:9:1.286: %SSH-5-ENABLED: SSH 1.99 has been enabled
+DIST1(config)#line vty 0 15
+DIST1(config-line)#login local
+DIST1(config-line)#transport input ssh
+DIST1(config-line)#exec-timeout 10 0
+DIST1(config-line)#end
+DIST1#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+DIST1#
+DIST1>en
+DIST1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DIST1(config)#interface vlan 10
+DIST1(config-if)#ip helper-address 10.10.70.10
+DIST1(config-if)#interface vlan 20
+DIST1(config-if)#ip helper-address 10.10.70.10
+DIST1(config-if)#interface vlan 30
+DIST1(config-if)#ip helper-address 10.10.70.10
+DIST1(config-if)#interface vlan 40
+DIST1(config-if)#ip helper-address 10.10.70.10
+DIST1(config-if)#interface vlan 50
+DIST1(config-if)#ip helper-address 10.10.70.10
+DIST1(config-if)#interface vlan 60
+DIST1(config-if)#ip helper-address 10.10.70.10
+DIST1(config-if)#do wr
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+DIST1(config-if)#
+DIST1(config-if)#end
+DIST1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+DIST1#show run interface vlan 10
+               ^
+% Invalid input detected at '^' marker.
+	
+DIST1#show run 
+Building configuration...
+
+Current configuration : 4682 bytes
+!
+version 16.3.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname DIST1
+!
+!
+no profinet
+!
+!
+!
+!
+!
+!
+no ip cef
+ip routing
+!
+no ipv6 cef
+!
+!
+!
+username admin privilege 15 secret 5 $1$mERr$gjNBR1u.Is9z7oaYvbvh//
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip ssh version 2
+no ip domain-lookup
+ip domain-name evercrest.local
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree vlan 10,30,50,70,99 priority 24576
+spanning-tree vlan 20,40,60 priority 28672
+!
+!
+!
+!
+!
+!
+interface Port-channel1
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,30,40,50,60,70,99,999
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/1
+ description Link to EDGE-R1
+ no switchport
+ ip address 10.10.254.2 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet1/0/2
+ description EtherChannel to DIST2
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,30,40,50,60,70,99,999
+ switchport mode trunk
+ channel-group 1 mode on
+!
+interface GigabitEthernet1/0/3
+ description EtherChannel to DIST2
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,30,40,50,60,70,99,999
+ switchport mode trunk
+ channel-group 1 mode on
+!
+interface GigabitEthernet1/0/4
+ description Uplink to ACC1
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,30,40,50,60,70,99,999
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/5
+ description Uplink to ACC2
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,30,40,50,60,70,99,999
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/6
+ description Uplink to SRV1
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,30,40,50,60,70,99,999
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/7
+ description Uplink to ACC3
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,30,40,50,60,70,99,999
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/8
+ description Uplink to ACC4
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,30,40,50,60,70,99,999
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/9
+!
+interface GigabitEthernet1/0/10
+!
+interface GigabitEthernet1/0/11
+!
+interface GigabitEthernet1/0/12
+!
+interface GigabitEthernet1/0/13
+!
+interface GigabitEthernet1/0/14
+!
+interface GigabitEthernet1/0/15
+!
+interface GigabitEthernet1/0/16
+!
+interface GigabitEthernet1/0/17
+!
+interface GigabitEthernet1/0/18
+!
+interface GigabitEthernet1/0/19
+!
+interface GigabitEthernet1/0/20
+!
+interface GigabitEthernet1/0/21
+!
+interface GigabitEthernet1/0/22
+!
+interface GigabitEthernet1/0/23
+!
+interface GigabitEthernet1/0/24
+!
+interface GigabitEthernet1/1/1
+!
+interface GigabitEthernet1/1/2
+!
+interface GigabitEthernet1/1/3
+!
+interface GigabitEthernet1/1/4
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ mac-address 00e0.f78e.0001
+ ip address 10.10.10.2 255.255.255.0
+ ip helper-address 10.10.70.10
+ standby version 2
+ standby 10 ip 10.10.10.1
+ standby 10 priority 110
+ standby 10 preempt
+ shutdown
+!
+interface Vlan20
+ mac-address 00e0.f78e.0002
+ ip address 10.10.20.2 255.255.255.0
+ ip helper-address 10.10.70.10
+ standby version 2
+ standby 20 ip 10.10.20.1
+ standby 20 preempt
+!
+interface Vlan30
+ mac-address 00e0.f78e.0003
+ ip address 10.10.30.2 255.255.255.0
+ ip helper-address 10.10.70.10
+ standby version 2
+ standby 30 ip 10.10.30.1
+ standby 30 priority 110
+ standby 30 preempt
+!
+interface Vlan40
+ mac-address 00e0.f78e.0004
+ ip address 10.10.40.2 255.255.255.0
+ ip helper-address 10.10.70.10
+ standby version 2
+ standby 40 ip 10.10.40.1
+ standby 40 preempt
+!
+interface Vlan50
+ mac-address 00e0.f78e.0005
+ ip address 10.10.50.2 255.255.255.0
+ ip helper-address 10.10.70.10
+ standby version 2
+ standby 50 ip 10.10.50.1
+ standby 50 priority 110
+ standby 50 preempt
+!
+interface Vlan60
+ mac-address 00e0.f78e.0006
+ ip address 10.10.60.2 255.255.255.0
+ ip helper-address 10.10.70.10
+ standby version 2
+ standby 60 ip 10.10.60.1
+ standby 60 preempt
+!
+interface Vlan70
+ mac-address 00e0.f78e.0007
+ ip address 10.10.70.2 255.255.255.0
+ standby version 2
+ standby 70 ip 10.10.70.1
+ standby 70 priority 110
+ standby 70 preempt
+!
+interface Vlan99
+ mac-address 00e0.f78e.0008
+ ip address 10.10.99.2 255.255.255.0
+ standby version 2
+ standby 99 ip 10.10.99.1
+ standby 99 priority 110
+ standby 99 preempt
+!
+router ospf 1
+ router-id 2.2.2.2
+ log-adjacency-changes
+ passive-interface default
+ no passive-interface GigabitEthernet1/0/1
+ network 10.10.0.0 0.0.255.255 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+!
+!
+!
+end
+
+
+DIST1# 
+
+
+
+
+
+
+
+
+DIST1#show ip ssh
+SSH Enabled - version 2.0
+Authentication timeout: 120 secs; Authentication retries: 3
+DIST1#show crypto key mypubkey rsa
+% Key pair was generated at: 13:9:1 UTC March 1 1993
+Key name: DIST1.evercrest.local
+ Storage Device: not specified
+ Usage: General Purpose Key
+ Key is not exportable.
+ Key Data:
+ 00001449  000011ca  000070ab  00002c4b  00001556  00005861  00005ee9  00003dc5
+ 00006588  00000e2b  00002dac  0000575b  0000046b  000076d3  00000b02  000043b0
+ 000053a6  000068b5  000041e6  000077a3  0000332d  00004843  00005815  08d1
+% Key pair was generated at: 13:9:1 UTC March 1 1993
+Key name: DIST1.evercrest.local.server
+Temporary key
+ Usage: Encryption Key
+ Key is not exportable.
+ Key Data:
+ 00002db7  000052a7  00003e1d  00006d5a  00004973  00007baa  000045b7  000068e9
+ 000050f6  000062d4  00005256  00004aee  00002878  000023d4  00007800  0000622e
+ 00000341  00000623  00007c5d  0000497e  00000d5e  00004fe5  00006e0e  71cb
+DIST1#show running-config | section line vty
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+DIST1#show running-config | include username
+username admin privilege 15 secret 5 $1$mERr$gjNBR1u.Is9z7oaYvbvh//
+DIST1#show running-config | include ip domain-name
+ip domain-name evercrest.local
+DIST1#
+
+
+
+DIST1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DIST1(config)#access-list 10 permit 10.10.60.0 0.0.0.255
+DIST1(config)#line vty 0 15
+DIST1(config-line)#access-class 10 in
+DIST1(config-line)#do show access-lists
+Standard IP access list 10
+    10 permit 10.10.60.0 0.0.0.255
+
+DIST1(config-line)#do show running-config | section line vty
+line vty 0 4
+ access-class 10 in
+ login local
+ transport input ssh
+line vty 5 15
+ access-class 10 in
+ login local
+ transport input ssh
+DIST1(config-line)#
+
+
+
+
+DIST1>en
+DIST1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DIST1(config)#ip access-list extended HR_FILTER
+DIST1(config-ext-nacl)#deny ip 10.10.20.0 0.0.0.255 10.10.50.0 0.0.0.255
+DIST1(config-ext-nacl)#permit ip any any
+DIST1(config-ext-nacl)#interface vlan20
+DIST1(config-if)#ip access-group HR_FILTER in
+DIST1(config-if)#ip access-list extended FIN_FILTER
+DIST1(config-ext-nacl)#deny ip 10.10.30.0 0.0.0.255 10.10.50.0 0.0.0.255
+DIST1(config-ext-nacl)#permit ip any any
+DIST1(config-ext-nacl)#interface vlan30
+DIST1(config-if)#ip access-group FIN_FILTER in
+DIST1(config-if)#ip access-list extended SALES_FILTER
+DIST1(config-ext-nacl)#deny ip 10.10.40.0 0.0.0.255 10.10.50.0 0.0.0.255
+DIST1(config-ext-nacl)#permit ip any any
+DIST1(config-ext-nacl)#interface vlan40
+DIST1(config-if)#ip access-group SALES_FILTER in
+DIST1(config-if)#do wr
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+DIST1(config-if)#
+DIST1(config-if)#end
+DIST1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+DIST1#show access-lists
+Standard IP access list 10
+    10 permit 10.10.60.0 0.0.0.255 (2 match(es))
+Extended IP access list HR_FILTER
+    10 deny ip 10.10.20.0 0.0.0.255 10.10.50.0 0.0.0.255
+    20 permit ip any any (15 match(es))
+Extended IP access list FIN_FILTER
+    10 deny ip 10.10.30.0 0.0.0.255 10.10.50.0 0.0.0.255
+    20 permit ip any any (15 match(es))
+Extended IP access list SALES_FILTER
+    10 deny ip 10.10.40.0 0.0.0.255 10.10.50.0 0.0.0.255
+    20 permit ip any any (15 match(es))
+
+DIST1#show running-config interface vlan20
+                          ^
+% Invalid input detected at '^' marker.
+	
+DIST1#show running-config interface vlan30
+                          ^
+% Invalid input detected at '^' marker.
+	
+DIST1#show running-config interface vlan40
+
+
+
+
+DIST1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DIST1(config)#interface vlan10
+DIST1(config-if)#no shutdown
+
+DIST1(config-if)#end
+DIST1#write memory
+%LINK-3-UPDOWN: Interface Vlan10, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan10, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+ %HSRP-6-STATECHANGE: Vlan10 Grp 10 state Standby -> Active
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+DIST1#show ip dhcp snooping
+Switch DHCP snooping is enabled
+DHCP snooping is configured on following VLANs:
+10,20,30,40,50,60,70,99
+DHCP snooping is operational on following VLANs:
+none
+Smartlog is configured on following VLANs:
+none
+Smartlog is operational on following VLANs:
+none
+DHCP snooping is configured on the following L3 Interfaces:
+
+Insertion of option 82 is disabled
+   circuit-id default format: vlan-mod-port
+   remote-id: 00E0.F78E.0070 (MAC)
+Option 82 on untrusted port is not allowed
+Verification of hwaddr field is enabled
+Verification of giaddr field is enabled
+DHCP snooping trust/rate is configured on the following Interfaces:
+
+Interface                  Trusted    Allow option    Rate limit (pps)
+-----------------------    -------    ------------    ----------------
+GigabitEthernet1/0/4       yes        yes             unlimited       
+
+DIST1#how ip dhcp snooping binding
+          ^
+% Invalid input detected at '^' marker.
+	
+DIST1#show ip dhcp snooping binding
+MacAddress          IpAddress        Lease(sec)  Type           VLAN  Interface
+------------------  ---------------  ----------  -------------  ----  -----------------
+Total number of bindings: 0
+DIST1#
+
+DIST1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DIST1(config)#ip arp inspection vlan 10,20,30,40,50,60,70,99
+DIST1(config)#interface GigabitEthernet1/0/4
+DIST1(config-if)# ip arp inspection trust
+DIST1(config-if)#interface GigabitEthernet1/0/5
+DIST1(config-if)# ip arp inspection trust
+DIST1(config-if)#interface GigabitEthernet1/0/6
+DIST1(config-if)# ip arp inspection trust
+DIST1(config-if)#interface GigabitEthernet1/0/7
+DIST1(config-if)# ip arp inspection trust
+DIST1(config-if)#interface GigabitEthernet1/0/8
+DIST1(config-if)# ip arp inspection trust
+DIST1(config-if)#end
+DIST1#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+DIST1#show ip arp inspection
+
+Source Mac Validation      : Disabled
+Destination Mac Validation : Disabled
+IP Address Validation      : Disabled
+
+ Vlan     Configuration    Operation   ACL Match          Static ACL
+ ----     -------------    ---------   ---------          ----------
+   10     Enabled          Active
+   20     Enabled          Active
+   30     Enabled          Active
+   40     Enabled          Active
+   50     Enabled          Active
+   60     Enabled          Active
+   70     Enabled          Active
+   99     Enabled          Active
+
+ Vlan     ACL Logging      DHCP Logging      Probe Logging
+ ----     -----------      ------------      -------------
+   10     Deny             Deny              Off
+   20     Deny             Deny              Off
+   30     Deny             Deny              Off
+   40     Deny             Deny              Off
+   50     Deny             Deny              Off
+   60     Deny             Deny              Off
+   70     Deny             Deny              Off
+   99     Deny             Deny              Off
+
+ Vlan      Forwarded        Dropped     DHCP Drops      ACL Drops
+ ----      ---------        -------     ----------      ---------
+   10              0              0              0              0
+   20              0              0              0              0
+   30              0              0              0              0
+   40              0              0              0              0
+   50              0              0              0              0
+   60              0              0              0              0
+   70              0              0              0              0
+   99              0              0              0              0
+
+ Vlan   DHCP Permits    ACL Permits  Probe Permits   Source MAC Failures
+ ----   ------------    -----------  -------------   -------------------
+   10              0              0              0                     0
+   20              0              0              0                     0
+   30              0              0              0                     0
+   40              0              0              0                     0
+   50              0              0              0                     0
+   60              0              0              0                     0
+   70              0              0              0                     0
+   99              0              0              0                     0
+
+ Vlan   Dest MAC Failures   IP Validation Failures   Invalid Protocol Data
+ ----   -----------------   ----------------------   ---------------------
+   10                   0                        0                       0
+   20                   0                        0                       0
+   30                   0                        0                       0
+   40                   0                        0                       0
+   50                   0                        0                       0
+   60                   0                        0                       0
+   70                   0                        0                       0
+   99                   0                        0                       0
+DIST1#show ip arp inspection interfaces
+Interface        Trust State     Rate(pps)    Burst Interval
+---------------  -----------     ---------    --------------
+Gig1/0/1         Untrusted              15                 1
+Gig1/0/2         Untrusted              15                 1
+Gig1/0/3         Untrusted              15                 1
+Gig1/0/4         Trusted                15                 1
+Gig1/0/5         Trusted                15                 1
+Gig1/0/6         Trusted                15                 1
+Gig1/0/7         Trusted                15                 1
+Gig1/0/8         Trusted                15                 1
+Gig1/0/9         Untrusted              15                 1
+Gig1/0/10        Untrusted              15                 1
+Gig1/0/11        Untrusted              15                 1
+Gig1/0/12        Untrusted              15                 1
+Gig1/0/13        Untrusted              15                 1
+Gig1/0/14        Untrusted              15                 1
+Gig1/0/15        Untrusted              15                 1
+Gig1/0/16        Untrusted              15                 1
+Gig1/0/17        Untrusted              15                 1
+Gig1/0/18        Untrusted              15                 1
+Gig1/0/19        Untrusted              15                 1
+Gig1/0/20        Untrusted              15                 1
+Gig1/0/21        Untrusted              15                 1
+Gig1/0/22        Untrusted              15                 1
+Gig1/0/23        Untrusted              15                 1
+Gig1/0/24        Untrusted              15                 1
+Gig1/1/1         Untrusted              15                 1
+Gig1/1/2         Untrusted              15                 1
+Gig1/1/3         Untrusted              15                 1
+Gig1/1/4         Untrusted              15                 1
+DIST1#show ip arp inspection vlan
+% Incomplete command.
+DIST1#show ip arp inspection vlan 10
+
+Source Mac Validation      : Disabled
+Destination Mac Validation : Disabled
+IP Address Validation      : Disabled
+
+ Vlan     Configuration    Operation   ACL Match          Static ACL
+ ----     -------------    ---------   ---------          ----------
+   10     Enabled          Active
+
+ Vlan     ACL Logging      DHCP Logging      Probe Logging
+ ----     -----------      ------------      -------------
+   10     Deny             Deny              Off
+
+DIST1#show ip arp inspection statistics
+
+ Vlan      Forwarded        Dropped     DHCP Drops     ACL Drops
+ ----      ---------        -------     ----------     ---------
+   10              0              0              0             0
+   20              0              0              0             0
+   30              0              0              0             0
+   40              0              0              0             0
+   50              0              0              0             0
+   60              0              0              0             0
+   70              0              0              0             0
+   99              0              0              0             0
+
+ Vlan   DHCP Permits    ACL Permits   Source MAC Failures
+ ----   ------------    -----------   -------------------
+   10              0              0                     0
+   20              0              0                     0
+   30              0              0                     0
+   40              0              0                     0
+   50              0              0                     0
+   60              0              0                     0
+   70              0              0                     0
+   99              0              0                     0
+
+ Vlan   Dest MAC Failures   IP Validation Failures
+ ----   -----------------   ----------------------
+   10                   0                        0
+   20                   0                        0
+   30                   0                        0
+   40                   0                        0
+   50                   0                        0
+   60                   0                        0
+   70                   0                        0
+   99                   0                        0
+
+DIST1# 
+DIST1>en
+DIST1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DIST1(config)#ntp server 10.10.70.10
+DIST1(config)#end
+DIST1#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+DIST1#
+DIST1>en
+DIST1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+DIST1(config)#service timestamps log datetime msec
+DIST1(config)#logging 10.10.70.10
+DIST1(config)#end
+DIST1#write memory
+*Jul 29, 22:01:15.011: SYS-5-CONFIG_I: Configured from console by console
+*Jul 29, 22:01:15.011:  %SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 10.10.70.10 port 514 started - CLI initiated
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+DIST1#
