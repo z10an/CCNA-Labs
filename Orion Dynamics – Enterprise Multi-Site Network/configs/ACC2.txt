@@ -1,0 +1,291 @@
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#vlan 10
+Switch(config-vlan)#name HR
+Switch(config-vlan)#vlan 20
+Switch(config-vlan)#name FINANCE
+Switch(config-vlan)#vlan 30
+Switch(config-vlan)#name SALES
+Switch(config-vlan)#vlan 40
+Switch(config-vlan)#name MARKETING
+Switch(config-vlan)#vlan 50
+Switch(config-vlan)#name DEVELOPMENT
+Switch(config-vlan)#vlan 60
+Switch(config-vlan)#name CUSTOMER_SUPPORT
+Switch(config-vlan)#vlan 70
+Switch(config-vlan)#name IT
+Switch(config-vlan)#vlan 80
+Switch(config-vlan)#name GUEST
+Switch(config-vlan)#vlan 90
+Switch(config-vlan)#name SERVERS
+Switch(config-vlan)#vlan 99
+Switch(config-vlan)#name MANAGEMENT
+Switch(config-vlan)#vlan 999
+Switch(config-vlan)#name NATIVE
+Switch(config-vlan)#end
+Switch#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+Switch#
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Switch(config)#interface range fa0/1-2
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)#switchport access vlan 30
+Switch(config-if-range)#spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when portfast is enabled, can cause temporary bridging loops.
+Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/1 but will only
+have effect when the interface is in a non-trunking mode.
+%Warning: portfast should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when portfast is enabled, can cause temporary bridging loops.
+Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/2 but will only
+have effect when the interface is in a non-trunking mode.
+Switch(config-if-range)#spanning-tree bpduguard enable
+Switch(config-if-range)#
+Switch(config-if-range)#interface range fa0/3-4
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)#switchport access vlan 40
+Switch(config-if-range)#spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when portfast is enabled, can cause temporary bridging loops.
+Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/3 but will only
+have effect when the interface is in a non-trunking mode.
+%Warning: portfast should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when portfast is enabled, can cause temporary bridging loops.
+Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/4 but will only
+have effect when the interface is in a non-trunking mode.
+Switch(config-if-range)#spanning-tree bpduguard enable
+Switch(config-if-range)#
+Switch(config-if-range)#end
+Switch#
+Switch#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Switch#
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Switch(config)#interface range g0/1-2
+Switch(config-if-range)#switchport mode trunk
+
+Switch(config-if-range)#switchport trunk native vlan 999
+Switch(config-if-range)#switchport trunk allowed vlan 10,20,30,40,50,60,70,80,90,99,999
+Switch(config-if-range)#
+Switch(config-if-range)#end
+Switch#
+Switch#write memory
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Switch#
+
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#spanning-tree mode rapid-pvst
+Switch(config)#end
+Switch#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#spanning-tree portfast default
+Switch(config)#spanning-tree portfast bpduguard default
+Switch(config)#end
+Switch#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Switch#
+
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#interface range fa0/1-4
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)#switchport port-security
+Switch(config-if-range)#switchport port-security maximum 2
+Switch(config-if-range)#switchport port-security mac-address sticky
+Switch(config-if-range)#switchport port-security violation restrict
+Switch(config-if-range)#exit
+Switch(config)#interface range fa0/5-24
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)#shutdown
+
+%LINK-5-CHANGED: Interface FastEthernet0/5, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/6, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/7, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/8, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/9, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/10, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/11, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/12, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/13, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/14, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/15, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/16, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/17, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/18, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/19, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/20, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/21, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/22, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/23, changed state to administratively down
+
+%LINK-5-CHANGED: Interface FastEthernet0/24, changed state to administratively down
+Switch(config-if-range)#description UNUSED_PORT
+Switch(config-if-range)#end
+Switch#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Switch#
+
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#ip dhcp snooping
+Switch(config)#ip dhcp snooping vlan 10,20,30,40,50,60,70,80,90,99
+Switch(config)#end
+Switch#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#interface range g0/1-2
+Switch(config-if-range)#ip dhcp snooping trust
+Switch(config-if-range)#end
+Switch#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#interface range fa0/1-4
+Switch(config-if-range)#ip dhcp snooping limit rate 15
+Switch(config-if-range)#end
+Switch#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Switch#
+
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#ip arp inspection vlan 10,20,30,40,50,60,70,80,90,99
+Switch(config)#end
+Switch#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#interface range g0/1-2
+Switch(config-if-range)#ip arp inspection trust
+Switch(config-if-range)#end
+Switch#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#service timestamps log datetime msec
+Switch(config)#logging host 10.10.50.30
+Switch(config)#logging trap informational
+                            ^
+% Invalid input detected at '^' marker.
+	
+Switch(config)#logging on
+Switch(config)#end
+Switch#wr
+*Mar 01, 14:06:18.066: SYS-5-CONFIG_I: Configured from console by console
+*Mar 01, 14:06:18.066:  %SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 10.10.50.30 port 514 started - CLI initiated
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#ntp server 10.10.50.40
+Switch(config)#end
+Switch#wr
+*Mar 01, 14:14:05.1414: SYS-5-CONFIG_I: Configured from console by console
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+Switch#
+
+
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#vlan 999
+Switch(config-vlan)#name NATIVE
+Switch(config-vlan)#
+Switch(config-vlan)#interface range fa0/5-24
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)#switchport access vlan 999
+Switch(config-if-range)#shutdown
+Switch(config-if-range)#description UNUSED_PORT
+Switch(config-if-range)#end
+Switch#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Switch#

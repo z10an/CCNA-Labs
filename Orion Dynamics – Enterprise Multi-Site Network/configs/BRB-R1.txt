@@ -1,0 +1,102 @@
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface s0/0/0
+Router(config-if)#description WAN-to-HQ
+Router(config-if)#ip address 10.255.2.6 255.255.255.252
+Router(config-if)#no shutdown
+
+Router(config-if)#end
+Router#wr
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Router#
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface g0/0
+Router(config-if)#description Branch-B-LAN
+Router(config-if)#ip address 10.30.10.1 255.255.255.0
+Router(config-if)#no shutdown
+
+Router(config-if)#end
+Router#wr
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Router#
+
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router ospf 1
+Router(config-router)#router-id 20.20.20.20
+Router(config-router)#network 10.255.2.4 0.0.0.3 area 20
+Router(config-router)#network 10.30.10.0 0.0.0.255 area 20
+Router(config-router)#passive-interface g0/0
+Router(config-router)#end
+Router#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Router#
+05:04:06: %OSPF-5-ADJCHG: Process 1, Nbr 5.5.5.5 on Serial0/0/0 from LOADING to FULL, Loading Done
+
+
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface g0/0
+Router(config-if)#ip helper-address 10.10.50.10
+Router(config-if)#end
+Router#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Router#
+
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#ip access-list standard MGMT-SSH
+Router(config-std-nacl)#permit 10.10.99.0 0.0.0.255
+Router(config-std-nacl)#deny any
+Router(config-std-nacl)#exit
+Router(config)#
+Router(config)#line vty 0 15
+Router(config-line)#access-class MGMT-SSH in
+Router(config-line)#transport input ssh
+Router(config-line)#login local
+Router(config-line)#end
+Router#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Router#
+
+BRB-R1>en
+BRB-R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+BRB-R1(config)#no ip domain-lookup
+BRB-R1(config)#service password-encryption
+BRB-R1(config)#end
+BRB-R1#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+BRB-R1#

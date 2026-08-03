@@ -1,0 +1,51 @@
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#ip access-list standard MGMT-SSH
+Router(config-std-nacl)#permit 10.10.99.0 0.0.0.255
+Router(config-std-nacl)#deny any
+Router(config-std-nacl)#exit
+Router(config)#
+Router(config)#line vty 0 15
+Router(config-line)#access-class MGMT-SSH in
+Router(config-line)#transport input ssh
+Router(config-line)#login local
+Router(config-line)#end
+Router#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Router#
+
+
+ISP-R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP-R1(config)#interface g0/0
+ISP-R1(config-if)#ip address 200.1.1.1 255.255.255.252
+ISP-R1(config-if)#no shutdown
+
+ISP-R1(config-if)#exit
+ISP-R1(config)#end
+ISP-R1#wr
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+ISP-R1#
+
+ISP-R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ISP-R1(config)#ip route 10.0.0.0 255.0.0.0 200.1.1.2
+ISP-R1(config)#end
+ISP-R1#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+ISP-R1#
+

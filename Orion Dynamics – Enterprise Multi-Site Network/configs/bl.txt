@@ -1,0 +1,25 @@
+conf t
+vlan 10
+name HR
+vlan 20
+name FINANCE
+vlan 30
+name SALES
+vlan 40
+name MARKETING
+vlan 50
+name DEVELOPMENT
+vlan 60
+name CUSTOMER_SUPPORT
+vlan 70
+name IT
+vlan 80
+name GUEST
+vlan 90
+name SERVERS
+vlan 99
+name MANAGEMENT
+vlan 999
+name NATIVE
+end
+write memory

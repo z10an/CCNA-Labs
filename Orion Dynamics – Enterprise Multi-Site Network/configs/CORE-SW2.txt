@@ -1,0 +1,329 @@
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#vlan 10
+Switch(config-vlan)#name HR
+Switch(config-vlan)#vlan 20
+Switch(config-vlan)#name FINANCE
+Switch(config-vlan)#vlan 30
+Switch(config-vlan)#name SALES
+Switch(config-vlan)#vlan 40
+Switch(config-vlan)#name MARKETING
+Switch(config-vlan)#vlan 50
+Switch(config-vlan)#name DEVELOPMENT
+Switch(config-vlan)#vlan 60
+Switch(config-vlan)#name CUSTOMER_SUPPORT
+Switch(config-vlan)#vlan 70
+Switch(config-vlan)#name IT
+Switch(config-vlan)#vlan 80
+Switch(config-vlan)#name GUEST
+Switch(config-vlan)#vlan 90
+Switch(config-vlan)#name SERVERS
+Switch(config-vlan)#vlan 99
+Switch(config-vlan)#name MANAGEMENT
+Switch(config-vlan)#vlan 999
+Switch(config-vlan)#name NATIVE
+Switch(config-vlan)#end
+Switch#write memory
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+Switch#
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Switch(config)#interface range g1/0/2-5
+Switch(config-if-range)#switchport mode trunk
+
+
+
+
+Switch(config-if-range)#switchport trunk native vlan 999
+Switch(config-if-range)#switchport trunk allowed vlan 10,20,30,40,50,60,70,80,90,99,999
+Switch(config-if-range)#
+Switch(config-if-range)#end
+Switch#
+Switch#write memory
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/2, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/2, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/3, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/3, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/4, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/4, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/5, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/5, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+Switch#
+%CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on GigabitEthernet1/0/5 (999), with Switch GigabitEthernet1/0/2 (1).
+
+%CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on GigabitEthernet1/0/4 (999), with Switch GigabitEthernet1/0/2 (1).
+
+%CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on GigabitEthernet1/0/5 (999), with Switch GigabitEthernet1/0/2 (1).
+%SPANTREE-2-RECV_PVID_ERR: Received BPDU with inconsistent peer vlan id 1 on GigabitEthernet1/0/4 VLAN999.
+
+%SPANTREE-2-BLOCK_PVID_LOCAL: Blocking GigabitEthernet1/0/4 on VLAN0999. Inconsistent local vlan.
+
+%SPANTREE-2-UNBLOCK_CONSIST_PORT: Unblocking GigabitEthernet1/0/4 on VLAN0001. Port consistency restored.
+
+%SPANTREE-2-UNBLOCK_CONSIST_PORT: Unblocking GigabitEthernet1/0/4 on VLAN0999. Port consistency restored.
+
+
+%CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on GigabitEthernet1/0/5 (999), with Switch GigabitEthernet1/0/2 (1).
+%SPANTREE-2-RECV_PVID_ERR: Received BPDU with inconsistent peer vlan id 1 on GigabitEthernet1/0/5 VLAN999.
+
+%SPANTREE-2-BLOCK_PVID_LOCAL: Blocking GigabitEthernet1/0/5 on VLAN0999. Inconsistent local vlan.
+
+%SPANTREE-2-UNBLOCK_CONSIST_PORT: Unblocking GigabitEthernet1/0/5 on VLAN0001. Port consistency restored.
+
+%SPANTREE-2-UNBLOCK_CONSIST_PORT: Unblocking GigabitEthernet1/0/5 on VLAN0999. Port consistency restored.
+
+
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#spanning-tree mode rapid-pvst
+Switch(config)#end
+Switch#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#interface g1/0/4
+Switch(config-if)#no switchport
+Switch(config-if)#ip address 10.255.1.6 255.255.255.252
+Switch(config-if)#no shutdown
+Switch(config-if)#interface g1/0/5
+Switch(config-if)#no switchport
+Switch(config-if)#ip address 10.255.1.14 255.255.255.252
+Switch(config-if)#no shutdown
+Switch(config-if)#interface g1/0/1
+Switch(config-if)#no switchport
+Switch(config-if)#ip address 10.255.1.21 255.255.255.252
+Switch(config-if)#no shutdown
+Switch(config-if)#end
+Switch#wr
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/4, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/4, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/5, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/5, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+Switch#
+%LINK-5-CHANGED: Interface GigabitEthernet1/0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0/1, changed state to up
+
+Switch#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet1/0/1   10.255.1.21     YES manual up                    up 
+GigabitEthernet1/0/2   unassigned      YES unset  administratively down down 
+GigabitEthernet1/0/3   unassigned      YES unset  administratively down down 
+GigabitEthernet1/0/4   10.255.1.6      YES manual up                    up 
+GigabitEthernet1/0/5   10.255.1.14     YES manual up                    up 
+GigabitEthernet1/0/6   unassigned      YES unset  down                  down 
+GigabitEthernet1/0/7   unassigned      YES unset  down                  down 
+GigabitEthernet1/0/8   unassigned      YES unset  down                  down 
+GigabitEthernet1/0/9   unassigned      YES unset  down                  down 
+GigabitEthernet1/0/10  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/11  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/12  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/13  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/14  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/15  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/16  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/17  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/18  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/19  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/20  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/21  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/22  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/23  unassigned      YES unset  down                  down 
+GigabitEthernet1/0/24  unassigned      YES unset  down                  down 
+GigabitEthernet1/1/1   unassigned      YES unset  down                  down 
+GigabitEthernet1/1/2   unassigned      YES unset  down                  down 
+GigabitEthernet1/1/3   unassigned      YES unset  down                  down 
+GigabitEthernet1/1/4   unassigned      YES unset  down                  down 
+Vlan1                  unassigned      YES unset  administratively down down
+Switch#
+
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#router ospf 1
+Switch(config-router)#router-id 4.4.4.4
+Switch(config-router)#network 10.255.1.4 0.0.0.3 area 0
+Switch(config-router)#network 10.255.1.12 0.0.0.3 area 0
+Switch(config-router)#network 10.255.1.20 0.0.0.3 area 0
+Switch(config-router)#end
+Switch#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+Switch#
+02:33:20: %OSPF-5-ADJCHG: Process 1, Nbr 2.2.2.2 on GigabitEthernet1/0/5 from LOADING to FULL, Loading Done
+
+02:33:21: %OSPF-5-ADJCHG: Process 1, Nbr 1.1.1.1 on GigabitEthernet1/0/4 from LOADING to FULL, Loading Done
+
+02:33:59: %OSPF-5-ADJCHG: Process 1, Nbr 5.5.5.5 on GigabitEthernet1/0/1 from LOADING to FULL, Loading Done
+
+
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#router ospf 1
+Switch(config-router)#passive-interface default
+Switch(config-router)#no passive-interface g1/0/1
+Switch(config-router)#no passive-interface g1/0/4
+Switch(config-router)#no passive-interface g1/0/5
+Switch(config-router)#end
+Switch#wr
+02:39:01: %OSPF-5-ADJCHG: Process 1, Nbr 5.5.5.5 on GigabitEthernet1/0/1 from FULL to DOWN, Neighbor Down: Interface down or detached
+
+02:39:01: %OSPF-5-ADJCHG: Process 1, Nbr 1.1.1.1 on GigabitEthernet1/0/4 from FULL to DOWN, Neighbor Down: Interface down or detached
+
+02:39:01: %OSPF-5-ADJCHG: Process 1, Nbr 2.2.2.2 on GigabitEthernet1/0/5 from FULL to DOWN, Neighbor Down: Interface down or detached
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+Switch#
+02:39:09: %OSPF-5-ADJCHG: Process 1, Nbr 5.5.5.5 on GigabitEthernet1/0/1 from LOADING to FULL, Loading Done
+
+02:39:10: %OSPF-5-ADJCHG: Process 1, Nbr 2.2.2.2 on GigabitEthernet1/0/5 from LOADING to FULL, Loading Done
+
+02:39:11: %OSPF-5-ADJCHG: Process 1, Nbr 1.1.1.1 on GigabitEthernet1/0/4 from LOADING to FULL, Loading Done
+
+02:39:24: %OSPF-5-ADJCHG: Process 1, Nbr 5.5.5.5 on GigabitEthernet1/0/1 from LOADING to FULL, Loading Done
+
+
+Switch>en
+Switch#
+02:52:46: %OSPF-5-ADJCHG: Process 1, Nbr 1.1.1.1 on GigabitEthernet1/0/4 from FULL to DOWN, Neighbor Down: Dead timer expired
+
+02:52:46: %OSPF-5-ADJCHG: Process 1, Nbr 1.1.1.1 on GigabitEthernet1/0/4 from FULL to DOWN, Neighbor Down: Interface down or detached
+
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#interface g1/0/1
+Switch(config-if)#ip ospf message-digest-key 1 md5 Cisco123
+Switch(config-if)#
+Switch(config-if)#interface g1/0/4
+Switch(config-if)#ip ospf message-digest-key 1 md5 Cisco123
+Switch(config-if)#
+Switch(config-if)#interface g1/0/5
+Switch(config-if)#ip ospf message-digest-key 1 md5 Cisco123
+Switch(config-if)#
+Switch(config-if)#router ospf 1
+Switch(config-router)#area 0 authentication message-digest
+Switch(config-router)#end
+Switch#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+Switch#
+02:52:59: %OSPF-5-ADJCHG: Process 1, Nbr 2.2.2.2 on GigabitEthernet1/0/5 from LOADING to FULL, Loading Done
+
+02:52:59: %OSPF-5-ADJCHG: Process 1, Nbr 1.1.1.1 on GigabitEthernet1/0/4 from LOADING to FULL, Loading Done
+
+
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#service timestamps log datetime msec
+Switch(config)#logging host 10.10.50.30
+Switch(config)#logging trap informational
+                            ^
+% Invalid input detected at '^' marker.
+	
+Switch(config)#logging on
+Switch(config)#end
+Switch#wr
+*Mar 01, 14:06:18.066: SYS-5-CONFIG_I: Configured from console by console
+*Mar 01, 14:06:18.066:  %SYS-6-LOGGINGHOST_STARTSTOP: Logging to host 10.10.50.30 port 514 started - CLI initiated
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#ntp server 10.10.50.40
+Switch(config)#end
+Switch#wr
+*Mar 01, 14:14:05.1414: SYS-5-CONFIG_I: Configured from console by console
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+Switch#
+
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#ip access-list standard MGMT-SSH
+Switch(config-std-nacl)#permit 10.10.99.0 0.0.0.255
+Switch(config-std-nacl)#deny any
+Switch(config-std-nacl)#exit
+Switch(config)#
+Switch(config)#line vty 0 15
+Switch(config-line)#access-class MGMT-SSH in
+Switch(config-line)#transport input ssh
+Switch(config-line)#login local
+Switch(config-line)#end
+Switch#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+Switch#
+
+CORE-SW2>en
+CORE-SW2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+CORE-SW2(config)#no ip domain-lookup
+CORE-SW2(config)#no ip http server
+                        ^
+% Invalid input detected at '^' marker.
+	
+CORE-SW2(config)#no ip http secure-server
+                        ^
+% Invalid input detected at '^' marker.
+	
+CORE-SW2(config)#service password-encryption
+CORE-SW2(config)#end
+CORE-SW2#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+Compressed configuration from 7383 bytes to 3601 bytes[OK]
+[OK]
+CORE-SW2#

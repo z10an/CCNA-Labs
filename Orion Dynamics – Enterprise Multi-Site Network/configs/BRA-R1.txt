@@ -1,0 +1,195 @@
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface s0/0/0
+Router(config-if)#description WAN-to-HQ
+Router(config-if)#ip address 10.255.2.2 255.255.255.252
+Router(config-if)#no shutdown
+
+Router(config-if)#end
+Router#wr
+%LINK-5-CHANGED: Interface Serial0/0/0, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Router#
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial0/0/0, changed state to up
+
+
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface g0/0
+Router(config-if)#description Branch-A-LAN
+Router(config-if)#ip address 10.20.10.1 255.255.255.0
+Router(config-if)#no shutdown
+
+Router(config-if)#end
+Router#wr
+%LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Router#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     10.20.10.1      YES manual up                    up 
+GigabitEthernet0/1     unassigned      YES unset  administratively down down 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Serial0/0/0            10.255.2.2      YES manual up                    up 
+Serial0/0/1            unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+Router#show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active    
+Router#
+
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#router ospf 1
+Router(config-router)#router-id 10.10.10.10
+Router(config-router)#network 10.255.2.0 0.0.0.3 area 10
+Router(config-router)#network 10.20.10.0 0.0.0.255 area 10
+Router(config-router)#passive-interface g0/0
+Router(config-router)#end
+Router#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Router#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     10.20.10.1      YES manual up                    up 
+GigabitEthernet0/1     unassigned      YES unset  administratively down down 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Serial0/0/0            10.255.2.2      YES manual up                    up 
+Serial0/0/1            unassigned      YES unset  administratively down down 
+Vlan1                  unassigned      YES unset  administratively down down
+Router#show ip ospf interface brief
+Interface     PID   Area                     IP Address/Mask          Cost  State  Nbrs F/C
+Se0/0/0         1   10                    10.255.2.2/255.255.255.252   64   POINT  0/0
+Gig0/0          1   10                      10.20.10.1/255.255.255.0   1     WAIT  0/0
+
+Router#show ip protocols
+
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set 
+  Incoming update filter list for all interfaces is not set 
+  Router ID 10.10.10.10
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+    10.255.2.0 0.0.0.3 area 10
+    10.20.10.0 0.0.0.255 area 10
+  Passive Interface(s): 
+    GigabitEthernet0/0
+  Routing Information Sources:  
+    Gateway         Distance      Last Update 
+    10.10.10.10          110      00:03:53
+  Distance: (default is 110)
+
+Router#
+05:04:17: %OSPF-5-ADJCHG: Process 1, Nbr 5.5.5.5 on Serial0/0/0 from LOADING to FULL, Loading Done
+
+Router#show ip ospf neighbor
+
+
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+5.5.5.5           0   FULL/  -        00:00:34    10.255.2.1      Serial0/0/0
+Router#
+
+Router(config)#interface tunnel0
+
+Router(config-if)#description GRE-to-HQ
+                  ^
+% Invalid input detected at '^' marker.
+	
+Router(config-if)#ip address 172.16.1.2 255.255.255.252
+Router(config-if)#tunnel source s0/0/0
+Router(config-if)#tunnel destination 10.255.2.1
+Router(config-if)#no shutdown
+Router(config-if)#end
+Router#wr
+%LINK-5-CHANGED: Interface Tunnel0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Tunnel0, changed state to up
+
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Router#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     10.20.10.1      YES manual up                    up 
+GigabitEthernet0/1     unassigned      YES unset  administratively down down 
+GigabitEthernet0/2     unassigned      YES unset  administratively down down 
+Serial0/0/0            10.255.2.2      YES manual up                    up 
+Serial0/0/1            unassigned      YES unset  administratively down down 
+Tunnel0                172.16.1.2      YES manual up                    up 
+Vlan1                  unassigned      YES unset  administratively down down
+Router#
+
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface g0/0
+Router(config-if)#ip helper-address 10.10.50.10
+Router(config-if)#end
+Router#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Router#ping 10.10.50.10
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.50.10, timeout is 2 seconds:
+!!.!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 6/24/33 ms
+
+Router#
+
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#ip access-list standard MGMT-SSH
+Router(config-std-nacl)#permit 10.10.99.0 0.0.0.255
+Router(config-std-nacl)#deny any
+Router(config-std-nacl)#exit
+Router(config)#
+Router(config)#line vty 0 15
+Router(config-line)#access-class MGMT-SSH in
+Router(config-line)#transport input ssh
+Router(config-line)#login local
+Router(config-line)#end
+Router#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+Router#
+
+BRA-R1>en
+BRA-R1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+BRA-R1(config)#no ip domain-lookup
+BRA-R1(config)#service password-encryption
+BRA-R1(config)#end
+BRA-R1#wr
+%SYS-5-CONFIG_I: Configured from console by console
+
+Building configuration...
+[OK]
+BRA-R1#
+

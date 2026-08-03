@@ -1,0 +1,1007 @@
+Perfect. This is actually **better** than the old 3560s.
+
+You're using the **Cisco 3650 Multilayer Switch**, which has:
+
+* **GigabitEthernet1/0/1 – GigabitEthernet1/0/24**
+* (Instead of Fa0/x + Gi0/x)
+
+We'll standardize **everything** on Gigabit interfaces. That's closer to what you'd see in a modern enterprise anyway.
+
+---
+
+# EDGE-R1 (2911)
+
+| Interface | Connected To    | Cable                   |
+| --------- | --------------- | ----------------------- |
+| G0/0      | ISP-R1 G0/0     | Copper Straight-Through |
+| G0/1      | CORE-SW1 G1/0/1 | Copper Straight-Through |
+| G0/2      | CORE-SW2 G1/0/1 | Copper Straight-Through |
+| S0/0/0    | BRA-R1 S0/0/0   | Serial DCE              |
+| S0/0/1    | BRB-R1 S0/0/0   | Serial DCE              |
+| S0/1/0    | BRC-R1 S0/0/0   | Serial DCE              |
+
+---
+
+# CORE-SW1 (3650)
+
+| Interface | Connected To    | Cable                   |
+| --------- | --------------- | ----------------------- |
+| G1/0/1    | EDGE-R1 G0/1    | Copper Straight-Through |
+| G1/0/2    | CORE-SW2 G1/0/2 | Copper Crossover        |
+| G1/0/3    | CORE-SW2 G1/0/3 | Copper Crossover        |
+| G1/0/4    | DIST-SW1 G1/0/1 | Copper Crossover        |
+| G1/0/5    | DIST-SW2 G1/0/1 | Copper Crossover        |
+
+---
+
+# CORE-SW2 (3650)
+
+| Interface | Connected To    | Cable                   |
+| --------- | --------------- | ----------------------- |
+| G1/0/1    | EDGE-R1 G0/2    | Copper Straight-Through |
+| G1/0/2    | CORE-SW1 G1/0/2 | Copper Crossover        |
+| G1/0/3    | CORE-SW1 G1/0/3 | Copper Crossover        |
+| G1/0/4    | DIST-SW1 G1/0/2 | Copper Crossover        |
+| G1/0/5    | DIST-SW2 G1/0/2 | Copper Crossover        |
+
+---
+
+# DIST-SW1 (3650)
+
+| Interface | Connected To    | Cable            |
+| --------- | --------------- | ---------------- |
+| G1/0/1    | CORE-SW1 G1/0/4 | Copper Crossover |
+| G1/0/2    | CORE-SW2 G1/0/4 | Copper Crossover |
+| G1/0/3    | DIST-SW2 G1/0/3 | Copper Crossover |
+| G1/0/4    | DIST-SW2 G1/0/4 | Copper Crossover |
+| G1/0/5    | ACC-SW1 G0/1    | Copper Crossover |
+| G1/0/6    | ACC-SW2 G0/1    | Copper Crossover |
+| G1/0/7    | ACC-SW3 G0/1    | Copper Crossover |
+| G1/0/8    | ACC-SW4 G0/1    | Copper Crossover |
+| G1/0/9    | SRV-SW1 G0/1    | Copper Crossover |
+
+---
+
+# DIST-SW2 (3650)
+
+| Interface | Connected To    | Cable            |
+| --------- | --------------- | ---------------- |
+| G1/0/1    | CORE-SW1 G1/0/5 | Copper Crossover |
+| G1/0/2    | CORE-SW2 G1/0/5 | Copper Crossover |
+| G1/0/3    | DIST-SW1 G1/0/3 | Copper Crossover |
+| G1/0/4    | DIST-SW1 G1/0/4 | Copper Crossover |
+| G1/0/5    | ACC-SW1 G0/2    | Copper Crossover |
+| G1/0/6    | ACC-SW2 G0/2    | Copper Crossover |
+| G1/0/7    | ACC-SW3 G0/2    | Copper Crossover |
+| G1/0/8    | ACC-SW4 G0/2    | Copper Crossover |
+| G1/0/9    | SRV-SW1 G0/2    | Copper Crossover |
+
+---
+
+# Access Switches (2960)
+
+We'll reserve the Gigabit uplinks for the distribution layer and use FastEthernet for end devices.
+
+### ACC-SW1
+
+| Interface | Connected To    | Cable                   |
+| --------- | --------------- | ----------------------- |
+| G0/1      | DIST-SW1 G1/0/5 | Copper Crossover        |
+| G0/2      | DIST-SW2 G1/0/5 | Copper Crossover        |
+| Fa0/1     | HR-PC1          | Copper Straight-Through |
+| Fa0/2     | HR-PC2          | Copper Straight-Through |
+| Fa0/3     | FIN-PC1         | Copper Straight-Through |
+| Fa0/4     | FIN-PC2         | Copper Straight-Through |
+
+---
+
+### ACC-SW2
+
+| Interface | Connected To    | Cable                   |
+| --------- | --------------- | ----------------------- |
+| G0/1      | DIST-SW1 G1/0/6 | Copper Crossover        |
+| G0/2      | DIST-SW2 G1/0/6 | Copper Crossover        |
+| Fa0/1     | SALES-HQ-PC1    | Copper Straight-Through |
+| Fa0/2     | SALES-HQ-PC2    | Copper Straight-Through |
+| Fa0/3     | MARKETING-PC1   | Copper Straight-Through |
+| Fa0/4     | MARKETING-PC2   | Copper Straight-Through |
+
+---
+
+### ACC-SW3
+
+| Interface | Connected To    | Cable                   |
+| --------- | --------------- | ----------------------- |
+| G0/1      | DIST-SW1 G1/0/7 | Copper Crossover        |
+| G0/2      | DIST-SW2 G1/0/7 | Copper Crossover        |
+| Fa0/1     | DEV-HQ-PC1      | Copper Straight-Through |
+| Fa0/2     | DEV-HQ-PC2      | Copper Straight-Through |
+| Fa0/3     | CS-PC1          | Copper Straight-Through |
+| Fa0/4     | CS-PC2          | Copper Straight-Through |
+
+---
+
+### ACC-SW4
+
+| Interface | Connected To    | Cable                   |
+| --------- | --------------- | ----------------------- |
+| G0/1      | DIST-SW1 G1/0/8 | Copper Crossover        |
+| G0/2      | DIST-SW2 G1/0/8 | Copper Crossover        |
+| Fa0/1     | IT-HQ-PC1       | Copper Straight-Through |
+| Fa0/2     | IT-HQ-PC2       | Copper Straight-Through |
+| Fa0/3     | MGMT-PC         | Copper Straight-Through |
+
+---
+
+### SRV-SW1 (2960)
+
+| Interface | Connected To    | Cable                   |
+| --------- | --------------- | ----------------------- |
+| G0/1      | DIST-SW1 G1/0/9 | Copper Crossover        |
+| G0/2      | DIST-SW2 G1/0/9 | Copper Crossover        |
+| Fa0/1     | SRV-DHCP        | Copper Straight-Through |
+| Fa0/2     | SRV-DNS         | Copper Straight-Through |
+| Fa0/3     | SRV-SYSLOG      | Copper Straight-Through |
+| Fa0/4     | SRV-NTP         | Copper Straight-Through |
+
+---
+
+The branch routers and switches can remain exactly as we planned earlier because they don't use the 3650.
+
+## One design improvement
+
+Since we're standardizing now, let's adopt one rule for the entire project:
+
+* **Gigabit interfaces = Infrastructure/Uplinks**
+* **FastEthernet interfaces = End devices (PCs and Servers)**
+* **Serial interfaces = WAN**
+
+This convention is easy to remember, aligns with common enterprise practice, and will make troubleshooting much easier because you'll immediately know the role of an interface just by looking at its type.
+Yes, I would cable those now as well.
+
+Each branch is a simple access network, so the cabling is straightforward.
+
+## Branch A
+
+```text
+BRA-R1 G0/0
+        |
+        |
+BRA-SW1 G0/1
+```
+
+Then:
+
+| Switch Interface | Connected To |
+| ---------------- | ------------ |
+| Fa0/1            | SALES-A-PC1  |
+| Fa0/2            | SALES-A-PC2  |
+
+---
+
+## Branch B
+
+```text
+BRB-R1 G0/0
+        |
+        |
+BRB-SW1 G0/1
+```
+
+Then:
+
+| Switch Interface | Connected To |
+| ---------------- | ------------ |
+| Fa0/1            | DEV-B-PC1    |
+| Fa0/2            | DEV-B-PC2    |
+
+---
+
+## Branch C
+
+```text
+BRC-R1 G0/0
+        |
+        |
+BRC-SW1 G0/1
+```
+
+Then:
+
+| Switch Interface | Connected To |
+| ---------------- | ------------ |
+| Fa0/1            | IT-C-PC1     |
+| Fa0/2            | GUEST-C-PC1  |
+
+---
+
+## Cable Types
+
+| Connection          | Cable                         |
+| ------------------- | ----------------------------- |
+| Router ↔ Switch     | Copper Straight-Through       |
+| PC ↔ Switch         | Copper Straight-Through       |
+| Router ↔ EDGE (WAN) | Serial DCE/DTE (already done) |
+
+---
+
+## One small correction to my earlier interface plan
+
+Since we're using the **Gigabit uplink** on the branch switches too, let's make it consistent:
+
+### BRA-SW1
+
+* **G0/1 → BRA-R1 G0/0**
+* **Fa0/1 → SALES-A-PC1**
+* **Fa0/2 → SALES-A-PC2**
+
+### BRB-SW1
+
+* **G0/1 → BRB-R1 G0/0**
+* **Fa0/1 → DEV-B-PC1**
+* **Fa0/2 → DEV-B-PC2**
+
+### BRC-SW1
+
+* **G0/1 → BRC-R1 G0/0**
+* **Fa0/1 → IT-C-PC1**
+* **Fa0/2 → GUEST-C-PC1**
+
+This follows the same convention as the headquarters:
+
+* **Gigabit = infrastructure/uplinks**
+* **FastEthernet = end devices**
+
+Keeping that convention everywhere makes the topology and configurations much easier to follow and troubleshoot later.
+
+I agree. This is the point where we should pause and finalize the technology stack. A flagship project shouldn't be "every CCNA topic thrown into one topology." It should feel like something an engineer would actually deploy.
+
+Let's think about it from an enterprise perspective.
+
+---
+
+# Project 1 (Foundation)
+
+Focus: Basic Enterprise LAN
+
+* VLANs
+* Trunking
+* Inter-VLAN Routing
+* Static Routing
+* DHCP
+* DNS
+* NAT/PAT
+* SSH
+* Rapid PVST+
+* Port Security
+* DHCP Snooping
+* DAI
+* NTP
+* Syslog
+
+---
+
+# Project 2 (Redundancy)
+
+Focus: High Availability
+
+Added:
+
+* HSRP
+* OSPF Single Area
+* EtherChannel
+* ACLs
+* Better STP design
+* Redundant Core
+
+---
+
+# Project 3
+
+This should answer one question:
+
+> **"How would you connect multiple enterprise sites?"**
+
+So every technology should support that goal.
+
+---
+
+# Layer 2
+
+### VLANs ✅
+
+Absolutely.
+
+---
+
+### 802.1Q Trunking ✅
+
+Required.
+
+---
+
+### EtherChannel (LACP) ✅
+
+Yes.
+
+We'll use it for:
+
+* Core ↔ Core
+* Distribution ↔ Distribution
+
+Not everywhere.
+
+---
+
+### Rapid PVST+ ✅
+
+Absolutely.
+
+---
+
+### Root Primary / Secondary ✅
+
+Required.
+
+---
+
+### PortFast ✅
+
+Yes.
+
+---
+
+### BPDU Guard ✅
+
+Yes.
+
+---
+
+### Port Security ✅
+
+Yes.
+
+---
+
+### DHCP Snooping ✅
+
+Yes.
+
+---
+
+### Dynamic ARP Inspection ✅
+
+Yes.
+
+---
+
+### VTP ❌
+
+I recommend **not** using VTP.
+
+Reason:
+
+* Many enterprises run in VTP transparent mode or avoid VTP altogether because of the risk of accidental VLAN database changes.
+* Creating VLANs manually is only a little more work and demonstrates that you understand the configuration.
+
+---
+
+# Layer 3
+
+### SVIs ✅
+
+Required.
+
+---
+
+### HSRP ✅
+
+Definitely.
+
+---
+
+### OSPF Multi-Area ✅
+
+This is one of the main upgrades from Project 2.
+
+Example:
+
+```text
+Area 0
+|
+HQ
+
+Area 10
+|
+Branch A
+
+Area 20
+|
+Branch B
+
+Area 30
+|
+Branch C
+```
+
+---
+
+### Static Default Route ✅
+
+Edge Router → ISP
+
+---
+
+### Route Summarization ❌
+
+Not really useful with a network this size.
+
+We could force it, but it wouldn't add much value.
+
+---
+
+# WAN
+
+### GRE Tunnel ✅
+
+Yes.
+
+This is a meaningful new technology for a multi-site enterprise.
+
+---
+
+### IP SLA ❌
+
+I don't recommend it.
+
+It normally shines with dual ISPs or multiple WAN paths. Since we have a single ISP and one WAN path to each branch, we'd be adding complexity without a real design need.
+
+---
+
+# Services
+
+### DHCP Relay ✅
+
+Definitely.
+
+---
+
+### DNS ✅
+
+Yes.
+
+---
+
+### NTP ✅
+
+Yes.
+
+---
+
+### Syslog ✅
+
+Yes.
+
+---
+
+# Security
+
+### Extended ACLs ✅
+
+Yes.
+
+We'll create realistic inter-department and branch-to-HQ policies.
+
+---
+
+### SSH ✅
+
+Yes.
+
+---
+
+### Enable Secret / Password Encryption ✅
+
+Always.
+
+---
+
+# Management
+
+### SNMP ✅
+
+Yes.
+
+It's worth including because it's commonly used in enterprise monitoring.
+
+---
+
+### Banner MOTD ✅
+
+Yes.
+
+---
+
+### Logging Synchronous ✅
+
+Yes.
+
+---
+
+# Internet
+
+### NAT/PAT ✅
+
+Yes.
+
+---
+
+# Technologies I recommend skipping
+
+| Technology  | Reason                                                                                  |
+| ----------- | --------------------------------------------------------------------------------------- |
+| RIP         | Already demonstrated in earlier labs.                                                   |
+| EIGRP       | Outside the current CCNA blueprint and less common in modern multi-vendor environments. |
+| VTP         | Avoided in many enterprises; manual VLAN creation is fine here.                         |
+| GLBP        | HSRP already demonstrates first-hop redundancy well.                                    |
+| VRRP        | Same reason as GLBP.                                                                    |
+| Frame Relay | Obsolete.                                                                               |
+| PPP         | Adds little value for this design.                                                      |
+| PPPoE       | ISP technology, not relevant to this project.                                           |
+
+---
+
+# Final Technology Stack
+
+## Layer 2
+
+* VLANs
+* 802.1Q Trunking
+* EtherChannel (LACP)
+* Rapid PVST+
+* Root Primary / Secondary
+* PortFast
+* BPDU Guard
+* Port Security
+* DHCP Snooping
+* Dynamic ARP Inspection
+
+## Layer 3
+
+* SVIs
+* HSRP
+* OSPF Multi-Area
+* Static Default Route
+
+## WAN
+
+* GRE Tunnel
+
+## Enterprise Services
+
+* DHCP
+* DHCP Relay
+* DNS
+* NTP
+* Syslog
+
+## Security
+
+* Extended ACLs
+* SSH
+
+## Management
+
+* SNMP
+* Banner MOTD
+* Secure device management
+
+## Internet
+
+* NAT/PAT
+
+---
+
+## One addition I'd like to make
+
+I recommend adding **OSPF authentication** (using MD5 or the Packet Tracer-supported equivalent if available).
+
+Why?
+
+* It fits naturally into a multi-site enterprise.
+* It's a genuine enterprise security practice.
+* It differentiates Project 3 from Project 2 without adding much complexity.
+
+That gives us **one additional enterprise-grade feature** while keeping every technology relevant to the network's design. It makes the project feel like a coherent enterprise implementation rather than a checklist of CCNA topics.
+
+
+
+Perfect. From this point onward, I'm going to treat this as if I'm the network architect for a medium-sized enterprise. Every decision has to answer **"Would I actually deploy this?"**
+
+# Project 3 - Enterprise Technologies
+
+## Phase 2 - Layer 2
+
+### 2.1 VLANs ✅
+
+Departments
+
+```text
+VLAN 10  HR
+VLAN 20  FINANCE
+VLAN 30  SALES
+VLAN 40  MARKETING
+VLAN 50  DEVELOPMENT
+VLAN 60  CUSTOMER_SUPPORT
+VLAN 70  IT
+VLAN 80  GUEST
+VLAN 90  SERVERS
+VLAN 99  MANAGEMENT
+VLAN 999 NATIVE
+```
+
+---
+
+### 2.2 Trunking ✅
+
+802.1Q everywhere required.
+
+---
+
+### 2.3 EtherChannel (LACP) ✅
+
+Po1
+
+CORE1 ↔ CORE2
+
+Po2
+
+DIST1 ↔ DIST2
+
+Only these two.
+
+---
+
+### 2.4 Rapid PVST+ ✅
+
+Enterprise standard.
+
+---
+
+### 2.5 Root Bridge Design ✅
+
+Instead of randomly choosing roots:
+
+| VLANs          | Root Primary | Root Secondary |
+| -------------- | ------------ | -------------- |
+| 10,30,50,70,90 | DIST-SW1     | DIST-SW2       |
+| 20,40,60,80,99 | DIST-SW2     | DIST-SW1       |
+
+This load-balances Layer 2 traffic across both distribution switches.
+
+---
+
+### 2.6 PortFast ✅
+
+Access ports only.
+
+---
+
+### 2.7 BPDU Guard ✅
+
+All access ports.
+
+---
+
+### 2.8 Port Security ✅
+
+Sticky MAC
+
+Maximum 2
+
+Violation Restrict
+
+Exactly like an enterprise.
+
+---
+
+### 2.9 DHCP Snooping ✅
+
+Entire campus.
+
+---
+
+### 2.10 Dynamic ARP Inspection ✅
+
+Campus-wide.
+
+---
+
+# Phase 3 - Layer 3
+
+---
+
+## Inter-VLAN Routing
+
+SVIs on both Distribution switches.
+
+---
+
+## HSRP
+
+Every VLAN gets redundancy.
+
+---
+
+## DHCP Relay
+
+All SVIs point to the centralized DHCP server.
+
+---
+
+## Default Route
+
+Distribution
+
+↓
+
+Core
+
+↓
+
+Edge
+
+↓
+
+ISP
+
+---
+
+# Phase 4 - WAN
+
+---
+
+## OSPF Multi-Area
+
+```text
+Area 0
+|
+HQ
+
+Area 10
+|
+Branch A
+
+Area 20
+|
+Branch B
+
+Area 30
+|
+Branch C
+```
+
+---
+
+## OSPF Authentication ✅
+
+Yes.
+
+Very common in enterprises.
+
+---
+
+## Passive Interfaces ✅
+
+Another enterprise best practice.
+
+Only WAN interfaces form adjacencies.
+
+---
+
+## GRE Tunnel
+
+HQ
+
+↓
+
+Branches
+
+---
+
+# Phase 5 - Enterprise Services
+
+Centralized
+
+* DHCP
+* DNS
+* Syslog
+* NTP
+
+Branches use headquarters.
+
+---
+
+# Phase 6 - Security
+
+ACLs
+
+Instead of generic ACLs, we'll create business policies.
+
+Examples:
+
+HR
+
+✔ DNS
+
+✔ DHCP
+
+✔ Servers
+
+✖ Guest VLAN
+
+---
+
+Guest
+
+✔ Internet
+
+✖ Internal Servers
+
+---
+
+Development
+
+✔ Development Resources
+
+✔ DNS
+
+✔ Internet
+
+---
+
+SSH
+
+Management VLAN only.
+
+---
+
+Password Encryption
+
+Always.
+
+---
+
+Banner MOTD
+
+Always.
+
+---
+
+# Phase 7 - Monitoring
+
+Syslog
+
+Every device.
+
+---
+
+NTP
+
+Every device.
+
+---
+
+SNMP
+
+Every router and multilayer switch.
+
+---
+
+# Phase 8 - Internet
+
+PAT
+
+Entire company.
+
+---
+
+Static Default Route
+
+ISP.
+
+---
+
+# Phase 9 - Enterprise Validation
+
+Instead of just pinging PCs, we'll perform realistic validation.
+
+### Layer 2
+
+* Verify trunks
+* Verify EtherChannel
+* Verify STP root election
+* Verify Port Security
+* Verify DHCP Snooping
+* Verify DAI
+
+---
+
+### Layer 3
+
+* Verify HSRP
+* Verify OSPF neighbors
+* Verify routing tables
+
+---
+
+### WAN
+
+* Branch communication
+* GRE tunnel
+
+---
+
+### Enterprise Services
+
+* DHCP leases
+* DNS resolution
+* Syslog messages
+* NTP synchronization
+
+---
+
+### Security
+
+* ACL testing
+* SSH login
+* Guest restrictions
+
+---
+
+### Failover
+
+* Disconnect EtherChannel member
+* Shut active HSRP interface
+* Shut OSPF WAN link
+
+Observe recovery.
+
+---
+
+# What I intentionally left out
+
+I did **not** include these because I don't think they strengthen this particular project:
+
+* ❌ VTP
+* ❌ RIP
+* ❌ EIGRP
+* ❌ VRRP
+* ❌ GLBP
+* ❌ PPP
+* ❌ PPPoE
+* ❌ Frame Relay
+* ❌ Route Redistribution
+* ❌ BGP
+* ❌ MPLS
+
+Those are either obsolete for this design, outside the CCNA scope, or would add complexity without making the project more realistic.
+
+---
+
+## One final enhancement
+
+I'd like to add **one enterprise feature** that fits naturally and isn't in your previous projects:
+
+### Dedicated Management VLAN
+
+You've already created a `MGMT-PC`, so let's make full use of it.
+
+* VLAN 99 will be the **only** network from which device management is allowed.
+* All switches and routers will have their management IPs in VLAN 99.
+* SSH and SNMP will be reachable only from VLAN 99 (enforced with an ACL where appropriate).
+
+This ties together your management PC, management VLAN, SSH, SNMP, and access control into a coherent enterprise management design. It's a realistic practice that adds value without introducing unnecessary complexity.
+
+With the design now locked, we won't add more technologies. From here onward, every phase is about implementing, verifying, and documenting this architecture cleanly.
+
