@@ -1,9 +1,5 @@
 # Orion Dynamics – Enterprise Multi-Site Network Infrastructure
 
-![Cisco](https://img.shields.io/badge/Cisco-Packet%20Tracer-blue?logo=cisco)
-![CCNA](https://img.shields.io/badge/Level-CCNA-success)
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
-![License](https://img.shields.io/badge/License-MIT-blue)
 
 ---
 
@@ -673,7 +669,7 @@ Attempted communication with restricted HR resources was successfully blocked, v
 ## Result
 
 The enterprise network now incorporates multiple layers of security to protect both the infrastructure and enterprise resources. Physical access risks were reduced by disabling unused switch ports, secure remote administration was enforced through SSH with restricted management access, and extended ACLs successfully isolated the Guest network while enforcing inter-department access policies. Together, these controls significantly improve the confidentiality, integrity, and overall security posture of the enterprise network.
-```
+
 
 ---
 # Phase 7 – Network Address Translation (NAT)
