@@ -1,11 +1,5 @@
 # Evercrest Technologies – Enterprise Redundant Campus Network
 
-![Cisco](https://img.shields.io/badge/Cisco-Packet%20Tracer-blue?logo=cisco)
-![CCNA](https://img.shields.io/badge/Level-CCNA-success)
-![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
-![License](https://img.shields.io/badge/License-MIT-blue)
-
----
 
 ## Project Overview
 
